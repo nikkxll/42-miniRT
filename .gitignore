@@ -1,0 +1,8 @@
+libft/*/*.o
+libft/*/*.a
+libft/libft.a
+*.out
+.DS_Store
+.vscode
+objs/
+./miniRT
