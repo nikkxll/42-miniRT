@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//norms?
 typedef float	t_num;
 
 typedef enum e_obj_type
