@@ -57,3 +57,10 @@ t_num	distance(t_vec3d p1, t_vec3d p2);
 t_vec3d	vec_rot_x(t_vec3d vec, t_num angle);
 t_vec3d	vec_rot_y(t_vec3d vec, t_num angle);
 t_vec3d	vec_rot_z(t_vec3d vec, t_num angle);
+
+//vec_utils.c
+t_num	vec_norm(t_vec3d v);
+t_vec3d	vec_unit(t_vec3d p);
+t_num	vec_sin(t_vec3d a, t_vec3d b);
+t_num	vec_cos(t_vec3d a, t_vec3d b);
+t_vec3d	vec_scale(t_num n, t_vec3d p);
