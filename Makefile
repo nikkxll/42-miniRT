@@ -27,12 +27,12 @@ MLX				:=	./lib/MLX42/build/libmlx42.a
 LIBMLX_DIR		:=	$(LIBMLX)/include
 
 # MLX FOR SCHOOL COMPUTERS 
-LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/opt/homebrew/opt/glfw/lib/" \
-					-lglfw -framework OpenGL -framework AppKit
+# LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/opt/homebrew/opt/glfw/lib/" \
+# 					-lglfw -framework OpenGL -framework AppKit
 
 # MLX FOR MacOS (M1 and later)
-# LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"~/.brew/opt/glfw/lib" \
-# 					-lglfw -framework OpenGL -framework AppKit
+LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
+					-lglfw -framework OpenGL -framework AppKit
 
 # LOADING PROGRESS BAR INIT
 TOTAL_OBJS		:=	$(words $(OBJS))
