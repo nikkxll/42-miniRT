@@ -1,87 +1,55 @@
-////#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "vec3.h"
 
-typedef float t_num;  //norms???
-
-typedef enum e_obj_type
-{
-	SPHERE,
-	PLANE
-}	t_obj_type;
-
+/*
 typedef struct s_vec3d
 {
 	t_num	x;
 	t_num	y;
 	t_num	z;
 }	t_vec3d;
+*/
 
-typedef struct s_col
+t_vec3d	vec_def(double x, double y, double z)
 {
-	int	r;
-	int	g;
-	int b;
-} t_col;
+	t_vec3d	vector;
 
-typedef struct s_sphere
-{
-	int		type;
-	t_num	d;
-	t_vec3d	r;
-	t_col	c;
-}	t_sphere;
-
-typedef struct s_plane
-{
-	int		type;
-	t_vec3d	r;
-	t_vec3d	n;
-	t_col 	c;
-}	t_plane;
-
-
-typedef struct s_obj
-{
-	int	type;
-} t_obj;
-
-t_num	take_x_from_sphere(t_sphere *sphere)
-{
-	return (sphere->r.x);
+	vector.x = x;
+	vector.y = y;
+	vector.z = z;
+	return (vector);
 }
 
-t_num	take_x_from_plane(t_plane *plane)
+t_vec3d	vec_add(t_vec3d a, t_vec3d b)
 {
-	return (plane->r.x);
+	t_vec3d	p;
+
+	p.x = a.x + b.x;
+	p.y = a.y + b.y;
+	p.z = a.z + b.z;
+	return (p);
 }
 
-t_num	take_x(t_obj *obj)
+t_vec3d	vec_sub(t_vec3d a, t_vec3d b)
 {
-	t_num ret;
+	t_vec3d	p;
 
-	if (obj->type == SPHERE)
-		ret = take_x_from_sphere((t_sphere*)obj);
-	else if (obj->type == PLANE)
-		ret =take_x_from_plane((t_plane*)obj);
-	return (ret);
+	p.x = a.x - b.x;
+	p.y = a.y - b.y;
+	p.z = a.z - b.z;
+	return (p);
 }
 
-int main()
+t_num	dot(t_vec3d a, t_vec3d b)
 {
-	t_sphere s;
-	t_plane p;
-	t_obj *o[2];
+	return (a.x * b.x + a.y * b.y + a.z * b.z);
+}
 
-	s.r.x = 1;
-	s.type = SPHERE;
-	p.r.x = 2;
-	p.type = PLANE;
-	o[0] = (t_obj*)&s;
-	o[1] = (t_obj*)&p;
+t_vec3d	cross(t_vec3d a, t_vec3d b)
+{
+	t_vec3d	cp;
 
-	printf("sphere's x =%f\n", take_x(o[0]));
-	printf("plane's x =%f\n", take_x(o[1]));
-
-	return (1);
+	cp.x = a.y * b.z - a.z * b.y;
+	cp.y = a.z * b.x - a.x * b.z;
+	cp.z = a.x * b.y - a.y * b.x;
+	return (cp);
 }
