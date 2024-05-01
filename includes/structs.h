@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/04/30 12:25:38 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/01 00:02:41 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_am_light
 	int			type;
 	float		ratio;
 	t_rgb3		rgb;
-	t_am_light	*next;
+	struct s_am_light	*next;
 }	t_am_light;
 
 typedef struct s_camera
@@ -43,7 +43,7 @@ typedef struct s_camera
 	t_vec3d		coord;
 	t_vec3d		orient;
 	float		fov;
-	t_camera	*next;
+	struct s_camera	*next;
 }	t_camera;
 
 typedef struct s_light
@@ -52,7 +52,7 @@ typedef struct s_light
 	t_vec3d	coord;
 	float	bright;
 	t_rgb3	rgb;
-	t_light	*next;
+	struct s_light	*next;
 }	t_light;
 
 typedef struct s_sphere
@@ -61,7 +61,7 @@ typedef struct s_sphere
 	t_vec3d		coord;
 	float		d;
 	t_rgb3		rgb;
-	t_sphere	*next;
+	struct s_sphere	*next;
 }	t_sphere;
 
 typedef struct s_plane
@@ -70,7 +70,7 @@ typedef struct s_plane
 	t_vec3d		coord;
 	t_vec3d		normal;
 	t_rgb3		rgb;
-	t_plane		*next;
+	struct s_plane		*next;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -81,7 +81,7 @@ typedef struct s_cylinder
 	float		d;
 	float		h;
 	t_rgb3		rgb;
-	t_cylinder	*next;
+	struct s_cylinder	*next;
 }	t_cylinder;
 
 typedef struct s_collection
