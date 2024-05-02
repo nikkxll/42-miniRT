@@ -1,6 +1,4 @@
-////#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "../../includes/vec3.h"
 
 //norms???
 typedef float t_num;

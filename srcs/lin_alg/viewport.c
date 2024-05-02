@@ -1,14 +1,6 @@
-#include "vec3.h"
+#include "../../includes/vec3.h"
 
-#define TAN tan
-#define POW pow
 
-#define ASPECT_RATIO 2
-#define IMAGE_WIDTH 400
-#define IMAGE_HEIGHT 400
-
-#define PI 3.141592653589793238462643383279502884197169399375105820974944592307
-#define EPSILON 0.0000001
 
 
 t_vec3d	viewport_vec(t_viewport *vp, int i, int j)
@@ -29,11 +21,11 @@ t_vec3d	viewport_vec(t_viewport *vp, int i, int j)
 	return (r_vec);
 }
 
-void init_ray_bunch(t_viewport *vp)
+void	init_ray_bunch(t_viewport *vp)
 {
-	int i;
-	int j;
-	int n;
+	int	i;
+	int	j;
+	int	n;
 
 	vp->size = vp->n_x * vp->n_y;
 	vp->rays = (t_vec3d *)malloc(sizeof(*vp->rays) * vp->size);
@@ -58,11 +50,22 @@ void init_ray_bunch(t_viewport *vp)
 
 t_num	hit_distance_t_sphere(t_sphere *sp, t_vec3d v)
 {
-	t_num denom;
-	t_num prod;
+	t_num	denom;
+	t_num	prod;
+	t_num	t[2];
 
 	prod = dot(v, sp->coord);
 	denom = prod * prod - dot2(sp->coord) + POW(sp->d, 2) / 4;
+	if (denom < EPSILON)
+		return (-1);
+	t[0] = SQRT(denom);
+	t[1] = (-1) * t[0];
+	t[0] += prod;
+	t[1] += prod;
+	if (t[1] > EPSILON)
+		return (t[1]);
+	if (t[0] > EPSILON)
+		return (t[0]);
 	return (0);
 }
 
@@ -71,14 +74,21 @@ int main()
 	t_viewport screen;
 
 	t_num foc = 90;
-	int	n_x = 4;
-	int n_y = 4;
+	int	n_x = 3;
+	int n_y = 3;
 	screen = (t_viewport){foc, n_x, n_y, n_x * n_y, NULL};
 
-	t_vec3d r = {0, 0, 10};
+	t_vec3d r = {0, 0, 5};
 	t_rgb3	col = {100, 100, 100};
-	t_sphere sp = {0, r, 1.0, col, NULL};
+	t_sphere sp = {0, r, 2.0, col, NULL};
 	init_ray_bunch(&screen);
+
+	t_num t;
+	t = hit_distance_t_sphere(&sp, screen.rays[4]);
+	printf("t=%f\n", t);
+
+
+
 
 	return (0);
 }

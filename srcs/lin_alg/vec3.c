@@ -1,4 +1,4 @@
-#include "vec3.h"
+#include "../../includes/vec3.h"
 
 /*
 typedef struct s_vec3d
@@ -46,7 +46,7 @@ t_num	dot(t_vec3d a, t_vec3d b)
 
 t_num	dot2(t_vec3d a)
 {
-	return (a.x * a.x + a.y * a.y + a.z * a.z);
+	return (dot(a, a));
 }
 
 t_vec3d	cross(t_vec3d a, t_vec3d b)

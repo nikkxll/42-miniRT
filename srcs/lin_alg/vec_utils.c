@@ -1,4 +1,4 @@
-#include "vec3.h"
+#include "../../includes/vec3.h"
 
 t_num	vec_norm(t_vec3d v)
 {
