@@ -6,14 +6,15 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:23:27 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/04/30 12:23:29 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:16:59 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void	generic_errors_handler(char *msg, int status)
+void	generic_errors_handler(char *msg, int status, t_minirt *rt)
 {
+	cleaner(rt);
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(msg, 2);
 	exit(status);

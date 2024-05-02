@@ -6,12 +6,22 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/02 00:51:08 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:00:01 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
+
+enum	e_types
+{
+	AM_LIGHT = 1,
+	CAMERA,
+	LIGHT,
+	SPHERE,
+	PLANE,
+	CYLINDER,
+};
 
 enum	e_characters
 {
@@ -20,6 +30,7 @@ enum	e_characters
 	NL = 10,
 	SPACE = 32,
 	PLUS = 43,
+	COMMA = 44,
 	MINUS = 45,
 	DOT = 46,
 	ZERO = 48,
@@ -59,6 +70,14 @@ enum	e_num_params
 
 # ifndef ATOF_MAX
 #  define ATOF_MAX 6
+# endif
+
+# ifndef COORD_MAX
+#  define COORD_MAX 1000000
+# endif
+
+# ifndef COORD_MIN
+#  define COORD_MIN -1000000
 # endif
 
 # ifndef ROUND_PRT
