@@ -44,6 +44,11 @@ t_num	dot(t_vec3d a, t_vec3d b)
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
 }
 
+t_num	dot2(t_vec3d a)
+{
+	return (a.x * a.x + a.y * a.y + a.z * a.z);
+}
+
 t_vec3d	cross(t_vec3d a, t_vec3d b)
 {
 	t_vec3d	cp;

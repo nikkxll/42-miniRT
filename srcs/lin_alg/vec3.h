@@ -18,6 +18,7 @@ typedef struct s_vec3d
 	t_num	z;
 }	t_vec3d;
 
+/*
 typedef struct s_col
 {
 	int	r;
@@ -45,12 +46,41 @@ typedef struct s_obj
 {
 	int	type;
 }	t_obj;
+*/
+
+typedef struct s_rgb3
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb3;
+
+typedef struct s_sphere
+{
+	int			type;
+	t_vec3d		coord;
+	float		d;
+	t_rgb3		rgb;
+	struct s_sphere	*next;
+}	t_sphere;
+
+typedef struct s_viewport
+{
+//	t_camera *cam;
+	int		foc;
+	int		n_x;
+	int		n_y;
+	int		size;
+	t_vec3d	*rays;
+}	t_viewport;
+
 
 //vec3.c
 t_vec3d	vec_def(t_num x, t_num y, t_num z);
 t_vec3d	vec_add(t_vec3d a, t_vec3d b);
 t_vec3d	vec_sub(t_vec3d a, t_vec3d b);
 t_num	dot(t_vec3d a, t_vec3d b);
+t_num	dot2(t_vec3d a);
 t_vec3d	cross(t_vec3d a, t_vec3d b);
 
 // rotation_xyz.c

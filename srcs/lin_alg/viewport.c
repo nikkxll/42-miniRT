@@ -1,23 +1,15 @@
 #include "vec3.h"
 
 #define TAN tan
+#define POW pow
 
 #define ASPECT_RATIO 2
 #define IMAGE_WIDTH 400
 #define IMAGE_HEIGHT 400
 
 #define PI 3.141592653589793238462643383279502884197169399375105820974944592307
+#define EPSILON 0.0000001
 
-
-typedef struct s_viewport
-{
-//	t_camera *cam;
-	int		foc;
-	int		n_x;
-	int		n_y;
-	int		size;
-	t_vec3d	*rays;
-}	t_viewport;
 
 t_vec3d	viewport_vec(t_viewport *vp, int i, int j)
 {
@@ -64,6 +56,16 @@ void init_ray_bunch(t_viewport *vp)
 	}
 }
 
+t_num	hit_distance_t_sphere(t_sphere *sp, t_vec3d v)
+{
+	t_num denom;
+	t_num prod;
+
+	prod = dot(v, sp->coord);
+	denom = prod * prod - dot2(sp->coord) + POW(sp->d, 2) / 4;
+	return (0);
+}
+
 int main()
 {
 	t_viewport screen;
@@ -71,8 +73,11 @@ int main()
 	t_num foc = 90;
 	int	n_x = 4;
 	int n_y = 4;
-
 	screen = (t_viewport){foc, n_x, n_y, n_x * n_y, NULL};
+
+	t_vec3d r = {0, 0, 10};
+	t_rgb3	col = {100, 100, 100};
+	t_sphere sp = {0, r, 1.0, col, NULL};
 	init_ray_bunch(&screen);
 
 	return (0);
