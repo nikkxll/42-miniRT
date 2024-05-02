@@ -39,5 +39,5 @@ t_vec3d	vec_scale(t_num n, t_vec3d p)
 
 void	vec_print(char *str, t_vec3d vec)
 {
-	printf("%s = (%f, %f, %f)\n",str, (float)vec.x, (float)vec.y, (float)vec.z);
+	printf("%s = (%.2f, %.2f, %.2f)\n",str, (float)vec.x, (float)vec.y, (float)vec.z);
 }
