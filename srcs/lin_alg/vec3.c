@@ -9,7 +9,7 @@ typedef struct s_vec3d
 }	t_vec3d;
 */
 
-t_vec3d	vec_def(double x, double y, double z)
+t_vec3d	vec_def(t_num x, t_num y, t_num z)
 {
 	t_vec3d	vector;
 

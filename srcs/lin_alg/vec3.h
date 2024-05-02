@@ -47,7 +47,7 @@ typedef struct s_obj
 }	t_obj;
 
 //vec3.c
-t_vec3d	vec_def(double x, double y, double z);
+t_vec3d	vec_def(t_num x, t_num y, t_num z);
 t_vec3d	vec_add(t_vec3d a, t_vec3d b);
 t_vec3d	vec_sub(t_vec3d a, t_vec3d b);
 t_num	dot(t_vec3d a, t_vec3d b);
@@ -65,3 +65,4 @@ t_vec3d	vec_unit(t_vec3d p);
 t_num	vec_sin(t_vec3d a, t_vec3d b);
 t_num	vec_cos(t_vec3d a, t_vec3d b);
 t_vec3d	vec_scale(t_num n, t_vec3d p);
+void	vec_print(char *str, t_vec3d vec);
