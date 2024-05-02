@@ -1,5 +1,8 @@
 #include "../../includes/vec3.h"
 
+
+
+
 t_vec3d	viewport_vec(t_viewport *vp, int i, int j)
 {
 	t_vec3d	r_vec;
@@ -65,7 +68,7 @@ t_num	hit_distance_t_sphere(t_sphere *sp, t_vec3d v)
 		return (t[0]);
 	return (0);
 }
-/*
+
 int main()
 {
 	t_viewport screen;
@@ -89,4 +92,3 @@ int main()
 
 	return (0);
 }
-*/
