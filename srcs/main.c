@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 12:43:20 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:49:00 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int32_t argc, char *argv[])
 	//printf("")
 	rt.screen = (t_viewport){foc, n_x, n_y, n_x * n_y, NULL};
 
-	// creating sphere
+	// creating sphere 
 	t_vec3d r = {0, 0, 5};
 	t_rgb3	col = {200, 10, 10};
 	rt.sphere = (t_sphere){0, r, 2, col, NULL};
