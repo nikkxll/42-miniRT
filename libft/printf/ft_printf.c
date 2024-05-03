@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:09:17 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/04/27 12:07:36 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/03 20:47:53 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	string_loop(const char *str, va_list args)
 {
 	int	length;
 	int	temp;
-	
+
 	length = 0;
 	while (*str)
 	{

@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:24:46 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/02 20:21:04 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:07:58 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,18 @@ static double	ft_round(char *c, int len, size_t i)
 {
 	if (len > ATOF_MAX)
 	{
-		if (c[6] == FIVE)
+		if (c[ATOF_MAX] == FIVE)
 		{
 			i++;
-			while (c[6 + i] != NULL_TERM
-				&& c[6 + i] == ZERO)
+			while (c[ATOF_MAX + i] != NULL_TERM
+				&& c[ATOF_MAX + i] == ZERO)
 				i++;
-			if (c[6 + i] == NULL_TERM)
+			if (c[ATOF_MAX + i] == NULL_TERM)
 				return (0);
 			else
 				return (ROUND_PRT);
 		}
-		else if (c[6] > FIVE)
+		else if (c[ATOF_MAX] > FIVE)
 			return (ROUND_PRT);
 		else
 			return (0);
@@ -78,7 +78,7 @@ double	custom_atof(char *c, double int_prt, double dec_prt, t_minirt *rt)
 	if (*c == DOT)
 		c++;
 	len = ft_strlen(c);
-	if (int_prt >= 0)
+	if (int_prt >= 0 && (sign_flag == PLUS || sign_flag == 0))
 		int_prt += ft_round(c, len, 0);
 	else
 		int_prt -= ft_round(c, len, 0);

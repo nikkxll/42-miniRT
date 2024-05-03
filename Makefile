@@ -4,16 +4,23 @@ include libft/.make
 NAME			:=	miniRT
 
 CC				:=	cc
-CFLAGS			:=	-g -Wall -Wextra -Werror
+CFLAGS			:=	-g -Wall -Wextra -Werror -fsanitize=address
 
 # PARSING
-PARSING_NAME	:=	error_throw.c parsing.c custom_atof.c pointers_arr_creation.c init_ambient_light.c \
-					init_camera.c custom_atoi.c cleaner.c
+PARSING_NAME	:=	parsing.c custom_atof.c elements_arrays_init.c.c custom_atoi.c range_check.c
 PARSING_PATH	:=	parsing/
-PARSING			:=	$(addprefix $(PARSING_PATH), $(PARSING_NAME))
+PARSING_I_NAME	:=	init_ambient_light.c init_camera.c init_light.c init_sphere.c init_plane.c init_cylinder.c
+PARSING_I_PATH	:=	parsing/inits/
+PARSING			:=	$(addprefix $(PARSING_PATH), $(PARSING_NAME)) \
+					$(addprefix $(PARSING_I_PATH), $(PARSING_I_NAME))
+
+# CLEANING
+CLEANING_NAME	:=	cleaner.c error_throw.c
+CLEANING_PATH	:=	cleaning/
+CLEANING		:=	$(addprefix $(CLEANING_PATH), $(CLEANING_NAME))
 
 # SOURCE_FILES
-SRCS			:=	main.c $(PARSING)
+SRCS			:=	main.c $(PARSING) $(CLEANING)
 SRCS_PATH		:=	srcs/
 
 # OBJECT_FILES
@@ -55,6 +62,8 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS_PATH) $(OBJS) $(HEADERS)
 $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
 	@mkdir -p $(OBJS_PATH)$(PARSING_PATH)
+	@mkdir -p $(OBJS_PATH)$(PARSING_I_PATH)
+	@mkdir -p $(OBJS_PATH)$(CLEANING_PATH)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADERS)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@

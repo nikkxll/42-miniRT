@@ -6,28 +6,37 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:52:45 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/02 20:39:21 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/03 19:19:26 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include "../../../includes/minirt.h"
+
+static t_bool	init_aml_params_util(char *entities[ARGS_MAX],
+	char *rgb[ARGS_MAX])
+{
+	ft_bzero((void *)rgb, ARGS_MAX * sizeof(char *));
+	if (process_args_w_commas(entities[2], rgb, 0) == false)
+		return (false);
+	if (ft_arrlen((void **)rgb) != VEC_LEN)
+		return (false);
+	return (true);
+}
 
 static void	init_aml_params(t_am_light *node, char *entities[ARGS_MAX],
 	t_minirt *rt)
 {
-	char		*rgb[ARGS_MAX];
+	char	*rgb[ARGS_MAX];
 
-	ft_bzero((void *)rgb, ARGS_MAX * sizeof(char *));
+	if (init_aml_params_util(entities, rgb) == false)
+		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
 	node->ratio = custom_atof(entities[1], 0, 0, rt);
 	if (node->ratio < 0.0 || node->ratio > 1.0)
 		generic_errors_handler(NUMBER_FORMAT_ERR_MSG, NUM_ERR, rt);
-	process_args_w_commas(entities[2], rgb, 0);
 	node->rgb.r = protected_atoi(rgb[0], rt);
 	node->rgb.g = protected_atoi(rgb[1], rt);
 	node->rgb.b = protected_atoi(rgb[2], rt);
-	if (node->rgb.r < 0 || node->rgb.g < 0 || node->rgb.b < 0
-		|| node->rgb.r > 255 || node->rgb.g > 255 || node->rgb.b > 255)
-		generic_errors_handler(NUMBER_FORMAT_ERR_MSG, NUM_ERR, rt);
+	rgb_check(node->rgb.r, node->rgb.g, node->rgb.b, rt);
 }
 
 static t_am_light	*new_aml_node(char *entities[ARGS_MAX], t_minirt *rt)
@@ -41,6 +50,8 @@ static t_am_light	*new_aml_node(char *entities[ARGS_MAX], t_minirt *rt)
 		init_aml_params(node, entities, rt);
 		return (node);
 	}
+	else
+		generic_errors_handler(MALLOC_ERR_MSG, MALLOC_ERR, rt);
 	return (NULL);
 }
 
@@ -52,5 +63,5 @@ void	init_a(char *entities[ARGS_MAX], t_minirt *rt)
 		rt->prs->aml->next = NULL;
 	}
 	else
-		generic_errors_handler(ELEM_FORMAT_ERR_MSG, ELEM_ERR, rt);
+		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
 }

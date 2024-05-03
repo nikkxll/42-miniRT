@@ -7,3 +7,4 @@ libft/libft.a
 objs/
 ./miniRT
 miniRT.dSYM
+test.txt

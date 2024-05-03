@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:06:55 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/02 22:16:30 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:01:13 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ static void	ft_lst_remove(void **lst, int type)
 
 void	cleaner(t_minirt *rt)
 {
-	if (rt->line)
-		free(rt->line);
-	if (rt->prs)
+	if (rt && rt->prs && rt->prs->fd > -1)
+		close(rt->prs->fd);
+	if (rt && rt->prs && rt->prs->line && *rt->prs->line)
+		free(rt->prs->line);
+	if (rt && rt->prs)
 	{
 		if (rt->prs->aml)
 			ft_lst_remove((void **)&(rt->prs->aml), AM_LIGHT);

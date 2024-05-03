@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/02 20:00:01 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/03 18:49:49 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ enum	e_types
 	AM_LIGHT = 1,
 	CAMERA,
 	LIGHT,
+	MULTILIGHT,
 	SPHERE,
 	PLANE,
 	CYLINDER,
@@ -47,7 +48,7 @@ enum	e_exit_codes
 	FILE_CLOSE_ERR = 30,
 	GNL_ERR = 100,
 	NUM_ERR = 200,
-	ELEM_ERR = 201,
+	CONF_ERR = 201,
 };
 
 enum	e_num_params
@@ -70,6 +71,14 @@ enum	e_num_params
 
 # ifndef ATOF_MAX
 #  define ATOF_MAX 6
+# endif
+
+# ifndef VEC_LEN
+#  define VEC_LEN 3
+# endif
+
+# ifndef ELEM_SIZE_MAX
+#  define ELEM_SIZE_MAX 1000000
 # endif
 
 # ifndef COORD_MAX
@@ -112,8 +121,8 @@ enum	e_num_params
 #  define NUMBER_FORMAT_ERR_MSG "Wrong number format in .rt config\n"
 # endif
 
-# ifndef ELEM_FORMAT_ERR_MSG
-#  define ELEM_FORMAT_ERR_MSG "Wrong element format in .rt config\n"
+# ifndef CONF_FORMAT_ERR_MSG
+#  define CONF_FORMAT_ERR_MSG "Wrong config structure format in .rt file\n"
 # endif
 
 #endif
