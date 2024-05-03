@@ -7,7 +7,11 @@ CC				:=	cc
 CFLAGS			:=	-g -Wall -Wextra -Werror
 
 # SOURCE_FILES
-SRCS			:=	main.c
+SRCS			:=	main.c \
+					lin_alg/viewport.c \
+					lin_alg/vec3.c \
+					lin_alg/vec_utils.c \
+					lin_alg/rotation_xyz.c
 SRCS_PATH		:=	srcs/
 
 # OBJECT_FILES
@@ -43,14 +47,15 @@ MSG_PRINTED 	:=	false
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS_PATH) $(OBJS) $(HEADERS)
-	@cc $(CFLAGS) $(INCLUDES) $(LIBS) $(OBJS) -o $(NAME)
-	@echo "$(GREEN)\n\n$(NAME) created successfully!$(EC)"
+	cc $(CFLAGS) $(INCLUDES) $(LIBS) $(OBJS) -o $(NAME)
+	echo "$(GREEN)\n\n$(NAME) created successfully!$(EC)"
 
 $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
+	@mkdir -p $(OBJS_PATH)/lin_alg
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADERS)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@$(call progress,"miniRT")
 
 $(LIBFT): $(LIBFT_SOURSES)

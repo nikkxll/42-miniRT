@@ -1,4 +1,5 @@
-#include "vec3.h"
+#include "../../includes/structs.h"
+#include "../../includes/vec3.h"
 
 /*
 typedef struct s_vec3d
@@ -9,7 +10,7 @@ typedef struct s_vec3d
 }	t_vec3d;
 */
 
-t_vec3d	vec_def(double x, double y, double z)
+t_vec3d	vec_def(t_num x, t_num y, t_num z)
 {
 	t_vec3d	vector;
 
@@ -42,6 +43,11 @@ t_vec3d	vec_sub(t_vec3d a, t_vec3d b)
 t_num	dot(t_vec3d a, t_vec3d b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
+}
+
+t_num	dot2(t_vec3d a)
+{
+	return (dot(a, a));
 }
 
 t_vec3d	cross(t_vec3d a, t_vec3d b)

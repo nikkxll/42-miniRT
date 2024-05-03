@@ -2,9 +2,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//norms?
-typedef float	t_num;
+#define TAN tan
+#define POW pow
+#define SQRT sqrt
 
+#define IMAGE_WIDTH 200
+#define IMAGE_HIGHT 100
+
+#define MLXWIDTH 700
+#define MLXHEIGHT 700
+#define CHANNELBACK 100
+
+#define PI 3.141592653589793238462643383279502884197169399375105820974944592307
+#define EPSILON 0.0000001
+
+//typedef float	t_num;
+
+/*
 typedef enum e_obj_type
 {
 	SPHERE,
@@ -46,11 +60,20 @@ typedef struct s_obj
 	int	type;
 }	t_obj;
 
+typedef struct s_rgb3
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb3;
+*/
+
 //vec3.c
-t_vec3d	vec_def(double x, double y, double z);
+t_vec3d	vec_def(t_num x, t_num y, t_num z);
 t_vec3d	vec_add(t_vec3d a, t_vec3d b);
 t_vec3d	vec_sub(t_vec3d a, t_vec3d b);
 t_num	dot(t_vec3d a, t_vec3d b);
+t_num	dot2(t_vec3d a);
 t_vec3d	cross(t_vec3d a, t_vec3d b);
 
 // rotation_xyz.c
@@ -65,3 +88,8 @@ t_vec3d	vec_unit(t_vec3d p);
 t_num	vec_sin(t_vec3d a, t_vec3d b);
 t_num	vec_cos(t_vec3d a, t_vec3d b);
 t_vec3d	vec_scale(t_num n, t_vec3d p);
+void	vec_print(char *str, t_vec3d vec);
+
+//viewport.c
+void	init_ray_bunch(t_viewport *vp);
+t_num	hit_distance_t_sphere(t_sphere *sp, t_vec3d v);
