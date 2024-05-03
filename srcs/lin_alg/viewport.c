@@ -1,4 +1,3 @@
-#include "../../includes/MLX42.h"
 #include "../../includes/structs.h"
 #include "../../includes/vec3.h"
 
