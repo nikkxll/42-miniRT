@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 12:32:39 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:39:08 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(int32_t argc, char *argv[])
 	// creating sphere
 	t_vec3d r = {0, 0, 5};
 	t_rgb3	col = {200, 10, 10};
-	rt.sphere = (t_sphere){0, r, 2.0, col, NULL};
+	rt.sphere = (t_sphere){0, r, 2, col, NULL};
 	
 	// putting sphere into parsing
 	t_parse		prs;
