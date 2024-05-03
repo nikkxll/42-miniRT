@@ -8,7 +8,7 @@ CFLAGS			:=	-g -Wall -Wextra -Werror
 
 # SOURCE_FILES
 SRCS			:=	main.c \
-					lin_alg/viewport.c \
+					rt/viewport.c \
 					lin_alg/vec3.c \
 					lin_alg/vec_utils.c \
 					lin_alg/rotation_xyz.c
@@ -53,6 +53,7 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS_PATH) $(OBJS) $(HEADERS)
 $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
 	@mkdir -p $(OBJS_PATH)/lin_alg
+	@mkdir -p $(OBJS_PATH)/rt
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADERS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@

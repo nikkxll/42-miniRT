@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 12:21:59 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:04:03 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,16 @@ typedef struct s_clean
 	struct s_clean	*next;
 }	t_clean;
 
+typedef struct s_hit_data
+{
+	t_rgb3	rgb;
+	int 	type;
+	t_vec3d *ray;
+	t_vec3d n;
+	t_vec3d l;
+	t_vec3d v;
+}	t_hit_data;
+
 typedef struct s_viewport
 {
 //	t_camera *cam;
@@ -119,6 +129,7 @@ typedef struct s_viewport
 	int		n_y;
 	int		size;
 	t_vec3d	*rays;
+	t_hit_data	*hit;
 }	t_viewport;
 
 typedef struct s_minirt

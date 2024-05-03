@@ -26,7 +26,11 @@ void	init_ray_bunch(t_viewport *vp)
 	int	n;
 
 	vp->size = vp->n_x * vp->n_y;
+	vp->hit = NULL;
 	vp->rays = (t_vec3d *)malloc(sizeof(*vp->rays) * vp->size);
+	// protect malloc
+	vp->hit = (t_hit_data *)malloc(sizeof(*vp->hit) * vp->size);
+	// protect malloc
 	n = 0;
 	j = -1;
 	while (++j < vp->n_y)
@@ -35,6 +39,7 @@ void	init_ray_bunch(t_viewport *vp)
 		while (++i < vp->n_x)
 		{
 			vp->rays[n] = viewport_vec(vp, i, j);
+			vp->hit[n].ray = &(vp->rays[n]);
 		/*	printf("i=%d, j=%d, n=%d,  ", i, j, n);
 			vec_print("vp->rays[n]", vp->rays[n]);
 			printf("r^2=  %.02f\n", vec_norm(vp->rays[n]));
