@@ -58,10 +58,6 @@ $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADERS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@$(call progress,"miniRT")
 
-#%.o: %.c $(HEADERS)
-#	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-#	@$(call progress,"miniRT")
-
 $(LIBFT): $(LIBFT_SOURSES)
 	@$(MAKE) -C $(LIBFT_PATH)
 

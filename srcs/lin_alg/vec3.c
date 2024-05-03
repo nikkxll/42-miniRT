@@ -1,3 +1,4 @@
+#include "../../includes/structs.h"
 #include "../../includes/vec3.h"
 
 /*

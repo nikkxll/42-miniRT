@@ -6,19 +6,19 @@
 #define POW pow
 #define SQRT sqrt
 
-#define ASPECT_RATIO 2
-#define IMAGE_WIDTH 400
-#define IMAGE_HEIGHT 400
-#define MLXWIDTH 1100
-#define MLXHEIGHT 1100
+#define IMAGE_WIDTH 200
+#define IMAGE_HIGHT 100
+
+#define MLXWIDTH 700
+#define MLXHEIGHT 700
 #define CHANNELBACK 100
 
 #define PI 3.141592653589793238462643383279502884197169399375105820974944592307
 #define EPSILON 0.0000001
 
-//norms?
-typedef float	t_num;
+//typedef float	t_num;
 
+/*
 typedef enum e_obj_type
 {
 	SPHERE,
@@ -32,7 +32,6 @@ typedef struct s_vec3d
 	t_num	z;
 }	t_vec3d;
 
-/*
 typedef struct s_col
 {
 	int	r;
@@ -60,7 +59,6 @@ typedef struct s_obj
 {
 	int	type;
 }	t_obj;
-*/
 
 typedef struct s_rgb3
 {
@@ -68,27 +66,7 @@ typedef struct s_rgb3
 	int	g;
 	int	b;
 }	t_rgb3;
-
-typedef struct s_sphere
-{
-	int			type;
-	t_vec3d		coord;
-	float		d;
-	t_rgb3		rgb;
-	struct s_sphere	*next;
-}	t_sphere;
-
-typedef struct s_viewport
-{
-//	t_camera *cam;
-	int		foc;
-	int		n_x;
-	int		n_y;
-	int		size;
-	t_vec3d	*rays;
-
-}	t_viewport;
-
+*/
 
 //vec3.c
 t_vec3d	vec_def(t_num x, t_num y, t_num z);

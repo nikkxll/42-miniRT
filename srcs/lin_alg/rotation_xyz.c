@@ -1,3 +1,4 @@
+#include "../../includes/structs.h"
 #include "../../includes/vec3.h"
 
 t_num	distance(t_vec3d p1, t_vec3d p2)
