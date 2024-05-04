@@ -40,7 +40,7 @@ LIBMLX_DIR		:=	$(LIBMLX)/include
 
 # MLX for linux
 # gcc main.c ... libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
-LIBS	=  $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
+LIBS	=  $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -Iincludes -Ift
 #LIBS	=  $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
 #LIBS	=  -I$(LIBMLX_DIR) $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
 
