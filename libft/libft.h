@@ -16,7 +16,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-# include <fcntl.h>
+# include <fcntl.h> 
+
+# ifndef SIZE_T_MAX
+#  define SIZE_T_MAX 18446744073709551615UL
+# endif
 
 typedef struct s_list
 {
