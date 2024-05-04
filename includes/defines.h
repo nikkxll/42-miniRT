@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 13:38:52 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 01:25:09 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ enum	e_characters
 	NULL_TERM,
 	HT = 9,
 	NL = 10,
+	CR = 13,
 	SPACE = 32,
 	PLUS = 43,
 	COMMA = 44,
@@ -63,76 +64,58 @@ enum	e_num_params
 	CY_PARAMS = 6,
 };
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
+enum	e_gnl_error_codes
+{
+	GNL_FILE_OPEN_ERR = -1,
+	GNL_MALLOC_ERR = 1,
+	GNL_FILE_READ_ERR = 2,
+	GNL_GENERIC_ERR = 3,
+};
 
-# ifndef ARGS_MAX
-#  define ARGS_MAX 10
-# endif
+# define RED "\x1B[31m"
+# define EC "\x1B[0m"
 
-# ifndef ATOF_MAX
-#  define ATOF_MAX 6
-# endif
+# define ARGS_MAX 10
+# define ATOF_MAX 6
+# define VEC_LEN 3
 
-# ifndef VEC_LEN
-#  define VEC_LEN 3
-# endif
+# define ELEM_SIZE_MAX 999999.999999
+# define COORD_MAX 999999.999999
+# define COORD_MIN -999999.999999
+# define ROUND_PRT 0.000001
 
-# ifndef ELEM_SIZE_MAX
-#  define ELEM_SIZE_MAX 1000000
-# endif
+# define ERR_MSG "Error\n"
+# define MALLOC_ERR_MSG "Malloc error occured\n"
+# define NUM_FILES_ERR_MSG "More than one file provided\n"
+# define FILE_OPEN_ERR_MSG "Failed to open the file\n"
+# define FILE_READ_ERR_MSG "Failed to read the file\n"
+# define FILE_CLOSE_ERR_MSG "Failed to close the file\n"
+# define GNL_GENERIC_ERR_MSG "Get_next_line inner error\n"
+# define NUMBER_FORMAT_ERR_MSG "Wrong number format in .rt config\n"
+# define CONF_FORMAT_ERR_MSG "Wrong config structure format in .rt file\n"
+# define AML_ERR_MSG "Ambient light element config not found in .rt file\n"
+# define CAMERA_ERR_MSG "Camera element config not found in .rt file\n"
 
-# ifndef COORD_MAX
-#  define COORD_MAX 1000000
-# endif
-
-# ifndef COORD_MIN
-#  define COORD_MIN -1000000
-# endif
-
-# ifndef ROUND_PRT
-#  define ROUND_PRT 0.000001
-# endif
-
-# ifndef MALLOC_ERR_MSG
-#  define MALLOC_ERR_MSG "Malloc error occured\n"
-# endif
-
-# ifndef NUM_FILES_ERR_MSG
-#  define NUM_FILES_ERR_MSG "More than one file provided\n"
-# endif
-
-# ifndef FILE_OPEN_ERR_MSG
-#  define FILE_OPEN_ERR_MSG "Failed to open the file\n"
-# endif
-
-# ifndef FILE_READ_ERR_MSG
-#  define FILE_READ_ERR_MSG "Failed to read the file\n"
-# endif
-
-# ifndef FILE_CLOSE_ERR_MSG
-#  define FILE_CLOSE_ERR_MSG "Failed to close the file\n"
-# endif
-
-# ifndef GNL_GENERIC_ERR_MSG
-#  define GNL_GENERIC_ERR_MSG "Get_next_line inner error\n"
-# endif
-
-# ifndef NUMBER_FORMAT_ERR_MSG
-#  define NUMBER_FORMAT_ERR_MSG "Wrong number format in .rt config\n"
-# endif
-
-# ifndef CONF_FORMAT_ERR_MSG
-#  define CONF_FORMAT_ERR_MSG "Wrong config structure format in .rt file\n"
-# endif
-
-# ifndef AML_ERR_MSG
-#  define AML_ERR_MSG "Ambient light element config not found in .rt file\n"
-# endif
-
-# ifndef CAMERA_ERR_MSG
-#  define CAMERA_ERR_MSG "Camera element config not found in .rt file\n"
-# endif
+# define CONFIG_MSG_1 "Example of the valid number ranges:\n\n"
+# define CONFIG_MSG_2 "ratio is in range         [0.0, 1.0]\n"
+# define CONFIG_MSG_3 "r,g,b are in range        [0, 255]\n"
+# define CONFIG_MSG_4 "x,y,z are in range        (-1000000, 1000000)\n"
+# define CONFIG_MSG_5 "x_n,y_n,x_n are in range  [-1, 1]\n"
+# define CONFIG_MSG_6 "FOV is in range           [0, 180]\n"
+# define CONFIG_MSG_7 "cy diameter is in range   (-1000000, 1000000)\n"
+# define CONFIG_MSG_8 "cy height is in range     (-1000000, 1000000)\n\n"
+# define CONFIG_MSG_9 "\nExample of the valid .rt file format:\n\n"
+# define CONFIG_MSG_10 "A    ratio    r,g,b                  "
+# define CONFIG_MSG_11 "(required, strictly one entity)\n"
+# define CONFIG_MSG_12 "C    x,y,z    x_n,y_n,x_n  FOV       "
+# define CONFIG_MSG_13 "L    x,y,z    ratio        r,g,b "
+# define CONFIG_MSG_14 "    (optional, if only one light source)\n"
+# define CONFIG_MSG_15 "l    x,y,z    ratio        r,g,b "
+# define CONFIG_MSG_16 "    (optional, if multiple light sources)\n"
+# define CONFIG_MSG_17 "sp   x,y,z    diameter     r,g,b     (optional, "
+# define CONFIG_MSG_18 "from 0 to n entities)\n"
+# define CONFIG_MSG_19 "pl   x,y,z    x_n,y_n,x_n  r,g,b     (optional, "
+# define CONFIG_MSG_20 "cy   x,y,z    x_n,y_n,x_n  diameter  height  r,g,b  "
+# define CONFIG_MSG_21 "(optional, from 0 to n entities)\n\n"
 
 #endif

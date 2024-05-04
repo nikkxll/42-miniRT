@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   custom_atoi.c                                      :+:      :+:    :+:   */
+/*   minirt_atoi.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 19:14:22 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/02 20:28:35 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 01:08:57 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static t_bool	zero_check(char *str)
 {
-	while ((*str >= 9 && *str <= 13) || *str == 32)
+	while ((*str >= HT && *str <= CR) || *str == SPACE)
 		str++;
-	if (*str == '+' || *str == '-')
+	if (*str == PLUS || *str == MINUS)
 		str++;
-	while (*str == '0')
+	while (*str == ZERO)
 		str++;
-	while ((*str >= 9 && *str <= 13) || *str == 32)
+	while ((*str >= HT && *str <= CR) || *str == SPACE)
 		str++;
 	if (*str != NULL_TERM)
 		return (true);
@@ -29,13 +29,13 @@ static t_bool	zero_check(char *str)
 
 static t_bool	number_check(char *str)
 {
-	while ((*str >= 9 && *str <= 13) || *str == 32)
+	while ((*str >= HT && *str <= CR) || *str == SPACE)
 		str++;
-	if (*str == '+' || *str == '-')
+	if (*str == PLUS || *str == MINUS)
 		str++;
 	while (ft_isdigit(*str))
 		str++;
-	while ((*str >= 9 && *str <= 13) || *str == 32)
+	while ((*str >= HT && *str <= CR) || *str == SPACE)
 		str++;
 	if (*str != NULL_TERM)
 		return (true);

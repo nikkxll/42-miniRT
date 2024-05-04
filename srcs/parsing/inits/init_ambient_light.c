@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:52:45 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 19:19:26 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/04 21:08:00 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	init_a(char *entities[ARGS_MAX], t_minirt *rt)
 	if (!rt->prs->aml && ft_arrlen((void **)entities) == AL_PARAMS)
 	{
 		rt->prs->aml = new_aml_node(entities, rt);
-		rt->prs->aml->next = NULL;
 	}
 	else
 		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);

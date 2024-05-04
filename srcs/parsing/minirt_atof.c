@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   custom_atof.c                                      :+:      :+:    :+:   */
+/*   minirt_atof.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:24:46 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 14:08:51 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/04 21:16:01 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_bool	format_check(char *str, int count, int *sign_flag)
 static double	ft_round(char *c, int len)
 {
 	size_t	i;
-	
+
 	i = 0;
 	if (len > ATOF_MAX)
 	{

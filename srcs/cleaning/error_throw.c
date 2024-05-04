@@ -6,57 +6,80 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:23:27 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 14:15:49 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 01:20:18 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void	show_config_template()
+static void	show_number_ranges(void)
 {
-	ft_putstr_fd("\nExample of the correct .rt file format:\n", STDERR_FILENO);
-	ft_putstr_fd("A     ratio    r,g,b\n", STDERR_FILENO);
-	ft_putstr_fd("C     x,y,z    x_n,y_n,x_n  FOV\n", STDERR_FILENO);
-	ft_putstr_fd("L     x,y,z    ratio        r,g,b\n", STDERR_FILENO);
-	ft_putstr_fd("sp    x,y,z    diameter     r,g,b\n", STDERR_FILENO);
-	ft_putstr_fd("pl    x,y,z    x_n,y_n,x_n  r,g,b\n", STDERR_FILENO);
-	ft_putstr_fd("cy    x,y,z    x_n,y_n,x_n  diameter  height  r,g,b\n",
-		STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_1, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_2, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_3, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_4, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_5, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_6, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_7, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_8, STDERR_FILENO);
+}
+
+static void	show_valid_config(void)
+{
+	ft_putstr_fd(CONFIG_MSG_9, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_10, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_11, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_12, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_11, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_13, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_14, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_15, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_16, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_17, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_18, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_19, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_18, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_20, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_21, STDERR_FILENO);
 }
 
 void	generic_errors_handler(char *msg, int status, t_minirt *rt)
 {
 	cleaner(rt);
-	ft_putstr_fd("\x1B[31m", STDERR_FILENO);
-	ft_putstr_fd("Error\n", STDERR_FILENO);
+	ft_putstr_fd(RED, STDERR_FILENO);
+	ft_putstr_fd(ERR_MSG, STDERR_FILENO);
 	ft_putstr_fd(msg, STDERR_FILENO);
-	ft_putstr_fd("\x1B[0m", STDERR_FILENO);
+	ft_putstr_fd(EC, STDERR_FILENO);
 	if (status == NUM_ERR || status == CONF_ERR
 		|| status == AML_ERR || status == CAM_ERR)
-		show_config_template();
+	{
+		show_valid_config();
+		show_number_ranges();
+	}
 	exit(status);
 }
 
-void	gnl_errors_handler(int status)
+void	gnl_errors_handler(int status, t_minirt *rt)
 {
-	ft_putstr_fd("\x1B[31m", STDERR_FILENO);
-	ft_putstr_fd("Error\n", STDERR_FILENO);
-	if (status == -1)
+	cleaner(rt);
+	ft_putstr_fd(RED, STDERR_FILENO);
+	ft_putstr_fd(ERR_MSG, STDERR_FILENO);
+	if (status == GNL_FILE_OPEN_ERR)
 	{
 		ft_putstr_fd(FILE_OPEN_ERR_MSG, STDERR_FILENO);
 	}
-	if (status == 1)
+	if (status == GNL_MALLOC_ERR)
 	{
 		ft_putstr_fd(MALLOC_ERR_MSG, STDERR_FILENO);
 	}
-	if (status == 2)
+	if (status == GNL_FILE_READ_ERR)
 	{
 		ft_putstr_fd(FILE_READ_ERR_MSG, STDERR_FILENO);
 	}
-	if (status == 3)
+	if (status == GNL_GENERIC_ERR)
 	{
 		ft_putstr_fd(GNL_GENERIC_ERR_MSG, STDERR_FILENO);
 	}
-	ft_putstr_fd("\x1B[0m", STDERR_FILENO);
+	ft_putstr_fd(EC, STDERR_FILENO);
 	exit(GNL_ERR);
 }

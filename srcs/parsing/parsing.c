@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:22:37 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 14:31:27 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 01:21:18 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	parser(char **av, t_minirt *rt)
 	{
 		rt->prs->line = get_next_line(rt->prs->fd, &gnl_status, &buffer);
 		if (rt->prs->line == NULL && gnl_status != 0)
-			gnl_errors_handler(gnl_status);
+			gnl_errors_handler(gnl_status, rt);
 		else if (rt->prs->line == NULL && gnl_status == 0)
 			break ;
 		init_element(rt);

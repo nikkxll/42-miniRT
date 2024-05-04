@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 14:29:09 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/04 21:13:09 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,13 @@
 
 void print_ll(t_minirt *rt)
 {
-	while (rt->prs->aml)
-	{
-		printf("AML %d   %f   %d   %d   %d\n", rt->prs->aml->type,
-			rt->prs->aml->ratio, rt->prs->aml->rgb.r, rt->prs->aml->rgb.g,
-			rt->prs->aml->rgb.b);
-		rt->prs->aml = rt->prs->aml->next;
-	}
-	while (rt->prs->camera)
-	{
-		printf("CAMERA %d   %f   %f   %f   %f   %f   %f   %f\n", rt->prs->camera->type,
-			rt->prs->camera->r.x, rt->prs->camera->r.y, rt->prs->camera->r.z,
-			rt->prs->camera->n.x, rt->prs->camera->n.y, rt->prs->camera->n.z,
-			rt->prs->camera->fov);
-		rt->prs->camera = rt->prs->camera->next;
-	}
+	printf("AML %d   %f   %d   %d   %d\n", rt->prs->aml->type,
+		rt->prs->aml->ratio, rt->prs->aml->rgb.r, rt->prs->aml->rgb.g,
+		rt->prs->aml->rgb.b);
+	printf("CAMERA %d   %f   %f   %f   %f   %f   %f   %f\n", rt->prs->camera->type,
+		rt->prs->camera->r.x, rt->prs->camera->r.y, rt->prs->camera->r.z,
+		rt->prs->camera->n.x, rt->prs->camera->n.y, rt->prs->camera->n.z,
+		rt->prs->camera->fov);
 	while (rt->prs->cylinder)
 	{
 		printf("CYLINDER %d   %f   %f   %f   %f   %f   %f   %f   %f   %i   %i   %i\n", rt->prs->cylinder->type,

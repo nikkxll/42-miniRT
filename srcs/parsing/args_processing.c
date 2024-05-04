@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pointers_arr_creation.c                            :+:      :+:    :+:   */
+/*   args_processing.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:16:00 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 20:35:15 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 01:05:41 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_bool	process_args_w_commas(char *line, char *entities[ARGS_MAX], int count)
 	entities[count++] = line;
 	while (*line != NULL_TERM && count < ARGS_MAX)
 	{
-		line = ft_strchr(line, ',');
+		line = ft_strchr(line, COMMA);
 		if (line == NULL)
 			break ;
 		comma_count++;

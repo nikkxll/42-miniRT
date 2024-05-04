@@ -6,16 +6,14 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:39:46 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/04/27 11:59:55 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 00:55:37 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
-# endif
+# define BUFFER_SIZE 1000
 
 # include <unistd.h>
 # include <stdlib.h>

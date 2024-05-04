@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 16:11:01 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/04 21:13:22 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_am_light
 	int					type;
 	t_num				ratio;
 	t_rgb3				rgb;
-	struct s_am_light	*next;
 }	t_am_light;
 
 typedef struct s_camera
@@ -43,7 +42,6 @@ typedef struct s_camera
 	t_vec3d			r;
 	t_vec3d			n;
 	t_num			fov;
-	struct s_camera	*next;
 }	t_camera;
 
 typedef struct s_light

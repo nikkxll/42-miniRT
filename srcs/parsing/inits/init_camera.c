@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:56:18 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 19:20:06 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/04 21:13:46 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	init_c(char *entities[ARGS_MAX], t_minirt *rt)
 	if (!rt->prs->camera && ft_arrlen((void **)entities) == C_PARAMS)
 	{
 		rt->prs->camera = new_camera_node(entities, rt);
-		rt->prs->camera->next = NULL;
 	}
 	else
 		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);

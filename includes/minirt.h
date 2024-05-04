@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 14:31:59 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 01:21:28 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 /*_____ Cleaning _____*/
 
 void	generic_errors_handler(char *msg, int status, t_minirt *rt);
-void	gnl_errors_handler(int status);
+void	gnl_errors_handler(int status, t_minirt *rt);
 void	cleaner(t_minirt *rt);
 
 /*_____ Parsing _____*/
