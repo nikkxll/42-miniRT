@@ -4,12 +4,13 @@ include libft/.make
 NAME			:=	miniRT
 
 CC				:=	cc
-CFLAGS			:=	-g -Wall -Wextra -Werror -fsanitize=address
+CFLAGS			:=	-g -Wall -Wextra -Werror
 
 # PARSING
-PARSING_NAME	:=	parsing.c custom_atof.c elements_arrays_init.c.c custom_atoi.c range_check.c
+PARSING_NAME	:=	parsing.c minirt_atof.c args_processing.c minirt_atoi.c range_check.c
 PARSING_PATH	:=	parsing/
-PARSING_I_NAME	:=	init_ambient_light.c init_camera.c init_light.c init_sphere.c init_plane.c init_cylinder.c
+PARSING_I_NAME	:=	init_ambient_light.c init_camera.c init_light.c init_sphere.c init_plane.c \
+					init_cylinder.c init_element.c init_struct.c
 PARSING_I_PATH	:=	parsing/inits/
 PARSING			:=	$(addprefix $(PARSING_PATH), $(PARSING_NAME)) \
 					$(addprefix $(PARSING_I_PATH), $(PARSING_I_NAME))
@@ -40,12 +41,12 @@ MLX				:=	./lib/MLX42/build/libmlx42.a
 LIBMLX_DIR		:=	$(LIBMLX)/include
 
 # MLX FOR SCHOOL COMPUTERS 
-# LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/opt/homebrew/opt/glfw/lib/" \
-# 					-lglfw -framework OpenGL -framework AppKit
+LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/opt/homebrew/opt/glfw/lib/" \
+					-lglfw -framework OpenGL -framework AppKit
 
 # MLX FOR MacOS (M1 and later)
-LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
-					-lglfw -framework OpenGL -framework AppKit
+# LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
+# 					-lglfw -framework OpenGL -framework AppKit
 
 # LOADING PROGRESS BAR INIT
 TOTAL_OBJS		:=	$(words $(OBJS))

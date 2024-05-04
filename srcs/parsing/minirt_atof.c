@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:24:46 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 15:07:58 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/04 14:08:51 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ static t_bool	format_check(char *str, int count, int *sign_flag)
 	return (true);
 }
 
-static double	ft_round(char *c, int len, size_t i)
+static double	ft_round(char *c, int len)
 {
+	size_t	i;
+	
+	i = 0;
 	if (len > ATOF_MAX)
 	{
 		if (c[ATOF_MAX] == FIVE)
@@ -79,9 +82,9 @@ double	custom_atof(char *c, double int_prt, double dec_prt, t_minirt *rt)
 		c++;
 	len = ft_strlen(c);
 	if (int_prt >= 0 && (sign_flag == PLUS || sign_flag == 0))
-		int_prt += ft_round(c, len, 0);
+		int_prt += ft_round(c, len);
 	else
-		int_prt -= ft_round(c, len, 0);
+		int_prt -= ft_round(c, len);
 	if (len > ATOF_MAX)
 		*(c + ATOF_MAX) = NULL_TERM;
 	len = ft_strlen(c);

@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 18:49:49 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/04 13:38:52 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ enum	e_exit_codes
 	GNL_ERR = 100,
 	NUM_ERR = 200,
 	CONF_ERR = 201,
+	AML_ERR = 202,
+	CAM_ERR = 203,
 };
 
 enum	e_num_params
@@ -123,6 +125,14 @@ enum	e_num_params
 
 # ifndef CONF_FORMAT_ERR_MSG
 #  define CONF_FORMAT_ERR_MSG "Wrong config structure format in .rt file\n"
+# endif
+
+# ifndef AML_ERR_MSG
+#  define AML_ERR_MSG "Ambient light element config not found in .rt file\n"
+# endif
+
+# ifndef CAMERA_ERR_MSG
+#  define CAMERA_ERR_MSG "Camera element config not found in .rt file\n"
 # endif
 
 #endif

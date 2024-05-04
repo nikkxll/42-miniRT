@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 20:48:16 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/04 14:29:09 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,10 @@ int	main(int ac, char **av)
 	rt = NULL;
 	if (ac != 2)
 		generic_errors_handler(NUM_FILES_ERR_MSG, NUM_FILES_ERR, rt);
-	rt = ft_calloc(1, sizeof(t_minirt));
-	if (!rt)
-		generic_errors_handler(MALLOC_ERR_MSG, MALLOC_ERR, rt);
-	rt->prs = ft_calloc(1, sizeof(t_parse));
-	if (!rt)
-		generic_errors_handler(MALLOC_ERR_MSG, MALLOC_ERR, rt);
-	rt->prs->fd = -1;
+	init_struct(&rt);
 	parser(av, rt);
 	print_ll(rt);
-	cleaner(rt);
+	// cleaner(rt);
 	return (SUCCESS);
 }
 
