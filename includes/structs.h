@@ -17,6 +17,22 @@
 
 typedef double	t_num;
 
+enum	e_types
+{
+	AM_LIGHT = 1,
+	CAMERA,
+	LIGHT,
+	MULTILIGHT,
+	SPHERE,
+	PLANE,
+	CYLINDER,
+};
+
+typedef struct s_obj
+{
+	int	type;
+}	t_obj;
+
 typedef struct s_rgb3
 {
 	int	r;
@@ -113,9 +129,11 @@ typedef struct s_clean
 
 typedef struct s_hit_data
 {
-	t_rgb3	rgb;
+	t_vec3d ray;
+	t_num	dist;
 	int 	type;
-	t_vec3d *ray;
+	t_obj	*obj;
+	t_rgb3	rgb;
 	t_vec3d n;
 	t_vec3d l;
 	t_vec3d v;
@@ -128,7 +146,7 @@ typedef struct s_viewport
 	int		n_x;
 	int		n_y;
 	int		size;
-	t_vec3d	*rays;
+	t_vec3d	*rays;  // this is temporal
 	t_hit_data	*hit;
 }	t_viewport;
 

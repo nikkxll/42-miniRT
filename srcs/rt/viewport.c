@@ -19,37 +19,7 @@ t_vec3d	viewport_vec(t_viewport *vp, int i, int j)
 	return (r_vec);
 }
 
-void	init_ray_bunch(t_viewport *vp)
-{
-	int	i;
-	int	j;
-	int	n;
-
-	vp->size = vp->n_x * vp->n_y;
-	vp->hit = NULL;
-	vp->rays = (t_vec3d *)malloc(sizeof(*vp->rays) * vp->size);
-	// protect malloc
-	vp->hit = (t_hit_data *)malloc(sizeof(*vp->hit) * vp->size);
-	// protect malloc
-	n = 0;
-	j = -1;
-	while (++j < vp->n_y)
-	{
-		i = -1;
-		while (++i < vp->n_x)
-		{
-			vp->rays[n] = viewport_vec(vp, i, j);
-			vp->hit[n].ray = &(vp->rays[n]);
-		/*	printf("i=%d, j=%d, n=%d,  ", i, j, n);
-			vec_print("vp->rays[n]", vp->rays[n]);
-			printf("r^2=  %.02f\n", vec_norm(vp->rays[n]));
-		*/
-			n++;
-		}
-	}
-}
-
-t_num	hit_distance_t_sphere(t_sphere *sp, t_vec3d v)
+t_num	dist_to_sphere(t_sphere *sp, t_vec3d v)
 {
 	t_num	denom;
 	t_num	prod;
@@ -69,28 +39,82 @@ t_num	hit_distance_t_sphere(t_sphere *sp, t_vec3d v)
 		return (t[0]);
 	return (0);
 }
-/*
-int main()
+
+void	hit_spheres(t_minirt *rt, size_t pixel)
 {
-	t_viewport screen;
-
-	t_num foc = 90;
-	int	n_x = 3;
-	int n_y = 3;
-	screen = (t_viewport){foc, n_x, n_y, n_x * n_y, NULL};
-
-	t_vec3d r = {0, 0, 5};
-	t_rgb3	col = {100, 100, 100};
-	t_sphere sp = {0, r, 2.0, col, NULL};
-	init_ray_bunch(&screen);
-
 	t_num t;
-	t = hit_distance_t_sphere(&sp, screen.rays[4]);
-	printf("t=%f\n", t);
+	t_sphere *s;
+	t_hit_data *data;
 
+	data = &(rt->screen.hit[pixel]);
+	s = rt->prs->sphere;
+	while (s)
+	{
+		t = dist_to_sphere(s,data->ray);
+		if (t > 0 && (data->dist == -1 || t < data->dist))
+		{
+			data->dist = t;
+			data->obj = (t_obj *)s;
+			data->type = SPHERE; // this is for convinience . type also is inside the obj
+			data->rgb = s->rgb; // this probably temporal 
+		}
+		s = s->next;
+	}
+}
 
+void	hit_scene(t_minirt *rt)
+{
+	size_t	pixel;
 
+	pixel = 0;
+	while (pixel < rt->screen.size)
+	{
+		hit_spheres(rt, pixel);
+		//hit_planes(rt, pixel);
+		// hit other objects here
+		pixel++;
+	}
+}
 
-	return (0);
+/*
+void set_colors(t_minirt *rt)
+{
+	size_t	pixel;
+	t_hit_data	*data;
+
+	pixel = 0;
+	while (pixel < rt->screen.size)
+	{
+		data = &(rt->screen.hit[pixel]);
+		data->rgb = color
+		//hit_planes(rt, pixel);
+		// hit other objects here
+		pixel++;
+	}
 }
 */
+
+void	init_viewport(t_viewport *vp)
+{
+	int	i;
+	int	j;
+	int	n;
+
+	vp->size = vp->n_x * vp->n_y;
+	vp->hit = NULL;
+	vp->hit = (t_hit_data *)malloc(sizeof(*vp->hit) * vp->size);
+	// protect malloc
+	n = 0;
+	j = -1;
+	while (++j < vp->n_y)
+	{
+		i = -1;
+		while (++i < vp->n_x)
+		{
+			vp->hit[n].ray = viewport_vec(vp, i, j);
+			vp->hit[n].dist = -1;
+			vp->hit[n].rgb = (t_rgb3){0,0,0};
+			n++;
+		}
+	}
+}

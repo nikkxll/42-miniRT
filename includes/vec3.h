@@ -1,72 +1,23 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "structs.h"
 
 #define TAN tan
 #define POW pow
 #define SQRT sqrt
 
-#define IMAGE_WIDTH 200
-#define IMAGE_HIGHT 100
+#define IMAGE_WIDTH 700
+#define IMAGE_HIGHT 500
 
 #define MLXWIDTH 700
 #define MLXHEIGHT 700
 #define CHANNELBACK 100
 
 #define PI 3.141592653589793238462643383279502884197169399375105820974944592307
-#define EPSILON 0.0000001
+#define EPSILON 0.0000000000000001
 
 //typedef float	t_num;
-
-/*
-typedef enum e_obj_type
-{
-	SPHERE,
-	PLANE
-}	t_obj_type;
-
-typedef struct s_vec3d
-{
-	t_num	x;
-	t_num	y;
-	t_num	z;
-}	t_vec3d;
-
-typedef struct s_col
-{
-	int	r;
-	int	g;
-	int	b;
-}	t_col;
-
-typedef struct s_sphere
-{
-	int		type;
-	t_num	d;
-	t_vec3d	r;
-	t_col	c;
-}	t_sphere;
-
-typedef struct s_plane
-{
-	int		type;
-	t_vec3d	r;
-	t_vec3d	n;
-	t_col	c;
-}	t_plane;
-
-typedef struct s_obj
-{
-	int	type;
-}	t_obj;
-
-typedef struct s_rgb3
-{
-	int	r;
-	int	g;
-	int	b;
-}	t_rgb3;
-*/
 
 //vec3.c
 t_vec3d	vec_def(t_num x, t_num y, t_num z);
@@ -91,5 +42,6 @@ t_vec3d	vec_scale(t_num n, t_vec3d p);
 void	vec_print(char *str, t_vec3d vec);
 
 //viewport.c
-void	init_ray_bunch(t_viewport *vp);
-t_num	hit_distance_t_sphere(t_sphere *sp, t_vec3d v);
+void	init_viewport(t_viewport *vp);
+t_num	dist_to_sphere(t_sphere *sp, t_vec3d v);
+void	hit_scene(t_minirt *rt);

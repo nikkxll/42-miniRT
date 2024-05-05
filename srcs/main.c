@@ -45,9 +45,8 @@ void	print_picture(t_minirt *rt)
 		i = -1;
 		while (++i < rt->screen.n_x)
 		{
-			t = hit_distance_t_sphere(sphere, rt->screen.rays[j * rt->screen.n_x + i]);
-			if (t > EPSILON)
-				mlx_put_pixel(rt->image, i, j, color);
+			color = rgb_to_int(rt->screen.hit[j * rt->screen.n_x + i].rgb);
+			mlx_put_pixel(rt->image, i, j, color);
 		}
 	}
 }
@@ -75,18 +74,31 @@ int	main(int32_t argc, char *argv[])
 	int n_y = IMAGE_HIGHT;
 	//printf("")
 	rt.screen = (t_viewport){foc, n_x, n_y, n_x * n_y, NULL, NULL};
+	
+	// creating 3nd sphere 
+	t_vec3d r = {-4, 2, 5};
+	t_rgb3	col = {10, 10, 200};
+	t_sphere sphere3 = (t_sphere){0, r, 1, col, NULL};
 
+	// creating 2nd sphere 
+	r = (t_vec3d){0, 1, 5};
+	col = (t_rgb3){10, 200, 10};
+	t_sphere sphere2 = (t_sphere){0, r, 1, col, &sphere3};
+	
 	// creating sphere 
-	t_vec3d r = {0, 0, 5};
-	t_rgb3	col = {200, 10, 10};
-	rt.sphere = (t_sphere){0, r, 2, col, NULL};
+	r = (t_vec3d){0, 0, 5};
+	col = (t_rgb3){200, 10, 10};
+	rt.sphere = (t_sphere){0, r, 2, col, &sphere2};
 	
 	// putting sphere into parsing
 	t_parse		prs;
 	prs.sphere = &(rt.sphere);
+	prs.cylinder = NULL;
+	prs.plane = NULL;
 	rt.prs = &prs;
 
-	init_ray_bunch(&(rt.screen));
+	init_viewport(&(rt.screen));
+	hit_scene(&rt);
 	rt.mlx = mlx_init(MLXWIDTH, MLXHEIGHT, "MLX42", true);
 	if (!rt.mlx)
         return (1); //	ft_mlx_error(fdf, 0);
