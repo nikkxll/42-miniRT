@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 21:13:09 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 17:25:46 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void print_ll(t_minirt *rt)
 {
+	if (rt->prs->viewport)
+	{
+		printf("VIEWPORT %d   %d   %d\n", rt->prs->viewport->type,
+			rt->prs->viewport->width, rt->prs->viewport->height);
+	}
 	printf("AML %d   %f   %d   %d   %d\n", rt->prs->aml->type,
 		rt->prs->aml->ratio, rt->prs->aml->rgb.r, rt->prs->aml->rgb.g,
 		rt->prs->aml->rgb.b);
@@ -64,8 +69,8 @@ int	main(int ac, char **av)
 		generic_errors_handler(NUM_FILES_ERR_MSG, NUM_FILES_ERR, rt);
 	init_struct(&rt);
 	parser(av, rt);
-	print_ll(rt);
-	// cleaner(rt);
+	// print_ll(rt);
+	cleaner(rt);
 	return (SUCCESS);
 }
 

@@ -6,11 +6,30 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:22:37 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 01:21:18 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 17:31:21 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+static void	preprocessing(t_minirt *rt)
+{
+	if (VP_SIZE_MAX < 1 || VP_SIZE_MAX > 9999)
+		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
+	if (VP_WIDTH_DEFAULT < 1 || VP_WIDTH_DEFAULT > 9999)
+		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
+	if (VP_HEIGHT_DEFAULT < 1 || VP_HEIGHT_DEFAULT > 9999)
+		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
+	if (ELEM_SIZE_MAX < 0 || ELEM_SIZE_MAX > 999999.999999
+		|| COORD_MAX < -999999.999999 || COORD_MAX > 999999.999999
+		|| COORD_MIN < -999999.999999 || COORD_MIN > 999999.999999
+		|| COORD_MIN > COORD_MAX)
+		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
+	if (ARGS_MAX != 10 || ATOF_MAX != 6 || VEC_LEN != 3)
+		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
+	if (BUFFER_SIZE < 1 || BUFFER_SIZE > INT_MAX)
+		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
+}
 
 static void	postprocessing(t_minirt *rt)
 {
@@ -25,6 +44,8 @@ void	parser(char **av, t_minirt *rt)
 	char	*buffer;
 	int		gnl_status;
 
+	ft_printf(LOG_MSG_1, av[1]);
+	preprocessing(rt);
 	rt->prs->line = "";
 	buffer = NULL;
 	gnl_status = 0;
@@ -43,4 +64,5 @@ void	parser(char **av, t_minirt *rt)
 	}
 	close(rt->prs->fd);
 	postprocessing(rt);
+	ft_printf(LOG_MSG_2);
 }

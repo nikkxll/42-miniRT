@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 01:21:28 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 12:07:17 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_bool	process_args_w_commas(char *line, char *entities[ARGS_MAX], int count);
 
 void	init_struct(t_minirt **rt);
 void	init_element(t_minirt *rt);
+void	init_r(char *entities[ARGS_MAX], t_minirt *rt);
 void	init_a(char *entities[ARGS_MAX], t_minirt *rt);
 void	init_c(char *entities[ARGS_MAX], t_minirt *rt);
 void	init_l(char *entities[ARGS_MAX], t_minirt *rt, int spec);

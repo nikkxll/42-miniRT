@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:23:27 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 01:20:18 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 12:25:28 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,30 @@ static void	show_number_ranges(void)
 	ft_putstr_fd(CONFIG_MSG_6, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_7, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_8, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_9, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_10, STDERR_FILENO);
 }
 
 static void	show_valid_config(void)
 {
-	ft_putstr_fd(CONFIG_MSG_9, STDERR_FILENO);
-	ft_putstr_fd(CONFIG_MSG_10, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_11, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_12, STDERR_FILENO);
-	ft_putstr_fd(CONFIG_MSG_11, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_13, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_14, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_13, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_15, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_16, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_17, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_18, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_19, STDERR_FILENO);
-	ft_putstr_fd(CONFIG_MSG_18, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_20, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_21, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_20, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_22, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_23, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_24, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_25, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_26, STDERR_FILENO);
 }
 
 void	generic_errors_handler(char *msg, int status, t_minirt *rt)

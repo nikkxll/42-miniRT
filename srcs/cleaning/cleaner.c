@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:06:55 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 21:15:01 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 12:12:43 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	cleaner(t_minirt *rt)
 		free(rt->prs->line);
 	if (rt && rt->prs)
 	{
+		if (rt->prs->viewport)
+			free(rt->prs->viewport);
 		if (rt->prs->aml)
 			free(rt->prs->aml);
 		if (rt->prs->camera)

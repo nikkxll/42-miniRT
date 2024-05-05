@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 01:25:09 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 17:31:16 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ enum	e_types
 	SPHERE,
 	PLANE,
 	CYLINDER,
+	VIEWPORT
 };
 
 enum	e_characters
@@ -52,10 +53,12 @@ enum	e_exit_codes
 	CONF_ERR = 201,
 	AML_ERR = 202,
 	CAM_ERR = 203,
+	DEF_ERR = 999,
 };
 
 enum	e_num_params
 {
+	VP_PARAMS = 3,
 	AL_PARAMS = 3,
 	C_PARAMS = 4,
 	L_PARAMS = 4,
@@ -79,10 +82,16 @@ enum	e_gnl_error_codes
 # define ATOF_MAX 6
 # define VEC_LEN 3
 
+# define VP_SIZE_MAX 9999
+# define VP_WIDTH_DEFAULT 1920
+# define VP_HEIGHT_DEFAULT 1080
 # define ELEM_SIZE_MAX 999999.999999
 # define COORD_MAX 999999.999999
 # define COORD_MIN -999999.999999
 # define ROUND_PRT 0.000001
+
+# define LOG_MSG_1 "Parsing input file '%s'\n"
+# define LOG_MSG_2 "Parsing finished successfully!\n"
 
 # define ERR_MSG "Error\n"
 # define MALLOC_ERR_MSG "Malloc error occured\n"
@@ -95,6 +104,7 @@ enum	e_gnl_error_codes
 # define CONF_FORMAT_ERR_MSG "Wrong config structure format in .rt file\n"
 # define AML_ERR_MSG "Ambient light element config not found in .rt file\n"
 # define CAMERA_ERR_MSG "Camera element config not found in .rt file\n"
+# define DEF_ERR_MSG "Critical changes in DEFINE. Program terminated.\n"
 
 # define CONFIG_MSG_1 "Example of the valid number ranges:\n\n"
 # define CONFIG_MSG_2 "ratio is in range         [0.0, 1.0]\n"
@@ -103,19 +113,24 @@ enum	e_gnl_error_codes
 # define CONFIG_MSG_5 "x_n,y_n,x_n are in range  [-1, 1]\n"
 # define CONFIG_MSG_6 "FOV is in range           [0, 180]\n"
 # define CONFIG_MSG_7 "cy diameter is in range   (-1000000, 1000000)\n"
-# define CONFIG_MSG_8 "cy height is in range     (-1000000, 1000000)\n\n"
-# define CONFIG_MSG_9 "\nExample of the valid .rt file format:\n\n"
-# define CONFIG_MSG_10 "A    ratio    r,g,b                  "
-# define CONFIG_MSG_11 "(required, strictly one entity)\n"
-# define CONFIG_MSG_12 "C    x,y,z    x_n,y_n,x_n  FOV       "
-# define CONFIG_MSG_13 "L    x,y,z    ratio        r,g,b "
-# define CONFIG_MSG_14 "    (optional, if only one light source)\n"
-# define CONFIG_MSG_15 "l    x,y,z    ratio        r,g,b "
-# define CONFIG_MSG_16 "    (optional, if multiple light sources)\n"
-# define CONFIG_MSG_17 "sp   x,y,z    diameter     r,g,b     (optional, "
-# define CONFIG_MSG_18 "from 0 to n entities)\n"
-# define CONFIG_MSG_19 "pl   x,y,z    x_n,y_n,x_n  r,g,b     (optional, "
-# define CONFIG_MSG_20 "cy   x,y,z    x_n,y_n,x_n  diameter  height  r,g,b  "
-# define CONFIG_MSG_21 "(optional, from 0 to n entities)\n\n"
+# define CONFIG_MSG_8 "cy height is in range     (-1000000, 1000000)\n"
+# define CONFIG_MSG_9 "R width is in range       (0, 10000)\n"
+# define CONFIG_MSG_10 "R height is in range      (0, 10000)\n\n"
+# define CONFIG_MSG_11 "\nExample of the valid .rt file format:\n\n"
+# define CONFIG_MSG_12 "A    ratio    r,g,b                  "
+# define CONFIG_MSG_13 "(required, strictly one entity)\n"
+# define CONFIG_MSG_14 "C    x,y,z    x_n,y_n,x_n  FOV       "
+# define CONFIG_MSG_15 "L    x,y,z    ratio        r,g,b "
+# define CONFIG_MSG_16 "    (optional, if only one light source)\n"
+# define CONFIG_MSG_17 "l    x,y,z    ratio        r,g,b "
+# define CONFIG_MSG_18 "    (optional, if multiple light sources)\n"
+# define CONFIG_MSG_19 "sp   x,y,z    diameter     r,g,b     (optional, "
+# define CONFIG_MSG_20 "from 0 to n entities)\n"
+# define CONFIG_MSG_21 "pl   x,y,z    x_n,y_n,x_n  r,g,b     (optional, "
+# define CONFIG_MSG_22 "cy   x,y,z    x_n,y_n,x_n  diameter  height  r,g,b  "
+# define CONFIG_MSG_23 "(optional, from 0 to n entities)\n"
+# define CONFIG_MSG_24 "R    width    height                 (optional, "
+# define CONFIG_MSG_25 "0 or 1 entity. If not valid, default parameters "
+# define CONFIG_MSG_26 "will be taken)\n\n"
 
 #endif

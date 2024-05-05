@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 21:13:22 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 11:59:26 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ typedef struct s_vec3d
 	t_num	y;
 	t_num	z;
 }	t_vec3d;
+
+typedef struct s_viewport
+{
+	int	type;
+	int	width;
+	int	height;
+}	t_viewport;
 
 typedef struct s_am_light
 {
@@ -86,6 +93,7 @@ typedef struct s_parse
 {
 	char		*line;
 	int			fd;
+	t_viewport	*viewport;
 	t_am_light	*aml;
 	t_camera	*camera;
 	t_light		*light;
