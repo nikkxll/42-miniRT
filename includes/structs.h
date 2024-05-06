@@ -13,7 +13,24 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+
 typedef double	t_num;
+
+enum	e_types
+{
+	AM_LIGHT = 1,
+	CAMERA,
+	LIGHT,
+	MULTILIGHT,
+	SPHERE,
+	PLANE,
+	CYLINDER,
+};
+
+typedef struct s_obj
+{
+	int	type;
+}	t_obj;
 
 typedef struct s_rgb3
 {
@@ -49,6 +66,7 @@ typedef struct s_camera
 	t_vec3d			r;
 	t_vec3d			n;
 	t_num			fov;
+	struct s_camera	*next;
 }	t_camera;
 
 typedef struct s_light
@@ -102,10 +120,37 @@ typedef struct s_parse
 	t_cylinder	*cylinder;
 }	t_parse;
 
+typedef struct s_hit_data
+{
+	t_vec3d ray;
+	t_num	dist;
+	int 	type;
+	t_obj	*obj;
+	t_rgb3	rgb;
+	t_vec3d n;
+	t_vec3d l;
+	t_vec3d v;
+}	t_hit_data;
+
+typedef struct s_viewport
+{
+//	t_camera *cam;
+	int		foc;
+	int		n_x;
+	int		n_y;
+	int		size;
+	t_vec3d	*rays;  // this is temporal
+	t_hit_data	*hit;
+}	t_viewport;
+
 typedef struct s_minirt
 {
-	t_parse			*prs;
-	int				status;
+	t_parse		*prs;
+	int			status;
+	mlx_t		*mlx;
+	mlx_image_t	*image;
+	t_viewport	screen;
+	t_sphere	sphere;  // this is temporal
 }	t_minirt;
 
 #endif

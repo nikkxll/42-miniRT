@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
 /*   Updated: 2024/05/05 17:25:46 by dnikifor         ###   ########.fr       */
@@ -60,6 +60,118 @@ void print_ll(t_minirt *rt)
 	}
 }
 
+  /*
+
+
+#include "../libft/libft.h"
+//#include "../lib/MLX42/include/MLX42/MLX42.h"
+#include "../includes/MLX42.h"
+#include "../includes/structs.h"
+#include "../includes/vec3.h"
+
+
+int32_t	rgb_to_int(t_rgb3 rgb)
+{
+	return (rgb.r << 24 | rgb.g << 16 | rgb.b << 8 | 255);
+}
+
+
+void	print_picture(t_minirt *rt)
+{
+	int	i;
+	int	j;
+	int32_t color;
+	//t_num t;
+	t_sphere *sphere;
+
+	sphere = rt->prs->sphere;
+	color = rgb_to_int(sphere->rgb);
+	j = -1;
+	while (++j < rt->screen.n_y)
+	{
+		i = -1;
+		while (++i < rt->screen.n_x)
+		{
+			color = rgb_to_int(rt->screen.hit[j * rt->screen.n_x + i].rgb);
+			mlx_put_pixel(rt->image, i, j, color);
+		}
+	}
+}
+
+void	ft_hook_image(void *data)
+{
+	t_minirt	*rt;
+
+	rt = data;
+	ft_memset(rt->image->pixels, 100, //255, //CHANNELBACK,
+		rt->image->width * rt->image->height * sizeof(int32_t));
+	print_picture(rt);
+}
+
+int	main(int32_t argc, char *argv[])
+{
+    t_minirt rt;
+
+    (void)argv;
+    (void)argc;
+
+	// creating viewport
+	t_num foc = 90;
+	int	n_x = IMAGE_WIDTH;
+	int n_y = IMAGE_HIGHT;
+	//printf("")
+	rt.screen = (t_viewport){foc, n_x, n_y, n_x * n_y, NULL, NULL};
+	
+	// creating 3nd sphere 
+	t_vec3d r = {4, 2, 5};
+	t_rgb3	col = {10, 10, 200};
+	t_sphere sphere3 = (t_sphere){0, r, 1, col, NULL};
+
+	// creating 2nd sphere 
+	r = (t_vec3d){0, 1, 5};
+	col = (t_rgb3){10, 200, 10};
+	t_sphere sphere2 = (t_sphere){0, r, 1, col, &sphere3};
+	
+	// creating sphere 
+	r = (t_vec3d){0, 0, 5};
+	col = (t_rgb3){200, 10, 10};
+	rt.sphere = (t_sphere){0, r, 2, col, &sphere2};
+	
+	// putting sphere into parsing
+	t_parse		prs;
+	prs.sphere = &(rt.sphere);
+	prs.cylinder = NULL;
+	prs.plane = NULL;
+	rt.prs = &prs;
+
+	//putting camera into parsing
+	t_camera cam;
+	cam.r = (t_vec3d){0, 0, 0};
+	cam.n = (t_vec3d){0, 0, 1};
+	cam.n = vec_unit(cam.n);
+	prs.camera = &cam;
+	
+
+	transform_scene(&rt);
+	init_viewport(&(rt.screen));
+	hit_scene(&rt);
+
+	rt.mlx = mlx_init(MLXWIDTH, MLXHEIGHT, "MLX42", true);
+	if (!rt.mlx)
+        return (1); //	ft_mlx_error(fdf, 0);
+	rt.image = mlx_new_image(rt.mlx, n_x, n_y);
+	if (!rt.image)
+	    return (1); 	//	ft_mlx_error(fdf, 1);
+	if (mlx_image_to_window(rt.mlx, rt.image, 0, 0) == -1)
+		return (1); 	//ft_mlx_error(fdf, 1);
+	mlx_loop_hook(rt.mlx, ft_hook_image, &rt);
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
+	mlx_loop(rt.mlx);
+	mlx_terminate(rt.mlx);
+	return (EXIT_SUCCESS);
+}
+*/
+
 int	main(int ac, char **av)
 {
 	t_minirt	*rt;
@@ -73,10 +185,3 @@ int	main(int ac, char **av)
 	cleaner(rt);
 	return (SUCCESS);
 }
-
-// int	main(int ac, char **av)
-// {
-// 	(void)ac;
-// 	printf("%f\n", custom_atof(av[1], 0, 0, NULL));
-// 	return (0);
-// }

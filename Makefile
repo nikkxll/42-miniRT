@@ -21,7 +21,12 @@ CLEANING_PATH	:=	cleaning/
 CLEANING		:=	$(addprefix $(CLEANING_PATH), $(CLEANING_NAME))
 
 # SOURCE_FILES
-SRCS			:=	main.c $(PARSING) $(CLEANING)
+SRCS			:=	main.c $(PARSING) $(CLEANING) \
+					rt/viewport.c \
+					rt/transform_scene.c \
+					lin_alg/vec3.c \
+					lin_alg/vec_utils.c \
+					lin_alg/rotation_xyz.c
 SRCS_PATH		:=	srcs/
 
 # OBJECT_FILES
@@ -49,6 +54,10 @@ LIBMLX_DIR		:=	$(LIBMLX)/include
 LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
 					-lglfw -framework OpenGL -framework AppKit
 
+# MLX FOR MacOS (M1 and later)
+#LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
+#					-lglfw -framework OpenGL -framework AppKit
+
 # LOADING PROGRESS BAR INIT
 TOTAL_OBJS		:=	$(words $(OBJS))
 COMPILED_OBJS	:=	0
@@ -58,17 +67,19 @@ MSG_PRINTED 	:=	false
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS_PATH) $(OBJS) $(HEADERS)
-	@cc $(CFLAGS) $(INCLUDES) $(LIBS) $(OBJS) -o $(NAME)
-	@echo "$(GREEN)\n\n$(NAME) created successfully!$(EC)"
+	cc $(CFLAGS) $(INCLUDES) $(LIBS) $(OBJS) -o $(NAME)
+	echo "$(GREEN)\n\n$(NAME) created successfully!$(EC)"
 
 $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
 	@mkdir -p $(OBJS_PATH)$(PARSING_PATH)
 	@mkdir -p $(OBJS_PATH)$(PARSING_I_PATH)
 	@mkdir -p $(OBJS_PATH)$(CLEANING_PATH)
+	@mkdir -p $(OBJS_PATH)/lin_alg
+	@mkdir -p $(OBJS_PATH)/rt
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADERS)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@$(call progress,"miniRT")
 
 $(LIBFT): $(LIBFT_SOURSES)
