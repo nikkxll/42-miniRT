@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 13:25:41 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:37:26 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ enum	e_gnl_error_codes
 # define ATOF_MAX 6
 # define VEC_LEN 3
 
-# define VP_SIZE_MAX 9999
+# define VP_SIZE_MAX 2000
 # define VP_SIZE_MIN 100
 # define VP_WIDTH_DEFAULT 1000
 # define VP_HEIGHT_DEFAULT 800
