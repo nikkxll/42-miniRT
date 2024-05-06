@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 12:21:59 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:04:03 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,22 @@
 # include "MLX42.h"
 
 typedef double	t_num;
+
+enum	e_types
+{
+	AM_LIGHT = 1,
+	CAMERA,
+	LIGHT,
+	MULTILIGHT,
+	SPHERE,
+	PLANE,
+	CYLINDER,
+};
+
+typedef struct s_obj
+{
+	int	type;
+}	t_obj;
 
 typedef struct s_rgb3
 {
@@ -111,6 +127,18 @@ typedef struct s_clean
 	struct s_clean	*next;
 }	t_clean;
 
+typedef struct s_hit_data
+{
+	t_vec3d ray;
+	t_num	dist;
+	int 	type;
+	t_obj	*obj;
+	t_rgb3	rgb;
+	t_vec3d n;
+	t_vec3d l;
+	t_vec3d v;
+}	t_hit_data;
+
 typedef struct s_viewport
 {
 //	t_camera *cam;
@@ -118,7 +146,8 @@ typedef struct s_viewport
 	int		n_x;
 	int		n_y;
 	int		size;
-	t_vec3d	*rays;
+	t_vec3d	*rays;  // this is temporal
+	t_hit_data	*hit;
 }	t_viewport;
 
 typedef struct s_minirt

@@ -6,11 +6,12 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 12:43:20 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:04:39 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
+//#include "../lib/MLX42/include/MLX42/MLX42.h"
 #include "../includes/MLX42.h"
 #include "../includes/structs.h"
 #include "../includes/vec3.h"
@@ -33,7 +34,7 @@ void	print_picture(t_minirt *rt)
 	int	i;
 	int	j;
 	int32_t color;
-	t_num t;
+	//t_num t;
 	t_sphere *sphere;
 
 	sphere = rt->prs->sphere;
@@ -44,10 +45,8 @@ void	print_picture(t_minirt *rt)
 		i = -1;
 		while (++i < rt->screen.n_x)
 		{
-			t = hit_distance_t_sphere(sphere, \
-				rt->screen.rays[j * rt->screen.n_x + i]);
-			if (t > EPSILON)
-				mlx_put_pixel(rt->image, i, j, color);
+			color = rgb_to_int(rt->screen.hit[j * rt->screen.n_x + i].rgb);
+			mlx_put_pixel(rt->image, i, j, color);
 		}
 	}
 }
@@ -74,19 +73,42 @@ int	main(int32_t argc, char *argv[])
 	int	n_x = IMAGE_WIDTH;
 	int n_y = IMAGE_HIGHT;
 	//printf("")
-	rt.screen = (t_viewport){foc, n_x, n_y, n_x * n_y, NULL};
+	rt.screen = (t_viewport){foc, n_x, n_y, n_x * n_y, NULL, NULL};
+	
+	// creating 3nd sphere 
+	t_vec3d r = {4, 2, 5};
+	t_rgb3	col = {10, 10, 200};
+	t_sphere sphere3 = (t_sphere){0, r, 1, col, NULL};
 
-	// creating sphere
-	t_vec3d r = {0, 0, 5};
-	t_rgb3	col = {200, 10, 10};
-	rt.sphere = (t_sphere){0, r, 2, col, NULL};
+	// creating 2nd sphere 
+	r = (t_vec3d){0, 1, 5};
+	col = (t_rgb3){10, 200, 10};
+	t_sphere sphere2 = (t_sphere){0, r, 1, col, &sphere3};
+	
+	// creating sphere 
+	r = (t_vec3d){0, 0, 5};
+	col = (t_rgb3){200, 10, 10};
+	rt.sphere = (t_sphere){0, r, 2, col, &sphere2};
 	
 	// putting sphere into parsing
 	t_parse		prs;
 	prs.sphere = &(rt.sphere);
+	prs.cylinder = NULL;
+	prs.plane = NULL;
 	rt.prs = &prs;
 
-	init_ray_bunch(&(rt.screen));
+	//putting camera into parsing
+	t_camera cam;
+	cam.r = (t_vec3d){0, 0, 0};
+	cam.n = (t_vec3d){0, 0, 1};
+	cam.n = vec_unit(cam.n);
+	prs.camera = &cam;
+	
+
+	transform_scene(&rt);
+	init_viewport(&(rt.screen));
+	hit_scene(&rt);
+
 	rt.mlx = mlx_init(MLXWIDTH, MLXHEIGHT, "MLX42", true);
 	if (!rt.mlx)
         return (1); //	ft_mlx_error(fdf, 0);

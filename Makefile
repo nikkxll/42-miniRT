@@ -8,7 +8,8 @@ CFLAGS			:=	-g -Wall -Wextra -Werror
 
 # SOURCE_FILES
 SRCS			:=	main.c \
-					lin_alg/viewport.c \
+					rt/viewport.c \
+					rt/transform_scene.c \
 					lin_alg/vec3.c \
 					lin_alg/vec_utils.c \
 					lin_alg/rotation_xyz.c
@@ -24,7 +25,7 @@ LIBFT_SOURSES	:=	$(addprefix $(LIBFT_PATH), $(LIBFT_SOURSES))
 LIBFT			:=	$(addprefix $(LIBFT_PATH), $(LIBFT))
 
 # HEADERS AND EXTERNAL LIBRARIES
-HEADERS			:=	$(LIBFT_PATH)libft.h
+HEADERS			:=	$(LIBFT_PATH) $(LIBMLX_DIR)
 INCLUDES		:=	$(addprefix -I , $(HEADERS))
 LIBMLX			:=	./lib/MLX42
 MLX				:=	./lib/MLX42/build/libmlx42.a
@@ -35,8 +36,15 @@ LIBMLX_DIR		:=	$(LIBMLX)/include
 # 					-lglfw -framework OpenGL -framework AppKit
 
 # MLX FOR MacOS (M1 and later)
-LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
-					-lglfw -framework OpenGL -framework AppKit
+#LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
+#					-lglfw -framework OpenGL -framework AppKit
+
+# MLX for linux
+# gcc main.c ... libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
+LIBS	=  $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -Iincludes -Ift
+#LIBS	=  $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
+#LIBS	=  -I$(LIBMLX_DIR) $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
+
 
 # LOADING PROGRESS BAR INIT
 TOTAL_OBJS		:=	$(words $(OBJS))
@@ -53,6 +61,7 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS_PATH) $(OBJS) $(HEADERS)
 $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
 	@mkdir -p $(OBJS_PATH)/lin_alg
+	@mkdir -p $(OBJS_PATH)/rt
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADERS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
