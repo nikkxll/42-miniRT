@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:22:37 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 12:28:21 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:22:10 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,27 @@ static void	preprocessing(t_minirt *rt)
 
 static void	postprocessing(t_minirt *rt)
 {
+	t_screen	*node;
+
 	if (!rt->prs->aml)
 		generic_errors_handler(AML_ERR_MSG, AML_ERR, rt);
 	if (!rt->prs->camera)
 		generic_errors_handler(CAMERA_ERR_MSG, CAM_ERR, rt);
 	if (!rt->prs->screen)
 	{
-		rt->prs->screen->type = VIEWPORT;
-		rt->prs->screen->width = VP_WIDTH_DEFAULT;
-		rt->prs->screen->height = VP_HEIGHT_DEFAULT;
+		node = (t_screen *)ft_calloc(1, sizeof(t_screen));
+		if (node)
+		{
+			node->type = VIEWPORT;
+			node->width = VP_WIDTH_DEFAULT;
+			node->height = VP_HEIGHT_DEFAULT;
+			rt->prs->screen = node;
+			ft_printf(ORANGE);
+			ft_printf(LOG_MSG_3);
+			ft_printf(EC);
+		}
+		else
+			generic_errors_handler(MALLOC_ERR_MSG, MALLOC_ERR, rt);
 	}
 }
 
