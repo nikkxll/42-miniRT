@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 16:13:08 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:04:39 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_picture(t_minirt *rt)
 	int	i;
 	int	j;
 	int32_t color;
-	t_num t;
+	//t_num t;
 	t_sphere *sphere;
 
 	sphere = rt->prs->sphere;
@@ -76,7 +76,7 @@ int	main(int32_t argc, char *argv[])
 	rt.screen = (t_viewport){foc, n_x, n_y, n_x * n_y, NULL, NULL};
 	
 	// creating 3nd sphere 
-	t_vec3d r = {-4, 2, 5};
+	t_vec3d r = {4, 2, 5};
 	t_rgb3	col = {10, 10, 200};
 	t_sphere sphere3 = (t_sphere){0, r, 1, col, NULL};
 
@@ -100,7 +100,7 @@ int	main(int32_t argc, char *argv[])
 	//putting camera into parsing
 	t_camera cam;
 	cam.r = (t_vec3d){0, 0, 0};
-	cam.n = (t_vec3d){0.1, 0.1, 1};
+	cam.n = (t_vec3d){0, 0, 1};
 	cam.n = vec_unit(cam.n);
 	prs.camera = &cam;
 	
@@ -108,6 +108,7 @@ int	main(int32_t argc, char *argv[])
 	transform_scene(&rt);
 	init_viewport(&(rt.screen));
 	hit_scene(&rt);
+
 	rt.mlx = mlx_init(MLXWIDTH, MLXHEIGHT, "MLX42", true);
 	if (!rt.mlx)
         return (1); //	ft_mlx_error(fdf, 0);
