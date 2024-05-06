@@ -19,8 +19,10 @@ t_vec3d	vec_rot_x(t_vec3d vec, t_num angle)
 
 	angle_rad = angle * PI / 180;
 	row1 = (t_vec3d){1, 0, 0};
-	row2 = (t_vec3d){0, cos(angle_rad), -sin(angle_rad)};
-	row3 = (t_vec3d){0, sin(angle_rad), cos(angle_rad)};
+	//row2 = (t_vec3d){0, cos(angle_rad), -sin(angle_rad)};
+	//row3 = (t_vec3d){0, sin(angle_rad), cos(angle_rad)};
+	row2 = (t_vec3d){0, cos(angle_rad), sin(angle_rad)};
+	row3 = (t_vec3d){0, -sin(angle_rad), cos(angle_rad)};
 	rotated.x = vec.x * row1.x + vec.y * row1.y + vec.z * row1.z;
 	rotated.y = vec.x * row2.x + vec.y * row2.y + vec.z * row2.z;
 	rotated.z = vec.x * row3.x + vec.y * row3.y + vec.z * row3.z;
@@ -36,9 +38,11 @@ t_vec3d	vec_rot_y(t_vec3d vec, t_num angle)
 	t_num	angle_rad;
 
 	angle_rad = angle * M_PI / 180;
-	row1 = (t_vec3d){cos(angle_rad), 0, sin(angle_rad)};
+	//row1 = (t_vec3d){cos(angle_rad), 0, sin(angle_rad)};
+	row1 = (t_vec3d){cos(angle_rad), 0, -sin(angle_rad)};
 	row2 = (t_vec3d){0, 1, 0};
-	row3 = (t_vec3d){-sin(angle_rad), 0, cos(angle_rad)};
+	//row3 = (t_vec3d){-sin(angle_rad), 0, cos(angle_rad)};
+	row3 = (t_vec3d){sin(angle_rad), 0, cos(angle_rad)};
 	rotated.x = vec.x * row1.x + vec.y * row1.y + vec.z * row1.z;
 	rotated.y = vec.x * row2.x + vec.y * row2.y + vec.z * row2.z;
 	rotated.z = vec.x * row3.x + vec.y * row3.y + vec.z * row3.z;
@@ -54,8 +58,10 @@ t_vec3d	vec_rot_z(t_vec3d vec, t_num angle)
 	t_num	angle_rad;
 
 	angle_rad = angle * M_PI / 180;
-	row1 = (t_vec3d){cos(angle_rad), -sin(angle_rad), 0};
-	row2 = (t_vec3d){sin(angle_rad), cos(angle_rad), 0};
+	//row1 = (t_vec3d){cos(angle_rad), -sin(angle_rad), 0};
+	//row2 = (t_vec3d){sin(angle_rad), cos(angle_rad), 0};
+	row1 = (t_vec3d){cos(angle_rad), sin(angle_rad), 0};
+	row2 = (t_vec3d){-sin(angle_rad), cos(angle_rad), 0};
 	row3 = (t_vec3d){0, 0, 1};
 	rotated.x = vec.x * row1.x + vec.y * row1.y + vec.z * row1.z;
 	rotated.y = vec.x * row2.x + vec.y * row2.y + vec.z * row2.z;

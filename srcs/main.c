@@ -97,6 +97,15 @@ int	main(int32_t argc, char *argv[])
 	prs.plane = NULL;
 	rt.prs = &prs;
 
+	//putting camera into parsing
+	t_camera cam;
+	cam.r = (t_vec3d){0, 0, 0};
+	cam.n = (t_vec3d){0.1, 0.1, 1};
+	cam.n = vec_unit(cam.n);
+	prs.camera = &cam;
+	
+
+	transform_scene(&rt);
 	init_viewport(&(rt.screen));
 	hit_scene(&rt);
 	rt.mlx = mlx_init(MLXWIDTH, MLXHEIGHT, "MLX42", true);

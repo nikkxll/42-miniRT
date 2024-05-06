@@ -45,3 +45,6 @@ void	vec_print(char *str, t_vec3d vec);
 void	init_viewport(t_viewport *vp);
 t_num	dist_to_sphere(t_sphere *sp, t_vec3d v);
 void	hit_scene(t_minirt *rt);
+
+// transform_scene.c
+void	transform_scene(t_minirt *rt);

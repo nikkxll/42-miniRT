@@ -9,6 +9,7 @@ CFLAGS			:=	-g -Wall -Wextra -Werror
 # SOURCE_FILES
 SRCS			:=	main.c \
 					rt/viewport.c \
+					rt/transform_scene.c \
 					lin_alg/vec3.c \
 					lin_alg/vec_utils.c \
 					lin_alg/rotation_xyz.c
