@@ -1,12 +1,12 @@
 # Camera's position and direction 03
-R 1000 800
+R 99 999
 # Ambient Light
 # <intensity: 0-1> <color: red, green, blue>
 A                            0.1         255,255,255
 
 # Camera
 # <coordinates of camera position: x,y,z> <camera view: x,y,z> <pov:x,y,z>
-C   0,1.5,-6         0,0.2,1   70
+C   0,1.5,-6         0,0.7,1   70
 
 # Light
 # <coordinates: x,y,z> <brightness: 0-1> <color:red,green,blue>

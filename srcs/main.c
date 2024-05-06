@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 12:24:02 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:06:14 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,7 @@ int	make_picture(t_minirt *rt)
 
 
 	// creating viewport
-	printf("----\n");
 	t_num foc = 90;
-	printf("-----%d\n", rt->prs->screen->width);
-	printf("-----%d\n", rt->prs->screen->height);
 	int	n_x = rt->prs->screen->width;
 	int n_y = rt->prs->screen->height;
 	//printf("")

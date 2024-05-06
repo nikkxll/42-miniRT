@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 12:20:07 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:31:24 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,15 @@ enum	e_gnl_error_codes
 };
 
 # define RED "\x1B[31m"
+# define ORANGE "\e[38;5;208m"
 # define EC "\x1B[0m"
 
 # define ARGS_MAX 10
 # define ATOF_MAX 6
 # define VEC_LEN 3
 
-# define VP_SIZE_MAX 9999
+# define VP_SIZE_MAX 2000
+# define VP_SIZE_MIN 100
 # define VP_WIDTH_DEFAULT 1000
 # define VP_HEIGHT_DEFAULT 800
 # define ELEM_SIZE_MAX 999999.999999
@@ -106,6 +108,7 @@ enum	e_gnl_error_codes
 
 # define LOG_MSG_1 "Parsing input file '%s'\n"
 # define LOG_MSG_2 "Parsing finished successfully!\n"
+# define LOG_MSG_3 "Warning! Viewport dimension are taken by default\n"
 
 # define ERR_MSG "Error\n"
 # define MALLOC_ERR_MSG "Malloc error occured\n"

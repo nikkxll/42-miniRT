@@ -10,7 +10,7 @@ CFLAGS			:=	-g -Wall -Wextra -Werror
 PARSING_NAME	:=	parsing.c minirt_atof.c args_processing.c minirt_atoi.c range_check.c
 PARSING_PATH	:=	parsing/
 PARSING_I_NAME	:=	init_ambient_light.c init_camera.c init_light.c init_sphere.c init_plane.c \
-					init_cylinder.c init_element.c init_struct.c init_viewport.c
+					init_cylinder.c init_element.c init_struct.c init_screen.c
 PARSING_I_PATH	:=	parsing/inits/
 PARSING			:=	$(addprefix $(PARSING_PATH), $(PARSING_NAME)) \
 					$(addprefix $(PARSING_I_PATH), $(PARSING_I_NAME))
