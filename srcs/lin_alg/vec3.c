@@ -1,5 +1,4 @@
-#include "../../includes/structs.h"
-#include "../../includes/vec3.h"
+#include "../../includes/minirt.h"
 
 /*
 typedef struct s_vec3d

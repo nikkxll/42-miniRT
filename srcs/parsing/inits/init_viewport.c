@@ -6,17 +6,17 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 11:49:17 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 12:12:17 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:38:40 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
-static t_viewport	*new_viewport_node(char *entities[ARGS_MAX], t_minirt *rt)
+static t_screen	*new_viewport_node(char *entities[ARGS_MAX], t_minirt *rt)
 {
-	t_viewport	*node;
+	t_screen	*node;
 
-    node = (t_viewport *)ft_calloc(1, sizeof(t_viewport));
+    node = (t_screen *)ft_calloc(1, sizeof(t_screen));
     if (node)
     {
         node->type = VIEWPORT;

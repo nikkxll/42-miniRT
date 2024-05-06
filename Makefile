@@ -40,7 +40,7 @@ LIBFT			:=	$(addprefix $(LIBFT_PATH), $(LIBFT))
 
 # HEADERS AND EXTERNAL LIBRARIES
 MINIRT_H		:=	includes/
-HEADERS			:=	$(LIBFT_PATH)libft.h $(MINIRT_H)/defines.h $(MINIRT_H)/minirt.h $(MINIRT_H)/structs.h
+HEADERS			:=	$(LIBFT_PATH)libft.h $(MINIRT_H)defines.h $(MINIRT_H)minirt.h $(MINIRT_H)structs.h
 INCLUDES		:=	$(addprefix -I , $(HEADERS))
 LIBMLX			:=	./lib/MLX42
 MLX				:=	./lib/MLX42/build/libmlx42.a
@@ -67,8 +67,8 @@ MSG_PRINTED 	:=	false
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS_PATH) $(OBJS) $(HEADERS)
-	cc $(CFLAGS) $(INCLUDES) $(LIBS) $(OBJS) -o $(NAME)
-	echo "$(GREEN)\n\n$(NAME) created successfully!$(EC)"
+	@cc $(CFLAGS) $(INCLUDES) $(LIBS) $(OBJS) -o $(NAME)
+	@echo "$(GREEN)\n\n$(NAME) created successfully!$(EC)"
 
 $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
@@ -79,7 +79,7 @@ $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)/rt
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADERS)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@$(call progress,"miniRT")
 
 $(LIBFT): $(LIBFT_SOURSES)

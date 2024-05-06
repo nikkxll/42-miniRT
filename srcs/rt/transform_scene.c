@@ -1,5 +1,4 @@
-#include "../../includes/structs.h"
-#include "../../includes/vec3.h"
+#include "../../includes/minirt.h"
 
 void	transform_spheres(t_sphere *sphere, t_camera *cam)
 {

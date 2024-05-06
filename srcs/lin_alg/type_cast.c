@@ -1,4 +1,4 @@
-#include "../../includes/vec3.h"
+#include "../../includes/minirt.h"
 
 //norms???
 typedef float t_num;

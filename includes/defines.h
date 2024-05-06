@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 17:31:16 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/06 11:44:26 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,20 @@ enum	e_gnl_error_codes
 # define COORD_MAX 999999.999999
 # define COORD_MIN -999999.999999
 # define ROUND_PRT 0.000001
+
+# define TAN tan
+# define POW pow
+# define SQRT sqrt
+
+# define IMAGE_WIDTH 700
+# define IMAGE_HIGHT 500
+
+# define MLXWIDTH 700
+# define MLXHEIGHT 700
+# define CHANNELBACK 100
+
+# define PI 3.141592653589793238462643383279502884197169399375105820974944592307
+# define EPSILON 0.0000000000000001
 
 # define LOG_MSG_1 "Parsing input file '%s'\n"
 # define LOG_MSG_2 "Parsing finished successfully!\n"

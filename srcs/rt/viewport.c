@@ -1,5 +1,4 @@
-#include "../../includes/structs.h"
-#include "../../includes/vec3.h"
+#include "../../includes/minirt.h"
 
 t_vec3d	viewport_vec(t_viewport *vp, int i, int j)
 {
@@ -67,7 +66,7 @@ void	hit_scene(t_minirt *rt)
 	size_t	pixel;
 
 	pixel = 0;
-	while (pixel < rt->screen.size)
+	while (pixel < (size_t)rt->screen.size)
 	{
 		hit_spheres(rt, pixel);
 		//hit_planes(rt, pixel);

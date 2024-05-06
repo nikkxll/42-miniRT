@@ -1,5 +1,4 @@
-#include "../../includes/structs.h"
-#include "../../includes/vec3.h"
+#include "../../includes/minirt.h"
 
 t_num	vec_norm(t_vec3d v)
 {
