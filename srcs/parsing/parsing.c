@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:22:37 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 17:31:21 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:28:21 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ static void	postprocessing(t_minirt *rt)
 		generic_errors_handler(AML_ERR_MSG, AML_ERR, rt);
 	if (!rt->prs->camera)
 		generic_errors_handler(CAMERA_ERR_MSG, CAM_ERR, rt);
+	if (!rt->prs->screen)
+	{
+		rt->prs->screen->type = VIEWPORT;
+		rt->prs->screen->width = VP_WIDTH_DEFAULT;
+		rt->prs->screen->height = VP_HEIGHT_DEFAULT;
+	}
 }
 
 void	parser(char **av, t_minirt *rt)

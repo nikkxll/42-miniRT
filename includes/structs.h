@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 11:47:18 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:27:53 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ typedef struct s_parse
 {
 	char		*line;
 	int			fd;
-	t_screen	*viewport;
+	t_screen	*screen;
 	t_am_light	*aml;
 	t_camera	*camera;
 	t_light		*light;
@@ -139,8 +139,8 @@ typedef struct s_minirt
 	int			status;
 	mlx_t		*mlx;
 	mlx_image_t	*image;
-	t_viewport	screen;
-	t_sphere	sphere;  // this is temporal
+	t_viewport	vp;
+	//t_sphere	sphere;  // this is temporal
 }	t_minirt;
 
 #endif

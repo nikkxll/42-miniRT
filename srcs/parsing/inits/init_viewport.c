@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_viewport.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 11:49:17 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 11:38:40 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:29:05 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static t_screen	*new_viewport_node(char *entities[ARGS_MAX], t_minirt *rt)
 
 void	init_r(char *entities[ARGS_MAX], t_minirt *rt)
 {
-	if (!rt->prs->viewport && ft_arrlen((void **)entities) == VP_PARAMS)
+	if (!rt->prs->screen && ft_arrlen((void **)entities) == VP_PARAMS)
 	{
-		rt->prs->viewport = new_viewport_node(entities, rt);
+		rt->prs->screen = new_viewport_node(entities, rt);
 	}
 	else
 		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);

@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 17:25:46 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:24:02 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void print_ll(t_minirt *rt)
 {
-	if (rt->prs->viewport)
+	if (rt->prs->screen)
 	{
-		printf("VIEWPORT %d   %d   %d\n", rt->prs->viewport->type,
-			rt->prs->viewport->width, rt->prs->viewport->height);
+		printf("VIEWPORT %d   %d   %d\n", rt->prs->screen->type,
+			rt->prs->screen->width, rt->prs->screen->height);
 	}
 	printf("AML %d   %f   %d   %d   %d\n", rt->prs->aml->type,
 		rt->prs->aml->ratio, rt->prs->aml->rgb.r, rt->prs->aml->rgb.g,
@@ -60,15 +60,6 @@ void print_ll(t_minirt *rt)
 	}
 }
 
-  /*
-
-
-#include "../libft/libft.h"
-//#include "../lib/MLX42/include/MLX42/MLX42.h"
-#include "../includes/MLX42.h"
-#include "../includes/structs.h"
-#include "../includes/vec3.h"
-
 
 int32_t	rgb_to_int(t_rgb3 rgb)
 {
@@ -87,12 +78,12 @@ void	print_picture(t_minirt *rt)
 	sphere = rt->prs->sphere;
 	color = rgb_to_int(sphere->rgb);
 	j = -1;
-	while (++j < rt->screen.n_y)
+	while (++j < rt->vp.n_y)
 	{
 		i = -1;
-		while (++i < rt->screen.n_x)
+		while (++i < rt->vp.n_x)
 		{
-			color = rgb_to_int(rt->screen.hit[j * rt->screen.n_x + i].rgb);
+			color = rgb_to_int(rt->vp.hit[j * rt->vp.n_x + i].rgb);
 			mlx_put_pixel(rt->image, i, j, color);
 		}
 	}
@@ -108,20 +99,26 @@ void	ft_hook_image(void *data)
 	print_picture(rt);
 }
 
-int	main(int32_t argc, char *argv[])
-{
-    t_minirt rt;
 
-    (void)argv;
-    (void)argc;
+
+//int	main(int32_t argc, char *argv[])
+int	make_picture(t_minirt *rt)
+{
+ //   t_minirt rt;
+
 
 	// creating viewport
+	printf("----\n");
 	t_num foc = 90;
-	int	n_x = IMAGE_WIDTH;
-	int n_y = IMAGE_HIGHT;
+	printf("-----%d\n", rt->prs->screen->width);
+	printf("-----%d\n", rt->prs->screen->height);
+	int	n_x = rt->prs->screen->width;
+	int n_y = rt->prs->screen->height;
 	//printf("")
-	rt.screen = (t_viewport){foc, n_x, n_y, n_x * n_y, NULL, NULL};
 	
+	rt->vp = (t_viewport){foc, n_x, n_y, n_x * n_y, NULL, NULL};
+	
+	/*
 	// creating 3nd sphere 
 	t_vec3d r = {4, 2, 5};
 	t_rgb3	col = {10, 10, 200};
@@ -150,27 +147,28 @@ int	main(int32_t argc, char *argv[])
 	cam.n = (t_vec3d){0, 0, 1};
 	cam.n = vec_unit(cam.n);
 	prs.camera = &cam;
-	
+	*/
 
-	transform_scene(&rt);
-	init_viewport(&(rt.screen));
-	hit_scene(&rt);
+	transform_scene(rt);
+	init_viewport(&(rt->vp));
+	hit_scene(rt);
 
-	rt.mlx = mlx_init(MLXWIDTH, MLXHEIGHT, "MLX42", true);
-	if (!rt.mlx)
+	rt->mlx = mlx_init(rt->prs->screen->width, rt->prs->screen->height,
+		"MLX42", true);
+	if (!rt->mlx)
         return (1); //	ft_mlx_error(fdf, 0);
-	rt.image = mlx_new_image(rt.mlx, n_x, n_y);
-	if (!rt.image)
+	rt->image = mlx_new_image(rt->mlx, n_x, n_y);
+	if (!rt->image)
 	    return (1); 	//	ft_mlx_error(fdf, 1);
-	if (mlx_image_to_window(rt.mlx, rt.image, 0, 0) == -1)
+	if (mlx_image_to_window(rt->mlx, rt->image, 0, 0) == -1)
 		return (1); 	//ft_mlx_error(fdf, 1);
-	mlx_loop_hook(rt.mlx, ft_hook_image, &rt);
+	mlx_loop_hook(rt->mlx, ft_hook_image, rt);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
-	mlx_loop(rt.mlx);
-	mlx_terminate(rt.mlx);
+	mlx_loop(rt->mlx);
+	mlx_terminate(rt->mlx);
 	return (EXIT_SUCCESS);
 }
-*/
+
 
 int	main(int ac, char **av)
 {
@@ -181,6 +179,7 @@ int	main(int ac, char **av)
 		generic_errors_handler(NUM_FILES_ERR_MSG, NUM_FILES_ERR, rt);
 	init_struct(&rt);
 	parser(av, rt);
+	make_picture(rt);
 	// print_ll(rt);
 	cleaner(rt);
 	return (SUCCESS);

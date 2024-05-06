@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:06:55 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 12:12:43 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:17:06 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ void	cleaner(t_minirt *rt)
 		free(rt->prs->line);
 	if (rt && rt->prs)
 	{
-		if (rt->prs->viewport)
-			free(rt->prs->viewport);
+		if (rt->prs->screen)
+			free(rt->prs->screen);
 		if (rt->prs->aml)
 			free(rt->prs->aml);
 		if (rt->prs->camera)

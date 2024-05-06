@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   range_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:09:51 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 21:47:41 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:09:10 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	coord_check(double x, double y, double z, t_minirt *rt)
 
 void	orient_vec_check(double x, double y, double z, t_minirt *rt)
 {
-	if (x > 1.0 || y > 1.0 || z > 1.0 || x < -1.0 || y < -1.0 || z < -1.0
-		|| fabs(pow(x, 2) + pow(y, 2) + pow(z, 2) - 1) > ROUND_PRT)
+	if (x == 0 && y == 0 && z == 0)
 		generic_errors_handler(NUMBER_FORMAT_ERR_MSG, NUM_ERR, rt);
 }

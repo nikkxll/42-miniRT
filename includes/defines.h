@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 11:44:26 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:20:07 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ enum	e_gnl_error_codes
 # define VEC_LEN 3
 
 # define VP_SIZE_MAX 9999
-# define VP_WIDTH_DEFAULT 1920
-# define VP_HEIGHT_DEFAULT 1080
+# define VP_WIDTH_DEFAULT 1000
+# define VP_HEIGHT_DEFAULT 800
 # define ELEM_SIZE_MAX 999999.999999
 # define COORD_MAX 999999.999999
 # define COORD_MIN -999999.999999
@@ -98,7 +98,7 @@ enum	e_gnl_error_codes
 # define IMAGE_HIGHT 500
 
 # define MLXWIDTH 700
-# define MLXHEIGHT 700
+# define MLXHEIGHT 500
 # define CHANNELBACK 100
 
 # define PI 3.141592653589793238462643383279502884197169399375105820974944592307

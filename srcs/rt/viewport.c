@@ -45,7 +45,7 @@ void	hit_spheres(t_minirt *rt, size_t pixel)
 	t_sphere *s;
 	t_hit_data *data;
 
-	data = &(rt->screen.hit[pixel]);
+	data = &(rt->vp.hit[pixel]);
 	s = rt->prs->sphere;
 	while (s)
 	{
@@ -66,7 +66,7 @@ void	hit_scene(t_minirt *rt)
 	size_t	pixel;
 
 	pixel = 0;
-	while (pixel < (size_t)rt->screen.size)
+	while (pixel < (size_t)rt->vp.size)
 	{
 		hit_spheres(rt, pixel);
 		//hit_planes(rt, pixel);
@@ -82,9 +82,9 @@ void set_colors(t_minirt *rt)
 	t_hit_data	*data;
 
 	pixel = 0;
-	while (pixel < rt->screen.size)
+	while (pixel < rt->vp.size)
 	{
-		data = &(rt->screen.hit[pixel]);
+		data = &(rt->vp.hit[pixel]);
 		data->rgb = color
 		//hit_planes(rt, pixel);
 		// hit other objects here
