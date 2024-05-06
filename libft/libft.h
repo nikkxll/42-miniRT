@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:06:39 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/04/27 12:10:16 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/05 00:55:49 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # ifndef SIZE_T_MAX
 #  define SIZE_T_MAX 18446744073709551615UL
 # endif
+
+# define BUFFER_SIZE 1000
 
 typedef struct s_list
 {

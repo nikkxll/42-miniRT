@@ -6,9 +6,62 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 11:04:39 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/05 17:25:46 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/minirt.h"
+
+void print_ll(t_minirt *rt)
+{
+	if (rt->prs->viewport)
+	{
+		printf("VIEWPORT %d   %d   %d\n", rt->prs->viewport->type,
+			rt->prs->viewport->width, rt->prs->viewport->height);
+	}
+	printf("AML %d   %f   %d   %d   %d\n", rt->prs->aml->type,
+		rt->prs->aml->ratio, rt->prs->aml->rgb.r, rt->prs->aml->rgb.g,
+		rt->prs->aml->rgb.b);
+	printf("CAMERA %d   %f   %f   %f   %f   %f   %f   %f\n", rt->prs->camera->type,
+		rt->prs->camera->r.x, rt->prs->camera->r.y, rt->prs->camera->r.z,
+		rt->prs->camera->n.x, rt->prs->camera->n.y, rt->prs->camera->n.z,
+		rt->prs->camera->fov);
+	while (rt->prs->cylinder)
+	{
+		printf("CYLINDER %d   %f   %f   %f   %f   %f   %f   %f   %f   %i   %i   %i\n", rt->prs->cylinder->type,
+		rt->prs->cylinder->r.x, rt->prs->cylinder->r.y, rt->prs->cylinder->r.z,
+		rt->prs->cylinder->n.x, rt->prs->cylinder->n.y, rt->prs->cylinder->n.z,
+		rt->prs->cylinder->d, rt->prs->cylinder->h, rt->prs->cylinder->rgb.r,
+		rt->prs->cylinder->rgb.g, rt->prs->cylinder->rgb.b);
+		rt->prs->cylinder = rt->prs->cylinder->next;
+	}
+	while (rt->prs->light)
+	{
+		printf("LIGHT %d   %f   %f   %f   %f   %i   %i   %i\n", rt->prs->light->type,
+		rt->prs->light->r.x, rt->prs->light->r.y, rt->prs->light->r.z,
+		rt->prs->light->brt, rt->prs->light->rgb.r, rt->prs->light->rgb.g, rt->prs->light->rgb.b);
+		rt->prs->light = rt->prs->light->next;
+	}
+	while (rt->prs->plane)
+	{
+		printf("PLANE %d   %f   %f   %f   %f   %f   %f   %i   %i   %i\n", rt->prs->plane->type,
+		rt->prs->plane->r.x, rt->prs->plane->r.y, rt->prs->plane->r.z,
+		rt->prs->plane->n.x, rt->prs->plane->n.y, rt->prs->plane->n.z,
+		rt->prs->plane->rgb.r, rt->prs->plane->rgb.g, rt->prs->plane->rgb.b);
+		rt->prs->plane = rt->prs->plane->next;
+	}
+	while (rt->prs->sphere)
+	{
+		printf("SPHERE %d   %f   %f   %f   %f   %d   %d   %d\n", rt->prs->sphere->type, 
+		rt->prs->sphere->r.x, rt->prs->sphere->r.y, rt->prs->sphere->r.z,
+		rt->prs->sphere->d, rt->prs->sphere->rgb.r, rt->prs->sphere->rgb.g,
+		rt->prs->sphere->rgb.b);
+		rt->prs->sphere = rt->prs->sphere->next;
+	}
+}
+
+  /*
+
 
 #include "../libft/libft.h"
 //#include "../lib/MLX42/include/MLX42/MLX42.h"
@@ -16,12 +69,6 @@
 #include "../includes/structs.h"
 #include "../includes/vec3.h"
 
-/*
-int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
-{
-	return (r << 24 | g << 16 | b << 8 | a);
-}
-*/
 
 int32_t	rgb_to_int(t_rgb3 rgb)
 {
@@ -122,4 +169,19 @@ int	main(int32_t argc, char *argv[])
 	mlx_loop(rt.mlx);
 	mlx_terminate(rt.mlx);
 	return (EXIT_SUCCESS);
+}
+*/
+
+int	main(int ac, char **av)
+{
+	t_minirt	*rt;
+
+	rt = NULL;
+	if (ac != 2)
+		generic_errors_handler(NUM_FILES_ERR_MSG, NUM_FILES_ERR, rt);
+	init_struct(&rt);
+	parser(av, rt);
+	// print_ll(rt);
+	cleaner(rt);
+	return (SUCCESS);
 }

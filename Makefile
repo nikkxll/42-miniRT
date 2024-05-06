@@ -6,8 +6,22 @@ NAME			:=	miniRT
 CC				:=	cc
 CFLAGS			:=	-g -Wall -Wextra -Werror
 
+# PARSING
+PARSING_NAME	:=	parsing.c minirt_atof.c args_processing.c minirt_atoi.c range_check.c
+PARSING_PATH	:=	parsing/
+PARSING_I_NAME	:=	init_ambient_light.c init_camera.c init_light.c init_sphere.c init_plane.c \
+					init_cylinder.c init_element.c init_struct.c init_viewport.c
+PARSING_I_PATH	:=	parsing/inits/
+PARSING			:=	$(addprefix $(PARSING_PATH), $(PARSING_NAME)) \
+					$(addprefix $(PARSING_I_PATH), $(PARSING_I_NAME))
+
+# CLEANING
+CLEANING_NAME	:=	cleaner.c error_throw.c
+CLEANING_PATH	:=	cleaning/
+CLEANING		:=	$(addprefix $(CLEANING_PATH), $(CLEANING_NAME))
+
 # SOURCE_FILES
-SRCS			:=	main.c \
+SRCS			:=	main.c $(PARSING) $(CLEANING) \
 					rt/viewport.c \
 					rt/transform_scene.c \
 					lin_alg/vec3.c \
@@ -25,26 +39,24 @@ LIBFT_SOURSES	:=	$(addprefix $(LIBFT_PATH), $(LIBFT_SOURSES))
 LIBFT			:=	$(addprefix $(LIBFT_PATH), $(LIBFT))
 
 # HEADERS AND EXTERNAL LIBRARIES
-HEADERS			:=	$(LIBFT_PATH) $(LIBMLX_DIR)
+MINIRT_H		:=	includes/
+HEADERS			:=	$(LIBFT_PATH)libft.h $(MINIRT_H)/defines.h $(MINIRT_H)/minirt.h $(MINIRT_H)/structs.h
 INCLUDES		:=	$(addprefix -I , $(HEADERS))
 LIBMLX			:=	./lib/MLX42
 MLX				:=	./lib/MLX42/build/libmlx42.a
 LIBMLX_DIR		:=	$(LIBMLX)/include
 
-# MLX FOR SCHOOL COMPUTERS 
+# MLX FOR MacOS (M1 and later)
 # LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/opt/homebrew/opt/glfw/lib/" \
 # 					-lglfw -framework OpenGL -framework AppKit
+
+# MLX FOR SCHOOL COMPUTERS 
+LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
+					-lglfw -framework OpenGL -framework AppKit
 
 # MLX FOR MacOS (M1 and later)
 #LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
 #					-lglfw -framework OpenGL -framework AppKit
-
-# MLX for linux
-# gcc main.c ... libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
-LIBS	=  $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -Iincludes -Ift
-#LIBS	=  $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
-#LIBS	=  -I$(LIBMLX_DIR) $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
-
 
 # LOADING PROGRESS BAR INIT
 TOTAL_OBJS		:=	$(words $(OBJS))
@@ -60,6 +72,9 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS_PATH) $(OBJS) $(HEADERS)
 
 $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
+	@mkdir -p $(OBJS_PATH)$(PARSING_PATH)
+	@mkdir -p $(OBJS_PATH)$(PARSING_I_PATH)
+	@mkdir -p $(OBJS_PATH)$(CLEANING_PATH)
 	@mkdir -p $(OBJS_PATH)/lin_alg
 	@mkdir -p $(OBJS_PATH)/rt
 

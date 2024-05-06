@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 16:39:46 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 00:55:37 by dnikifor         ###   ########.fr       */
+/*   Created: 2024/05/04 14:30:47 by dnikifor          #+#    #+#             */
+/*   Updated: 2024/05/04 14:31:02 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../../../includes/minirt.h"
 
-# define BUFFER_SIZE 1000
-
-# include <unistd.h>
-# include <stdlib.h>
-
-char	*get_next_line(int fd, int *status, char **string);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strncpy(char *dest, char *src, size_t n);
-char	*ft_free(char *s);
-char	*add_to_string(char *s, char *buffer, size_t buf_len);
-char	*check_string(char *s, int *status);
-
-#endif
+void	init_struct(t_minirt **rt)
+{
+	*rt = ft_calloc(1, sizeof(t_minirt));
+	if (!rt)
+		generic_errors_handler(MALLOC_ERR_MSG, MALLOC_ERR, *rt);
+	(*rt)->prs = ft_calloc(1, sizeof(t_parse));
+	if (!(*rt)->prs)
+		generic_errors_handler(MALLOC_ERR_MSG, MALLOC_ERR, *rt);
+	(*rt)->prs->fd = -1;
+}
