@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/07 13:04:03 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:25:28 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,10 @@ enum	e_gnl_error_codes
 
 // matherial properties
 # define COEF_OBJS 0.5
-# define COEF_AMBI 0.2
-# define COEF_DIFF 0.2
-# define COEF_SPEC 0.2
+# define COEF_AMBI 2
+# define COEF_DIFF 0.5
+# define COEF_SPEC 1
+# define COEF_ALPHA 1000
 
 
 # define LOG_MSG_1 "Parsing input file '%s'\n"
