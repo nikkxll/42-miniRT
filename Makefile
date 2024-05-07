@@ -93,7 +93,6 @@ $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)$(RT_PATH)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADERS)
-	#@$(CC) $(CFLAGS) $(HEAD_DIR) -c $< -o $@ 
 	@$(CC) $(CFLAGS) $(HEAD_DIR) -c $< -o $@ 
 	@$(call progress,"miniRT")
 
