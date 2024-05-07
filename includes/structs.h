@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 14:20:35 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:59:39 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,22 +114,21 @@ typedef struct s_hit_data
 {
 	t_vec3d ray;
 	t_num	dist;
-	int 	type;
+	int 	type; // this is temporal
 	t_obj	*obj;
 	t_rgb3	rgb;
+	t_vec3d	color;
 	t_vec3d n;
-	t_vec3d l;
-	t_vec3d v;
 }	t_hit_data;
 
 typedef struct s_viewport
 {
 //	t_camera *cam;
-	int		foc;
+	int		fov;
 	int		n_x;
 	int		n_y;
 	int		size;
-	t_vec3d	*rays;  // this is temporal
+	//t_vec3d	*rays;  // this is temporal
 	t_hit_data	*hit;
 }	t_viewport;
 

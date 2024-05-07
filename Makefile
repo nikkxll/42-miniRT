@@ -24,6 +24,8 @@ CLEANING		:=	$(addprefix $(CLEANING_PATH), $(CLEANING_NAME))
 SRCS			:=	main.c $(PARSING) $(CLEANING) \
 					rt/viewport.c \
 					rt/transform_scene.c \
+					rt/make_norm_vec.c \
+					rt/lighting.c \
 					lin_alg/vec3.c \
 					lin_alg/vec_utils.c \
 					lin_alg/rotation_xyz.c

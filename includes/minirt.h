@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 11:47:13 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:54:34 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,16 @@ t_vec3d	vec_scale(t_num n, t_vec3d p);
 void	vec_print(char *str, t_vec3d vec);
 
 //viewport.c
-void	init_viewport(t_viewport *vp);
+void	init_viewport(t_minirt *rt);
 t_num	dist_to_sphere(t_sphere *sp, t_vec3d v);
 void	hit_scene(t_minirt *rt);
+
+// make_norm_vec.c
+void	make_norm_vec(t_minirt *rt);
+
+// lighting.c
+t_rgb3	vec_to_rgb(t_vec3d c);
+void lighting(t_minirt *rt, int pixel);
 
 // transform_scene.c
 void	transform_scene(t_minirt *rt);
