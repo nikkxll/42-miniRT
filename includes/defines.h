@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/07 16:54:03 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:55:52 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ enum	e_angles
 # define MLXHEIGHT 500
 # define CHANNELBACK 100
 
-# define PI 3.141592653589793238462643383279502884197169399375105820974944592307
+# define PI 3.141592653589793238462
 # define EPSILON 0.0000000000000001
 
 // matherial properties
