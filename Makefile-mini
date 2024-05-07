@@ -7,7 +7,22 @@ SRC_DIR = srcs/
 INC_DIR = includes/
 GLFW_DIR = /Users/apimikov/.brew/opt/glfw/lib
 
-SRC_NAMES = main.c \
+
+# PARSING
+PARSING_NAME	:=	parsing.c minirt_atof.c args_processing.c minirt_atoi.c range_check.c
+PARSING_PATH	:=	parsing/
+PARSING_I_NAME	:=	init_ambient_light.c init_camera.c init_light.c init_sphere.c init_plane.c \
+					init_cylinder.c init_element.c init_struct.c init_screen.c
+PARSING_I_PATH	:=	parsing/inits/
+PARSING			:=	$(addprefix $(PARSING_PATH), $(PARSING_NAME)) \
+					$(addprefix $(PARSING_I_PATH), $(PARSING_I_NAME))
+
+# CLEANING
+CLEANING_NAME	:=	cleaner.c error_throw.c
+CLEANING_PATH	:=	cleaning/
+CLEANING		:=	$(addprefix $(CLEANING_PATH), $(CLEANING_NAME))
+
+SRC_NAMES = main.c $(PARSING) $(CLEANING) \
 	    rt/viewport.c \
 	    rt/transform_scene.c \
 	    lin_alg/vec3.c \
@@ -16,9 +31,9 @@ SRC_NAMES = main.c \
 
 CFLAGS	= -Wextra -Wall -Werror -Wunreachable-code -Ofast
 
+LIBMLX	= ./lib/MLX42
 HEADERS	= -I./includes -I$(LIBMLX)/include  -I./$(LIBFT_DIR)
 
-LIBMLX	= ./lib/MLX42
 LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
 #LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 MLX	= $(LIBMLX)/build/libmlx42.a
@@ -28,7 +43,7 @@ OBJS	= ${SRCS:.c=.o}
 
 all: $(NAME)
 
-$(NAME): $(SRCS) $(OBJS) $(LIBFT) $(MLX) .name
+$(NAME): $(SRCS) $(OBJS) $(LIBFT) $(MLX)
 	cc $(FLAGS) $(OBJS) $(LIBS) $(HEADERS)  $(LIBFT) -o $(NAME)
 
 %.o: %.c
