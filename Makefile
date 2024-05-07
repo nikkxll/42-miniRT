@@ -20,15 +20,18 @@ CLEANING_NAME	:=	cleaner.c error_throw.c
 CLEANING_PATH	:=	cleaning/
 CLEANING		:=	$(addprefix $(CLEANING_PATH), $(CLEANING_NAME))
 
+# RT
+RT_NAME			:=	hit_plane.c hit_sphere.c viewport.c transform_scene.c make_norm_vec.c lighting.c 
+RT_PATH			:=	rt/
+RT				:=	$(addprefix $(RT_PATH), $(RT_NAME))
+
+# LIN_ALG
+LIN_ALG_NAME	:=	vec3.c vec_utils.c rotation_xyz.c
+LIN_ALG_PATH	:=	lin_alg/
+LIN_ALG			:=	$(addprefix $(LIN_ALG_PATH), $(LIN_ALG_NAME))
+
 # SOURCE_FILES
-SRCS			:=	main.c $(PARSING) $(CLEANING) \
-					rt/viewport.c \
-					rt/transform_scene.c \
-					rt/make_norm_vec.c \
-					rt/lighting.c \
-					lin_alg/vec3.c \
-					lin_alg/vec_utils.c \
-					lin_alg/rotation_xyz.c
+SRCS			:=	main.c $(PARSING) $(CLEANING) $(RT) $(LIN_ALG)
 SRCS_PATH		:=	srcs/
 
 # OBJECT_FILES
@@ -65,6 +68,7 @@ HEAD_DIR	= -I./includes -I$(LIBMLX)/include  -I./libft
 #LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
 #					-lglfw -framework OpenGL -framework AppKit
 
+#GLFW_DIR = ~/.brew/opt/glfw/lib
 GLFW_DIR = /Users/apimikov/.brew/opt/glfw/lib
 LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
 
@@ -85,8 +89,8 @@ $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)$(PARSING_PATH)
 	@mkdir -p $(OBJS_PATH)$(PARSING_I_PATH)
 	@mkdir -p $(OBJS_PATH)$(CLEANING_PATH)
-	@mkdir -p $(OBJS_PATH)/lin_alg
-	@mkdir -p $(OBJS_PATH)/rt
+	@mkdir -p $(OBJS_PATH)$(LIN_ALG_PATH)
+	@mkdir -p $(OBJS_PATH)$(RT_PATH)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(HEADERS)
 	#@$(CC) $(CFLAGS) $(HEAD_DIR) -c $< -o $@ 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/07 15:25:28 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:14:23 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ enum	e_exit_codes
 	CONF_ERR = 201,
 	AML_ERR = 202,
 	CAM_ERR = 203,
+	MLX_ERR = 300,
+	MLX_IMG_ERR = 301,
+	MLX_IMG_W_ERR = 302,
 	DEF_ERR = 999,
 };
 
@@ -74,6 +77,12 @@ enum	e_gnl_error_codes
 	GNL_MALLOC_ERR = 1,
 	GNL_FILE_READ_ERR = 2,
 	GNL_GENERIC_ERR = 3,
+};
+
+enum	e_angles
+{
+	ALPHA,
+	BETA,
 };
 
 # define RED "\x1B[31m"
@@ -130,7 +139,10 @@ enum	e_gnl_error_codes
 # define CONF_FORMAT_ERR_MSG "Wrong config structure format in .rt file\n"
 # define AML_ERR_MSG "Ambient light element config not found in .rt file\n"
 # define CAMERA_ERR_MSG "Camera element config not found in .rt file\n"
-# define DEF_ERR_MSG "Critical changes in DEFINE. Program terminated.\n"
+# define DEF_ERR_MSG "Critical changes in DEFINE. Program terminated\n"
+# define MLX_ERR_MSG "Failed to initiate MLX entity\n"
+# define MLX_IMG_ERR_MSG "Failed to create MLX image\n"
+# define MLX_IMG_W_ERR_MSG "Failed to put MLX image to window\n"
 
 # define CONFIG_MSG_1 "Example of the valid number ranges:\n\n"
 # define CONFIG_MSG_2 "ratio is in range         [0.0, 1.0]\n"

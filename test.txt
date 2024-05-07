@@ -16,9 +16,11 @@ l   0,50,0                0.5         	255,255,255
 
 # Sphere
 # <coordinates: x,y,z> <diameter> <color:red,green,blue>
-sp  0,0,5             2           255,255,255
-sp  0,2,6             1           0,255,0
+sp  0,2,5             2           128,255,26
+sp  0,0,5               4           26,255,128
+sp  8,0,15               6           0,0,255
 
 # Plane 
 # <coordinates: x,y,z> <origin:x,y,z> <color:red,green,blue>
-pl  0,0,0            0,1,0               200,200,200
+pl  0,-1,10            0,1,0              100,0,0
+

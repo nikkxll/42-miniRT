@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/07 12:56:51 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:38:11 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,23 +104,27 @@ void	ft_hook_image(void *data)
 //int	main(int32_t argc, char *argv[])
 int	make_picture(t_minirt *rt)
 {
+/*
+	int	n_x = rt->prs->screen->width;
+	int n_y = rt->prs->screen->height;
+	rt->vp = (t_viewport){rt->prs->camera->fov, n_x, n_y, n_x * n_y, NULL, NULL};
+*/
 	transform_scene(rt);
 	init_viewport(rt);
 	hit_scene(rt);
 	make_norm_vec(rt);
 	rt->mlx = mlx_init(rt->prs->screen->width, rt->prs->screen->height,
-		"MLX42", true);
+			"MLX42", true);
 	if (!rt->mlx)
-        return (1); //	ft_mlx_error(fdf, 0);
-	rt->image = mlx_new_image(rt->mlx, rt->vp.n_x, rt->vp.n_y);
+    generic_errors_handler(MLX_ERR_MSG, MLX_ERR, rt);
+  rt->image = mlx_new_image(rt->mlx, rt->vp.n_x, rt->vp.n_y);
 	if (!rt->image)
-	    return (1); 	//	ft_mlx_error(fdf, 1);
+		generic_errors_handler(MLX_IMG_ERR_MSG, MLX_IMG_ERR, rt);
 	if (mlx_image_to_window(rt->mlx, rt->image, 0, 0) == -1)
-		return (1); 	//ft_mlx_error(fdf, 1);
+		generic_errors_handler(MLX_IMG_W_ERR_MSG, MLX_IMG_W_ERR, rt);
 	mlx_loop_hook(rt->mlx, ft_hook_image, rt);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx_loop(rt->mlx);
-	mlx_terminate(rt->mlx);
 	return (EXIT_SUCCESS);
 }
 
