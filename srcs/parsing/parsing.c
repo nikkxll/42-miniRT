@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:22:37 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 13:22:10 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/07 10:36:28 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	preprocessing(t_minirt *rt)
 {
-	if (VP_SIZE_MAX < 1 || VP_SIZE_MAX > 9999)
+	if (VP_SIZE_MAX < 100 || VP_SIZE_MAX > 2000)
 		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
 	if (VP_WIDTH_DEFAULT < 1 || VP_WIDTH_DEFAULT > 9999)
 		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);

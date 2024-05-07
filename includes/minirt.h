@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 11:47:13 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:00:18 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,15 @@ void	vec_print(char *str, t_vec3d vec);
 
 //viewport.c
 void	init_viewport(t_viewport *vp);
-t_num	dist_to_sphere(t_sphere *sp, t_vec3d v);
 void	hit_scene(t_minirt *rt);
 
 // transform_scene.c
 void	transform_scene(t_minirt *rt);
+
+// hit_sphere.c
+void	hit_spheres(t_minirt *rt, size_t pixel);
+
+// hit_plane.c
+void	hit_planes(t_minirt *rt, size_t pixel);
 
 #endif

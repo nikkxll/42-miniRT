@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/06 13:06:14 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:38:11 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,63 +106,26 @@ int	make_picture(t_minirt *rt)
 {
  //   t_minirt rt;
 
-
-	// creating viewport
-	t_num foc = 90;
 	int	n_x = rt->prs->screen->width;
 	int n_y = rt->prs->screen->height;
-	//printf("")
-	
-	rt->vp = (t_viewport){foc, n_x, n_y, n_x * n_y, NULL, NULL};
-	
-	/*
-	// creating 3nd sphere 
-	t_vec3d r = {4, 2, 5};
-	t_rgb3	col = {10, 10, 200};
-	t_sphere sphere3 = (t_sphere){0, r, 1, col, NULL};
-
-	// creating 2nd sphere 
-	r = (t_vec3d){0, 1, 5};
-	col = (t_rgb3){10, 200, 10};
-	t_sphere sphere2 = (t_sphere){0, r, 1, col, &sphere3};
-	
-	// creating sphere 
-	r = (t_vec3d){0, 0, 5};
-	col = (t_rgb3){200, 10, 10};
-	rt.sphere = (t_sphere){0, r, 2, col, &sphere2};
-	
-	// putting sphere into parsing
-	t_parse		prs;
-	prs.sphere = &(rt.sphere);
-	prs.cylinder = NULL;
-	prs.plane = NULL;
-	rt.prs = &prs;
-
-	//putting camera into parsing
-	t_camera cam;
-	cam.r = (t_vec3d){0, 0, 0};
-	cam.n = (t_vec3d){0, 0, 1};
-	cam.n = vec_unit(cam.n);
-	prs.camera = &cam;
-	*/
+	rt->vp = (t_viewport){rt->prs->camera->fov, n_x, n_y, n_x * n_y, NULL, NULL};
 
 	transform_scene(rt);
 	init_viewport(&(rt->vp));
 	hit_scene(rt);
 
 	rt->mlx = mlx_init(rt->prs->screen->width, rt->prs->screen->height,
-		"MLX42", true);
+			"MLX42", true);
 	if (!rt->mlx)
-        return (1); //	ft_mlx_error(fdf, 0);
+		generic_errors_handler(MLX_ERR_MSG, MLX_ERR, rt);
 	rt->image = mlx_new_image(rt->mlx, n_x, n_y);
 	if (!rt->image)
-	    return (1); 	//	ft_mlx_error(fdf, 1);
+		generic_errors_handler(MLX_IMG_ERR_MSG, MLX_IMG_ERR, rt);
 	if (mlx_image_to_window(rt->mlx, rt->image, 0, 0) == -1)
-		return (1); 	//ft_mlx_error(fdf, 1);
+		generic_errors_handler(MLX_IMG_W_ERR_MSG, MLX_IMG_W_ERR, rt);
 	mlx_loop_hook(rt->mlx, ft_hook_image, rt);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx_loop(rt->mlx);
-	mlx_terminate(rt->mlx);
 	return (EXIT_SUCCESS);
 }
 

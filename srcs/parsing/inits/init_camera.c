@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:56:18 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 21:13:46 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/07 12:35:37 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	init_camera_params(t_camera *node, char *entities[ARGS_MAX],
 	node->n.z = custom_atof(n[2], 0, 0, rt);
 	orient_vec_check(node->n.x, node->n.y, node->n.z, rt);
 	node->fov = custom_atof(entities[3], 0, 0, rt);
-	if (node->fov < 0 || node->fov > 180)
+	if (node->fov < 0.01 || node->fov > 179.99)
 		generic_errors_handler(NUMBER_FORMAT_ERR_MSG, NUM_ERR, rt);
 }
 
