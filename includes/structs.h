@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/07 14:06:36 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:53:25 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,10 @@ typedef struct s_hit_data
 	t_vec3d n;
 	t_vec3d v;
 	t_vec3d l;
+	t_vec3d ll;
+	t_vec3d r;
 	t_vec3d temp;
+	t_num	obst;
 }	t_hit_data;
 
 typedef struct s_viewport

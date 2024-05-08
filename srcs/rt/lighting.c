@@ -43,36 +43,38 @@ void add_light_ambient(t_minirt *rt, t_hit_data *data)
 }
 
 /*
-int	is_light_sphere(t_minirt *rt, t_hit_data *data)
+void add_light_reflected_obj(t_minirt *rt, t_hit_data *data)
 {
-	t_sphere	s;
-	t_num 		t;
+	t_vec3d	c;
 
-	s = *((t_sphere *)data->obj);
-	s.r = vec_sub(s.r, data->v);
-	t = dist_to_sphere(&s, data->l);
-	return (1);
+	c = touch_spheres(rt, data, data->r).color;
+	c = vec_scale(COEF_REFLECT, c);
+	data->color = vec_add(data->color, c);
 }
 */
 
 int	is_light_visible(t_minirt *rt, t_hit_data *data)
 {
-	t_num t;
+	//t_num	t_min;
 
-	t = touch_spheres(rt, data, data->l).dist; 
-	if (t >= 0)
+	touch_spheres(rt, data, data->l);
+	touch_planes(rt, data, data->l);
+	if (data->obst > EPSILON && data->obst + EPSILON < vec_norm(data->ll))
+	{
+	//	printf("is_light_visible: t=%lf, light distance =%lf\n", t_min, vec_norm(data->ll));
 		return (0);
+	}
 	return (1);
 }
+
+
 
 
 void lighting(t_minirt *rt, int pixel)
 {
 	t_hit_data	*data;
 	t_light		*light;
-//	t_vec3d		l;
 	t_num		prod;
-//	t_num		prod_nv;
 
 	data = &(rt->vp.hit[pixel]);
 
@@ -80,28 +82,30 @@ void lighting(t_minirt *rt, int pixel)
 	if (data->dist < 0)
 		return ;
 	add_light_ambient(rt, data);
+	if (data->type == TYPE_OBJ_NONE)
+		return ;
 	light = rt->prs->light;
 	while (light)
 	{
-		data->l = vec_unit(vec_sub(light->r, data->v));
+		data->ll = vec_sub(light->r, data->v);
+		data->l = vec_unit(data->ll);
 		prod = dot(data->n, data->l);
-		//prod_nv = dot(data->n, data->v);
 		if (prod > 0 && is_light_visible(rt, data))
 		{
-			//printf("i = %d, here is light\n", pixel);
 			data->temp = vec_scale(COEF_DIFF * light->brt * prod, \
 				rgb_to_vec(light->rgb));
 			data->color = vec_add(data->color, data->temp);
-			data->temp = vec_sub(vec_scale(2 * prod, data->n), data->l);
-			//prod = dot(data->temp, vec_unit(vec_scale(data->dist, data->ray)));
-			prod = -1 * dot(data->temp, data->ray);
+			data->r = vec_sub(vec_scale(2 * prod, data->n), data->l);
+			prod = -1 * dot(data->r, data->ray);
 			if (prod > 0)
 			{
 				prod = COEF_SPEC * light->brt * POW(prod, COEF_ALPHA);
 				data->temp = vec_scale(prod, rgb_to_vec(light->rgb));
-				data->color =vec_add(data->color, data->temp);
+				data->color = vec_add(data->color, data->temp);
 			}
 		}
 		light = light->next;
 	}
+	//data->color = vec_prod(data->color, rgb_to_vec(data->rgb));
+	//add_light_reflected_obj(rt, data);
 }

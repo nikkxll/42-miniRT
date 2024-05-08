@@ -2,11 +2,11 @@
 R 500 500
 # Ambient Light
 # <intensity: 0-1> <color: red, green, blue>
-A                            0.0         255,255,255
+A                            0.2         255,255,255
 
 # Camera
 # <coordinates of camera position: x,y,z> <camera view: x,y,z> <pov:x,y,z>
-C   0,0,-2         0,-1,0   90
+C   0,0,-2         0,0,1   90
 
 # Light
 # <coordinates: x,y,z> <brightness: 0-1> <color:red,green,blue>
@@ -17,7 +17,7 @@ l   0,50,0               	 0.9         	255,255,255
 # Sphere
 # <coordinates: x,y,z> <diameter> <color:red,green,blue>
 sp  0,0,0             5           	0,0,255
-#sp  0,0,2.5             0.1           255,0,0
+sp  0,0,2.5             0.5          255,0,0
 
 # Plane 
 # <coordinates: x,y,z> <origin:x,y,z> <color:red,green,blue>

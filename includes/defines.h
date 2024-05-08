@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/07 16:55:52 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:08:43 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,22 +106,21 @@ enum	e_angles
 # define POW pow
 # define SQRT sqrt
 
-# define IMAGE_WIDTH 700
-# define IMAGE_HIGHT 500
 
 # define MLXWIDTH 700
 # define MLXHEIGHT 500
 # define CHANNELBACK 100
 
 # define PI 3.141592653589793238462
-# define EPSILON 0.0000000000000001
+# define EPSILON 0.0001
 
 // matherial properties
 # define COEF_OBJS 0.1
-# define COEF_AMBI 0.5
-# define COEF_DIFF 0.5
-# define COEF_SPEC 1
+# define COEF_AMBI 1
+# define COEF_DIFF 2
+# define COEF_SPEC 2
 # define COEF_ALPHA 1000
+# define COEF_REFLECT 0
 
 
 # define LOG_MSG_1 "Parsing input file '%s'\n"

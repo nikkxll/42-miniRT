@@ -8,10 +8,7 @@ void	transform_general(t_camera *cam, t_num angles[2])
 
 	angles[ALPHA] = 0;
 	angles[BETA] = 0;
-	// fix camera orintation flip in case r.x =0  or r.y = 0 and probably r.z=0
-	//if (cam->r.x == 0 && cam->r.y == 0)
-//		return ;
-//	if (cam->r.y != 0);
+	// ??? fix camera orintation flip in case r.x =0  or r.y = 0 and probably r.z=0
 	angles[ALPHA] = atan2(cam->n.x, cam->n.y) * 180 / PI;
 	printf("alpha=%lf degree\n", angles[ALPHA]);
 	angles[BETA] = acos(vec_unit(cam->n).z) * 180 / PI;

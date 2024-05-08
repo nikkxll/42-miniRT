@@ -1,14 +1,5 @@
 #include "../../includes/minirt.h"
 
-/*
-typedef struct s_vec3d
-{
-	t_num	x;
-	t_num	y;
-	t_num	z;
-}	t_vec3d;
-*/
-
 t_vec3d	vec_def(t_num x, t_num y, t_num z)
 {
 	t_vec3d	vector;
@@ -36,6 +27,16 @@ t_vec3d	vec_sub(t_vec3d a, t_vec3d b)
 	p.x = a.x - b.x;
 	p.y = a.y - b.y;
 	p.z = a.z - b.z;
+	return (p);
+}
+
+t_vec3d	vec_prod(t_vec3d a, t_vec3d b)
+{
+	t_vec3d	p;
+
+	p.x = a.x * b.x;
+	p.y = a.y * b.y;
+	p.z = a.z * b.z;
 	return (p);
 }
 

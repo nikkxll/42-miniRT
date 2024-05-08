@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/07 16:21:53 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:28:58 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_vec3d	vec_unit(t_vec3d p);
 t_num	vec_sin(t_vec3d a, t_vec3d b);
 t_num	vec_cos(t_vec3d a, t_vec3d b);
 t_vec3d	vec_scale(t_num n, t_vec3d p);
+t_vec3d	vec_prod(t_vec3d a, t_vec3d b);
 void	vec_print(char *str, t_vec3d vec);
 
 //viewport.c
@@ -95,5 +96,6 @@ t_hit_data	touch_spheres(t_minirt *rt, t_hit_data *data, t_vec3d l);
 
 // hit_plane.c
 void	hit_planes(t_minirt *rt, size_t pixel);
+t_hit_data	touch_planes(t_minirt *rt, t_hit_data *data, t_vec3d l);
 
 #endif
