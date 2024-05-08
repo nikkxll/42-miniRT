@@ -56,7 +56,7 @@ void add_light_reflected_obj(t_minirt *rt, t_hit_data *data)
 int	is_light_visible(t_minirt *rt, t_hit_data *data)
 {
 	//t_num	t_min;
-
+	data->obst = -1;
 	touch_spheres(rt, data, data->l);
 	touch_planes(rt, data, data->l);
 	if (data->obst > EPSILON && data->obst + EPSILON < vec_norm(data->ll))
@@ -78,7 +78,7 @@ void lighting(t_minirt *rt, int pixel)
 
 	data = &(rt->vp.hit[pixel]);
 
-	data->color = vec_scale(COEF_OBJS, rgb_to_vec(data->rgb));
+	//data->color = vec_scale(COEF_OBJS, rgb_to_vec(data->rgb));
 	if (data->dist < 0)
 		return ;
 	add_light_ambient(rt, data);
@@ -97,7 +97,7 @@ void lighting(t_minirt *rt, int pixel)
 			data->color = vec_add(data->color, data->temp);
 			data->r = vec_sub(vec_scale(2 * prod, data->n), data->l);
 			prod = -1 * dot(data->r, data->ray);
-			if (prod > 0)
+			if (prod > EPSILON)  //????
 			{
 				prod = COEF_SPEC * light->brt * POW(prod, COEF_ALPHA);
 				data->temp = vec_scale(prod, rgb_to_vec(light->rgb));
@@ -106,6 +106,6 @@ void lighting(t_minirt *rt, int pixel)
 		}
 		light = light->next;
 	}
-	//data->color = vec_prod(data->color, rgb_to_vec(data->rgb));
+	data->color = vec_prod(data->color, rgb_to_vec(data->rgb));
 	//add_light_reflected_obj(rt, data);
 }

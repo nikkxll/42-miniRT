@@ -4,7 +4,7 @@ include libft/.make
 NAME			:=	miniRT
 
 CC				:=	cc
-CFLAGS			:=	-g -Wall -Wextra -Werror
+CFLAGS			:=	-g -Wall -Wextra -Werror # -fsanitize=address
 
 # PARSING
 PARSING_NAME	:=	parsing.c minirt_atof.c args_processing.c minirt_atoi.c range_check.c

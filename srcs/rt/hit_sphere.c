@@ -98,11 +98,12 @@ t_hit_data	touch_spheres(t_minirt *rt, t_hit_data *data, t_vec3d l)
 			ret.obj = (t_obj *)s;
 			ret.type = SPHERE;
 			ret.rgb = s->rgb; 
-			if (t < vec_norm(data->ll))
+		/*	if (t < vec_norm(data->ll))
 			{
 			//	printf("t=%lf, light distance =%lf\n", t, vec_norm(data->ll));
 				break;
 			}
+		*/
 		}
 		s = s->next;
 	}
