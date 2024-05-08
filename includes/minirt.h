@@ -87,7 +87,11 @@ void lighting(t_minirt *rt, int pixel);
 void	transform_scene(t_minirt *rt);
 
 // hit_sphere.c
+t_num	dist_to_sphere(t_sphere *sp, t_vec3d v);
 void	hit_spheres(t_minirt *rt, size_t pixel);
+t_hit_data	touch_spheres(t_minirt *rt, t_hit_data *data, t_vec3d l);
+
+
 
 // hit_plane.c
 void	hit_planes(t_minirt *rt, size_t pixel);

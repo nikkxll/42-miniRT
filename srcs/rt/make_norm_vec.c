@@ -7,10 +7,14 @@ void	make_norm_vec_sphere(t_minirt *rt, int pixel)
 
 	data = &(rt->vp.hit[pixel]);
 	s = (t_sphere *)data->obj;
-	data->n = vec_scale(data->dist, data->ray);
-	data->n = vec_sub(data->n, s->r);
+	data->v = vec_scale(data->dist, data->ray);
+	data->n = vec_sub(data->v, s->r);
 	data->n = vec_unit(data->n);
-	// add n ->  -n  transformation if it observed from inside
+	if (dot(data->ray, data->n) > 0)
+	{
+	//	printf("norm sign changed\n");
+		data->n = vec_scale(-1, data->n);
+	}
 }
 
 void	make_norm_vec(t_minirt *rt)
@@ -21,9 +25,7 @@ void	make_norm_vec(t_minirt *rt)
 	pixel = 0;
 	while (pixel < (size_t)rt->vp.size)
 	{
-		//printf("test\n");
 		type = rt->vp.hit[pixel].type;
-		//printf("test\n");
 		if (type == SPHERE)
 			make_norm_vec_sphere(rt, pixel);
 		//else if (rt->vp.hit[pixel].obj->type == PLANE)

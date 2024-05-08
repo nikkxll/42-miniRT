@@ -117,8 +117,8 @@ enum	e_angles
 # define EPSILON 0.0000000000000001
 
 // matherial properties
-# define COEF_OBJS 0.5
-# define COEF_AMBI 2
+# define COEF_OBJS 0.1
+# define COEF_AMBI 0.5
 # define COEF_DIFF 0.5
 # define COEF_SPEC 1
 # define COEF_ALPHA 1000

@@ -114,11 +114,13 @@ typedef struct s_hit_data
 {
 	t_vec3d ray;
 	t_num	dist;
-	int 	type; // this is temporal
+	int 	type;
 	t_obj	*obj;
 	t_rgb3	rgb;
 	t_vec3d	color;
 	t_vec3d n;
+	t_vec3d v;
+	t_vec3d l;
 	t_vec3d temp;
 }	t_hit_data;
 
