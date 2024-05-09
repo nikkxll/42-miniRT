@@ -120,7 +120,7 @@ enum	e_angles
 # define COEF_DIFF 1
 # define COEF_SPEC 1
 # define COEF_ALPHA 1000
-# define COEF_REFLECT 0
+# define COEF_REFLECT 1
 
 
 # define LOG_MSG_1 "Parsing input file '%s'\n"

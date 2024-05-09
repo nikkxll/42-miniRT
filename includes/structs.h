@@ -110,6 +110,16 @@ typedef struct s_parse
 	t_cylinder	*cylinder;
 }	t_parse;
 
+typedef struct s_dist_cc
+{
+	t_num	k1;
+	t_num	k2;
+	t_num	vn;
+	t_num	cn;
+	t_num	cv;
+	t_vec3d cprime;
+}	t_dist_cc;
+
 typedef struct s_hit_data
 {
 	t_vec3d ray;

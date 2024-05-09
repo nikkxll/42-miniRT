@@ -42,16 +42,15 @@ void add_light_ambient(t_minirt *rt, t_hit_data *data)
 		vec_scale(COEF_AMBI * a->ratio, rgb_to_vec(a->rgb)));
 }
 
-/*
+
 void add_light_reflected_obj(t_minirt *rt, t_hit_data *data)
 {
 	t_vec3d	c;
 
 	c = touch_spheres(rt, data, data->r).color;
-	c = vec_scale(COEF_REFLECT, c);
+	c = vec_scale(COEF_REFLECT * 10000, c);
 	data->color = vec_add(data->color, c);
 }
-*/
 
 int	is_light_visible(t_minirt *rt, t_hit_data *data)
 {
@@ -106,6 +105,6 @@ void lighting(t_minirt *rt, int pixel)
 		}
 		light = light->next;
 	}
+	add_light_reflected_obj(rt, data);
 	data->color = vec_prod(data->color, rgb_to_vec(data->rgb));
-	//add_light_reflected_obj(rt, data);
 }
