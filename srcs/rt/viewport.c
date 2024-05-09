@@ -27,6 +27,7 @@ void	hit_scene(t_minirt *rt)
 	{
 		hit_spheres(rt, pixel);
 		hit_planes(rt, pixel);
+		hit_cylinder(rt, pixel);
 		// hit other objects here
 		pixel++;
 	}
