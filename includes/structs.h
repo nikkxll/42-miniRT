@@ -117,6 +117,7 @@ typedef struct s_dist_cc
 	t_num	vn;
 	t_num	cn;
 	t_num	cv;
+	t_num	c2;
 	t_vec3d cprime;
 }	t_dist_cc;
 
