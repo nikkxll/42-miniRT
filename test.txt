@@ -20,7 +20,17 @@ sp  0,2,5             2           0,255,255
 sp  0,0,5               4           255,255,255
 sp  8,0,15               6           0,255,0
 
-# Plane 
+# Plane
 # <coordinates: x,y,z> <origin:x,y,z> <color:red,green,blue>
 pl  0,-1,10            0,1,0              100,0,0
+pl  0,-1,10            0,1,0              100,0,0
 
+# Cylinder
+# <coordinates: x,y,z>  <orientation: x,y,z> <diameter: >= 0> <height: >= 0> <color:red,green,blue>
+cy  0.6,0.7,0       1,0,0          0.5      4      0,0,255
+cy  0.6,0.1,0       1,11,0          0.5      4      0,100,255
+
+# Cone
+# <coordinates: x,y,z>  <orientation: x,y,z> <diameter: >= 0> <height: >= 0> <color:red,green,blue>
+co  0.6,0.7,0       1,0,0          0.5      4      0,0,255
+co  0.6,0.7,1       1,0,0          0.6      4      255,0,255

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/07 16:21:53 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:33:39 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	init_l(char *entities[ARGS_MAX], t_minirt *rt, int spec);
 void	init_sp(char *entities[ARGS_MAX], t_minirt *rt);
 void	init_pl(char *entities[ARGS_MAX], t_minirt *rt);
 void	init_cy(char *entities[ARGS_MAX], t_minirt *rt);
+void	init_co(char *entities[ARGS_MAX], t_minirt *rt);
 
 void	rgb_check(int r, int g, int b, t_minirt *rt);
 void	coord_check(double x, double y, double z, t_minirt *rt);

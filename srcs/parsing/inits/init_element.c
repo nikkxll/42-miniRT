@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 14:31:12 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/07 13:18:27 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:28:22 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static void	elem_type_selection(char *ent[ARGS_MAX], t_minirt *rt)
 		init_pl(ent, rt);
 	if (ent[0] && ft_strcmp(ent[0], "cy") == 0)
 		init_cy(ent, rt);
+	if (ent[0] && ft_strcmp(ent[0], "co") == 0)
+		init_co(ent, rt);
 	if (ent[0] && ft_strcmp(ent[0], "R") == 0)
 		init_r(ent, rt);
 	elem_type_light(ent, rt);
