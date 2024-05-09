@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/07 15:38:11 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/09 12:09:09 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,15 @@ void print_ll(t_minirt *rt)
 		rt->prs->cylinder->d, rt->prs->cylinder->h, rt->prs->cylinder->rgb.r,
 		rt->prs->cylinder->rgb.g, rt->prs->cylinder->rgb.b);
 		rt->prs->cylinder = rt->prs->cylinder->next;
+	}
+	while (rt->prs->cone)
+	{
+		printf("CONE %d   %f   %f   %f   %f   %f   %f   %f   %f   %i   %i   %i\n", rt->prs->cone->type,
+		rt->prs->cone->r.x, rt->prs->cone->r.y, rt->prs->cone->r.z,
+		rt->prs->cone->n.x, rt->prs->cone->n.y, rt->prs->cone->n.z,
+		rt->prs->cone->d, rt->prs->cone->h, rt->prs->cone->rgb.r,
+		rt->prs->cone->rgb.g, rt->prs->cone->rgb.b);
+		rt->prs->cone = rt->prs->cone->next;
 	}
 	while (rt->prs->light)
 	{

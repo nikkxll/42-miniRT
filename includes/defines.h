@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/07 16:54:03 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:30:26 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ enum	e_types
 	SPHERE,
 	PLANE,
 	CYLINDER,
+	CONE,
 	VIEWPORT,
 	TYPE_OBJ_NONE
 };
@@ -69,6 +70,7 @@ enum	e_num_params
 	SP_PARAMS = 4,
 	PL_PARAMS = 4,
 	CY_PARAMS = 6,
+	CO_PARAMS = 6,
 };
 
 enum	e_gnl_error_codes

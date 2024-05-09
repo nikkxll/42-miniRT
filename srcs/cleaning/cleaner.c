@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:06:55 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/07 14:20:07 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:34:33 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	*next(void **lst, int type)
 		return ((void *)(((t_plane *)*lst)->next));
 	else if (type == CYLINDER)
 		return ((void *)(((t_cylinder *)*lst)->next));
+	else if (type == CONE)
+		return ((void *)(((t_cone *)*lst)->next));
 	else
 		return (NULL);
 }
@@ -44,6 +46,8 @@ static void	ft_lst_remove(void **lst, int type)
 			free((t_plane *)current);
 		else if (type == CYLINDER)
 			free((t_cylinder *)current);
+		else if (type == CONE)
+			free((t_cone *)current);
 	}
 }
 
@@ -63,6 +67,8 @@ void	clean_elements(t_minirt *rt)
 		ft_lst_remove((void **)&rt->prs->plane, PLANE);
 	if (rt->prs->cylinder)
 		ft_lst_remove((void **)&rt->prs->cylinder, CYLINDER);
+	if (rt->prs->cone)
+		ft_lst_remove((void **)&rt->prs->cone, CONE);
 }
 
 void	cleaner(t_minirt *rt)
