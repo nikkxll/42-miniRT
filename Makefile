@@ -56,8 +56,8 @@ LIBMLX_DIR		:=	$(LIBMLX)/include
 HEAD_DIR	= -I./includes -I$(LIBMLX)/include  -I./libft 
 
 # MLX FOR MacOS (M1 and later)
-LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/opt/homebrew/opt/glfw/lib/" \
-					-lglfw -framework OpenGL -framework AppKit
+#LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/opt/homebrew/opt/glfw/lib/" \
+#					-lglfw -framework OpenGL -framework AppKit
 
 # MLX FOR SCHOOL COMPUTERS 
 #LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
@@ -69,8 +69,8 @@ LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/opt/homebrew/opt/g
 # 					-lglfw -framework OpenGL -framework AppKit
 
 #GLFW_DIR = ~/.brew/opt/glfw/lib
-# GLFW_DIR = /Users/apimikov/.brew/opt/glfw/lib
-# LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
+ GLFW_DIR = /Users/apimikov/.brew/opt/glfw/lib
+ LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
 
 # LOADING PROGRESS BAR INIT
 TOTAL_OBJS		:=	$(words $(OBJS))
