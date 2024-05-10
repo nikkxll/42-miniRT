@@ -103,11 +103,24 @@ t_hit_data	touch_cylinder(t_minirt *rt, t_hit_data *data, t_vec3d l)
 	t_cylinder	*s;
 	t_cylinder	copy;
 	t_dist_cc		precalc;
-
+	
+	(void)t;
+	(void)s;
+	(void)copy;
+	(void)precalc;
 	ret.dist = -1;
 	s = rt->prs->cylinder;
+	/* //some magic when no cylinders
+	return (ret);
+	if (s != NULL)
+		printf("address of cylinder=%p\n", s);
+	else
+		return (ret);
+		//printf("there are cylinders\n");
+	*/
 	while (s)
 	{
+//		printf("touch_cylinder\n");
 		copy = *s;
 //		copy.r = vec_sub(copy.r, data->v);
 		t = dist_to_cylin(data->v, l, &copy, &precalc);

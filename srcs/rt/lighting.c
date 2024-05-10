@@ -106,6 +106,6 @@ void lighting(t_minirt *rt, int pixel)
 		}
 		light = light->next;
 	}
-	add_light_reflected_obj(rt, data);
+	//add_light_reflected_obj(rt, data);
 	data->color = vec_prod(data->color, rgb_to_vec(data->rgb));
 }

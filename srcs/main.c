@@ -135,7 +135,6 @@ int	make_picture(t_minirt *rt)
 */
 	init_viewport(rt);
 	hit_scene(rt);
-	
 	make_norm_vec(rt);
 	rt->mlx = mlx_init(rt->prs->screen->width, rt->prs->screen->height,
 			"MLX42", true);

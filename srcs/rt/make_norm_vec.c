@@ -25,12 +25,13 @@ void	make_norm_vec_cylin(t_minirt *rt, int pixel)
 	d->v = vec_scale(d->dist, d->ray);
 	d->n = vec_sub(d->v, s->r);
 	d->n = vec_sub(d->n, \
-		vec_scale(d->dist * d->precalc.vn - d->precalc.cn, d->n));
-	d->n = vec_unit(d->n);
+		vec_scale(d->dist * d->precalc.vn - d->precalc.cn, s->n));
+//	d->n = vec_unit(d->n);
+	d->n = vec_scale(2 / s->d, d->n);
 	if (dot(d->ray, d->n) > 0)
 		d->n = vec_scale(-1, d->n);
-	if (DEBUG_MOD && dot2(d->n) == 0)
-		printf("n.n =0 \n");
+	if (DEBUG_MOD && dot2(d->n) < 1 - EPSILON)
+		printf("n.n != 1 \n");
 }
 
 /*
