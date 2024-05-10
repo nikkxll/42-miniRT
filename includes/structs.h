@@ -91,10 +91,10 @@ typedef struct s_cylinder
 	int					type;
 	t_vec3d				r;
 	t_vec3d				n;
-	t_num				d;
-	t_num				h;
 	t_rgb3				rgb;
 	struct s_cylinder	*next;
+	t_num				d;
+	t_num				h;
 }	t_cylinder;
 
 typedef struct s_parse
@@ -135,6 +135,7 @@ typedef struct s_hit_data
 	t_vec3d ll;
 	t_vec3d r;
 	t_vec3d temp;
+	t_dist_cc	precalc;
 	t_num	obst;
 }	t_hit_data;
 

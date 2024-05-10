@@ -58,9 +58,10 @@ int	is_light_visible(t_minirt *rt, t_hit_data *data)
 	data->obst = -1;
 	touch_spheres(rt, data, data->l);
 	touch_planes(rt, data, data->l);
+	touch_cylinder(rt, data, data->l);
 	if (data->obst > EPSILON && data->obst + EPSILON < vec_norm(data->ll))
 	{
-	//	printf("is_light_visible: t=%lf, light distance =%lf\n", t_min, vec_norm(data->ll));
+//		printf("is_light_visible: t=%lf, light distance =%lf\n", data->obst, vec_norm(data->ll));
 		return (0);
 	}
 	return (1);

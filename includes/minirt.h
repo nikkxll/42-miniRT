@@ -98,5 +98,7 @@ t_hit_data	touch_planes(t_minirt *rt, t_hit_data *data, t_vec3d l);
 
 //hit_cylin.c
 void hit_cylinder(t_minirt *rt, size_t pixel);
+t_hit_data	touch_cylinder(t_minirt *rt, t_hit_data *data, t_vec3d l);
+t_num	dist_to_cylin(t_vec3d v0, t_vec3d v1, t_cylinder *obj, t_dist_cc *p);
 
 #endif

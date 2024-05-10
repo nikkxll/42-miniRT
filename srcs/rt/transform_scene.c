@@ -39,6 +39,7 @@ void	transform_planes(t_plane *plane, t_camera *cam, t_num angles[2])
 		pl->r = vec_sub(pl->r, cam->r);
 		pl->r = vec_rot_z(pl->r, angles[ALPHA]);
 		pl->r = vec_rot_x(pl->r, angles[BETA]);
+		pl->n = vec_unit(pl->n);
 		pl->n = vec_rot_z(pl->n, angles[ALPHA]);
 		pl->n = vec_rot_x(pl->n, angles[BETA]);
 		pl = pl->next;
@@ -52,4 +53,6 @@ void	transform_scene(t_minirt *rt)
 	transform_general(rt->prs->camera, angles);
 	transform_spheres(rt->prs->sphere, rt->prs->camera, angles);
 	transform_planes(rt->prs->plane, rt->prs->camera, angles);
+	transform_planes((t_plane*)rt->prs->cylinder, rt->prs->camera, angles);
+//	transform_planes((t_plane*)rt->prs->cone, rt->prs->camera, angles);
 }

@@ -2,7 +2,7 @@
 R 1000 800
 # Ambient Light
 # <intensity: 0-1> <color: red, green, blue>
-A                      0.9        255,255,255
+A                      0.5        255,255,255
 
 # Camera
 # <coordinates of camera position: x,y,z> <camera view: x,y,z> <pov:x,y,z>
@@ -10,7 +10,7 @@ C   0,0,0         0,0,1   90
 
 # Light
 # <coordinates: x,y,z> <brightness: 0-1> <color:red,green,blue>
-l   0,9.99999,0                0.3         	255,255,255
+l   0,9.99999,0            0.5         	255,255,255
 #l   10,10,0               0.3           255,255,255
 #l  0,10,-10              0.5         255,255,255
 
@@ -31,5 +31,5 @@ l   0,9.99999,0                0.3         	255,255,255
 
 # Cylinder
 # <coordinates: x,y,z>  <orientation: x,y,z> <diameter: >= 0> <height: >= 0> <color:red,green,blue>
-cy  0,0,4       1,0,0          1      4      0,0,255
-cy  0,0,5       0,1,0.4          1      2      0,100,255
+cy  0,0,5       0,1,2          2      2      0,0,255
+#cy  0,0,5       0,1,0.4         1      2      0,100,255

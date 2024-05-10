@@ -85,6 +85,8 @@ enum	e_angles
 	BETA,
 };
 
+#define DEBUG_MOD 1
+
 # define RED "\x1B[31m"
 # define ORANGE "\e[38;5;208m"
 # define EC "\x1B[0m"
