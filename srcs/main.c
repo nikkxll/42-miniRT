@@ -137,11 +137,14 @@ int	make_picture(t_minirt *rt)
 */
 	
 	transform_scene(rt);
+
 /*
-	t_num	t = dist_to_cylin((t_vec3d){0,0,0},(t_vec3d){0,0,1}, rt->prs->cylinder);
+	t_dist_cc precalc;
+	t_num	t = dist_to_cylin((t_vec3d){0,0,0},(t_vec3d){0,0,1}, (t_cylinder *)rt->prs->cone, &precalc);
 	printf("dist to cylinder t=%lf\n", t);
 	exit (0);
-*/
+
+	*/
 	init_viewport(rt);
 	hit_scene(rt);
 	make_norm_vec(rt);

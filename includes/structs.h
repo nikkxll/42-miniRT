@@ -63,18 +63,18 @@ typedef struct s_light
 {
 	int				type;
 	t_vec3d			r;
-	t_num			brt;
 	t_rgb3			rgb;
 	struct s_light	*next;
+	t_num			brt;
 }	t_light;
 
 typedef struct s_sphere
 {
 	int				type;
 	t_vec3d			r;
-	t_num			d;
 	t_rgb3			rgb;
 	struct s_sphere	*next;
+	t_num			d;
 }	t_sphere;
 
 typedef struct s_plane
@@ -102,10 +102,10 @@ typedef struct s_cone
 	int					type;
 	t_vec3d				r;
 	t_vec3d				n;
-	t_num				d;
-	t_num				h;
 	t_rgb3				rgb;
 	struct s_cone		*next;
+	t_num				d;
+	t_num				h;
 }	t_cone;
 
 typedef struct s_parse

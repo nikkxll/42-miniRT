@@ -27,29 +27,10 @@ void	hit_scene(t_minirt *rt)
 	{
 		hit_spheres(rt, pixel);
 		hit_planes(rt, pixel);
-		hit_cylinder(rt, pixel);
-		// hit other objects here
+		hit_cylinder(rt, pixel); // change name to hit_cylinder_cone
 		pixel++;
 	}
 }
-
-/*
-void set_colors(t_minirt *rt)
-{
-	size_t	pixel;
-	t_hit_data	*data;
-
-	pixel = 0;
-	while (pixel < rt->vp.size)
-	{
-		data = &(rt->vp.hit[pixel]);
-		data->rgb = color
-		//hit_planes(rt, pixel);
-		// hit other objects here
-		pixel++;
-	}
-}
-*/
 
 void	init_viewport(t_minirt *rt)
 {

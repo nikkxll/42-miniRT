@@ -2,10 +2,6 @@
 
 void	transform_general(t_camera *cam, t_num angles[2])
 {
-	// t_num			alpha;
-	// t_num			beta;
-	//t_num			gamma;
-
 	angles[ALPHA] = 0;
 	angles[BETA] = 0;
 	// ??? fix camera orintation flip in case r.x =0  or r.y = 0 and probably r.z=0
@@ -52,7 +48,9 @@ void	transform_scene(t_minirt *rt)
 
 	transform_general(rt->prs->camera, angles);
 	transform_spheres(rt->prs->sphere, rt->prs->camera, angles);
+	// casting light into sphere should be checked as one elem is called different
+	transform_spheres((t_sphere *)rt->prs->light, rt->prs->camera, angles);
 	transform_planes(rt->prs->plane, rt->prs->camera, angles);
-	transform_planes((t_plane*)rt->prs->cylinder, rt->prs->camera, angles);
-//	transform_planes((t_plane*)rt->prs->cone, rt->prs->camera, angles);
+	transform_planes((t_plane *)rt->prs->cylinder, rt->prs->camera, angles);
+	transform_planes((t_plane *)rt->prs->cone, rt->prs->camera, angles);
 }
