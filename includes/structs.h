@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/08 11:53:25 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/10 19:28:10 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,17 @@ typedef struct s_cylinder
 	t_num				h;
 }	t_cylinder;
 
+typedef struct s_cone
+{
+	int					type;
+	t_vec3d				r;
+	t_vec3d				n;
+	t_num				d;
+	t_num				h;
+	t_rgb3				rgb;
+	struct s_cone		*next;
+}	t_cone;
+
 typedef struct s_parse
 {
 	char		*line;
@@ -108,6 +119,7 @@ typedef struct s_parse
 	t_sphere	*sphere;
 	t_plane		*plane;
 	t_cylinder	*cylinder;
+	t_cone		*cone;
 }	t_parse;
 
 typedef struct s_dist_cc
