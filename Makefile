@@ -21,12 +21,12 @@ CLEANING_PATH	:=	cleaning/
 CLEANING		:=	$(addprefix $(CLEANING_PATH), $(CLEANING_NAME))
 
 # RT
-RT_NAME			:=	hit_plane.c hit_sphere.c hit_cylin.c viewport.c transform_scene.c make_norm_vec.c lighting.c
+RT_NAME			:=	hit_plane.c hit_sphere.c hit_cylin.c viewport.c transform_scene.c make_norm_vec.c lighting.c color.c
 RT_PATH			:=	rt/
 RT				:=	$(addprefix $(RT_PATH), $(RT_NAME))
 
 # LIN_ALG
-LIN_ALG_NAME	:=	vec3.c vec_utils.c rotation_xyz.c
+LIN_ALG_NAME	:=	vec_fun.c vec_utils.c rotation_xyz.c dot_cross.c
 LIN_ALG_PATH	:=	lin_alg/
 LIN_ALG			:=	$(addprefix $(LIN_ALG_PATH), $(LIN_ALG_NAME))
 

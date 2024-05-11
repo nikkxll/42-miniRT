@@ -1,39 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lighting.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apimikov <apimikov@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/11 18:54:26 by apimikov          #+#    #+#             */
+/*   Updated: 2024/05/11 18:54:30 by apimikov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minirt.h"
 
-t_vec3d	rgb_to_vec(t_rgb3 rgb)
-{
-	t_num	r;
-	t_num	g;
-	t_num	b;
-	t_vec3d	vec;
-
-	r = (t_num)rgb.r / 255.0;
-	g = (t_num)rgb.g / 255.0;
-	b = (t_num)rgb.b / 255.0;
-	vec = (t_vec3d){r, g, b};
-	return (vec);
-}
-
-t_num	ft_min2(t_num x, t_num y)
-{
-	if (x > y)
-		return (y);
-	return (x);
-}
-
-t_rgb3	vec_to_rgb(t_vec3d c)
-{
-	int	r;
-	int	g;
-	int	b;
-
-	r = (int)ft_min2(254, 255.0 * c.x);
-	g = (int)ft_min2(254, 255.0 * c.y);
-	b = (int)ft_min2(254, 255.0 * c.z);
-	return ((t_rgb3){r, g, b});
-}
-
-void add_light_ambient(t_minirt *rt, t_hit_data *data)
+void	add_light_ambient(t_minirt *rt, t_hit_data *data)
 {
 	t_am_light	*a;
 
@@ -42,7 +21,7 @@ void add_light_ambient(t_minirt *rt, t_hit_data *data)
 		vec_scale(COEF_AMBI * a->ratio, rgb_to_vec(a->rgb)));
 }
 
-
+/*
 void add_light_reflected_obj(t_minirt *rt, t_hit_data *data)
 {
 	t_vec3d	c;
@@ -51,6 +30,7 @@ void add_light_reflected_obj(t_minirt *rt, t_hit_data *data)
 	c = vec_scale(COEF_REFLECT * 10000, c);
 	data->color = vec_add(data->color, c);
 }
+*/
 
 int	is_light_visible(t_minirt *rt, t_hit_data *data)
 {
@@ -63,17 +43,35 @@ int	is_light_visible(t_minirt *rt, t_hit_data *data)
 	return (1);
 }
 
+void	add_light_diff_spec(t_minirt *rt, t_hit_data *data, t_light *light)
+{
+	t_num		prod;
 
+	data->ll = vec_sub(light->r, data->v);
+	data->l = vec_unit(data->ll);
+	prod = dot(data->n, data->l);
+	if (prod > 0 && is_light_visible(rt, data))
+	{
+		data->temp = vec_scale(COEF_DIFF * light->brt * prod, \
+			rgb_to_vec(light->rgb));
+		data->color = vec_add(data->color, data->temp);
+		data->r = vec_sub(vec_scale(2 * prod, data->n), data->l);
+		prod = -1 * dot(data->r, data->ray);
+		if (prod > EPSILON)
+		{
+			prod = COEF_SPEC * light->brt * POW(prod, COEF_ALPHA);
+			data->temp = vec_scale(prod, rgb_to_vec(light->rgb));
+			data->color = vec_add(data->color, data->temp);
+		}
+	}
+}
 
-
-void lighting(t_minirt *rt, int pixel)
+void	lighting(t_minirt *rt, int pixel)
 {
 	t_hit_data	*data;
 	t_light		*light;
-	t_num		prod;
 
 	data = &(rt->vp.hit[pixel]);
-
 	if (data->dist < 0)
 		return ;
 	add_light_ambient(rt, data);
@@ -82,23 +80,7 @@ void lighting(t_minirt *rt, int pixel)
 	light = rt->prs->light;
 	while (light)
 	{
-		data->ll = vec_sub(light->r, data->v);
-		data->l = vec_unit(data->ll);
-		prod = dot(data->n, data->l);
-		if (prod > 0 && is_light_visible(rt, data))
-		{
-			data->temp = vec_scale(COEF_DIFF * light->brt * prod, \
-				rgb_to_vec(light->rgb));
-			data->color = vec_add(data->color, data->temp);
-			data->r = vec_sub(vec_scale(2 * prod, data->n), data->l);
-			prod = -1 * dot(data->r, data->ray);
-			if (prod > EPSILON)  //????
-			{
-				prod = COEF_SPEC * light->brt * POW(prod, COEF_ALPHA);
-				data->temp = vec_scale(prod, rgb_to_vec(light->rgb));
-				data->color = vec_add(data->color, data->temp);
-			}
-		}
+		add_light_diff_spec(rt, data, light);
 		light = light->next;
 	}
 	//add_light_reflected_obj(rt, data);

@@ -1,5 +1,19 @@
 #include "../../includes/minirt.h"
 
+void	hit_scene(t_minirt *rt)
+{
+	size_t	pixel;
+
+	pixel = 0;
+	while (pixel < (size_t)rt->vp.size)
+	{
+		hit_spheres(rt, pixel);
+		hit_planes(rt, pixel);
+		hit_cylinder(rt, pixel); // change name to hit_cylinder_cone
+		pixel++;
+	}
+}
+
 t_vec3d	viewport_vec(t_viewport *vp, int i, int j)
 {
 	t_vec3d	r_vec;
@@ -18,18 +32,13 @@ t_vec3d	viewport_vec(t_viewport *vp, int i, int j)
 	return (r_vec);
 }
 
-void	hit_scene(t_minirt *rt)
+static void	set_data_to_init(t_hit_data *data)
 {
-	size_t	pixel;
-
-	pixel = 0;
-	while (pixel < (size_t)rt->vp.size)
-	{
-		hit_spheres(rt, pixel);
-		hit_planes(rt, pixel);
-		hit_cylinder(rt, pixel); // change name to hit_cylinder_cone
-		pixel++;
-	}
+	data->dist = -1;
+	data->obst = -1;
+	data->rgb = (t_rgb3){0, 0, 0};
+	data->color = (t_vec3d){0, 0, 0};
+	data->type = TYPE_OBJ_NONE;
 }
 
 void	init_viewport(t_minirt *rt)
@@ -54,11 +63,7 @@ void	init_viewport(t_minirt *rt)
 		while (++i < vp->n_x)
 		{
 			vp->hit[n].ray = viewport_vec(vp, i, j);
-			vp->hit[n].dist = -1;
-			vp->hit[n].obst = -1;
-			vp->hit[n].rgb = (t_rgb3){0, 0, 0};
-			vp->hit[n].color = (t_vec3d){0, 0, 0};
-			vp->hit[n].type = TYPE_OBJ_NONE;
+			set_data_to_init(&(vp->hit[n]));
 			n++;
 		}
 	}

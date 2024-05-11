@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/08 17:42:53 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/11 18:02:07 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,28 +69,25 @@ void print_ll(t_minirt *rt)
 	}
 }
 
-
+/*
 int32_t	rgb_to_int(t_rgb3 rgb)
 {
 	return (rgb.r << 24 | rgb.g << 16 | rgb.b << 8 | 255);
 }
-
+*/
 
 void	print_picture(t_minirt *rt)
 {
 	int			i;
 	int			j;
 	int32_t		color;
-//	t_sphere	*sphere;
 
-	//sphere = rt->prs->sphere;
-	//color = rgb_to_int(sphere->rgb);
 	j = -1;
 	while (++j < rt->vp.size)
 	{
 		lighting(rt, j);
 	}
-	printf("just before \n");
+	printf("ready to display picture/\n");
 	j = -1;
 	while (++j < rt->vp.n_y)
 	{
@@ -98,12 +95,12 @@ void	print_picture(t_minirt *rt)
 		while (++i < rt->vp.n_x)
 		{
 			color = rgb_to_int(vec_to_rgb(rt->vp.hit[j * rt->vp.n_x + i].color));
-			//printf("%d\n", color);
 			mlx_put_pixel(rt->image, i, j, color);
 		}
 	}
 }
 
+/*
 void	ft_hook_image(void *data)
 {
 	t_minirt	*rt;
@@ -113,6 +110,8 @@ void	ft_hook_image(void *data)
 	//	rt->image->width * rt->image->height * sizeof(int32_t));
 	print_picture(rt);
 }
+
+*/
 
 void	ft_hook_key(void *data)
 {
@@ -130,23 +129,16 @@ void	ft_hook_key(void *data)
 //int	main(int32_t argc, char *argv[])
 int	make_picture(t_minirt *rt)
 {
-/*
-	int	n_x = rt->prs->screen->width;
-	int n_y = rt->prs->screen->height;
-	rt->vp = (t_viewport){rt->prs->camera->fov, n_x, n_y, n_x * n_y, NULL, NULL};
-*/
-	
 	transform_scene(rt);
-
 /*
 	t_dist_cc precalc;
 	t_num	t = dist_to_cylin((t_vec3d){0,0,0},(t_vec3d){0,0,1}, (t_cylinder *)rt->prs->cone, &precalc);
 	printf("dist to cylinder t=%lf\n", t);
 	exit (0);
-
-	*/
+*/
 	init_viewport(rt);
 	hit_scene(rt);
+	// calc color of object in each pixel for bump and checkboard
 	make_norm_vec(rt);
 	rt->mlx = mlx_init(rt->prs->screen->width, rt->prs->screen->height,
 			"MLX42", true);
@@ -157,7 +149,7 @@ int	make_picture(t_minirt *rt)
 		generic_errors_handler(MLX_IMG_ERR_MSG, MLX_IMG_ERR, rt);
 	if (mlx_image_to_window(rt->mlx, rt->image, 0, 0) == -1)
 		generic_errors_handler(MLX_IMG_W_ERR_MSG, MLX_IMG_W_ERR, rt);
-	ft_hook_image(rt);
+	print_picture(rt);
 	mlx_loop_hook(rt->mlx, ft_hook_key, rt);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	mlx_loop(rt->mlx);

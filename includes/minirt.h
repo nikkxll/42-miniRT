@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/10 19:27:58 by alex             ###   ########.fr       */
+/*   Updated: 2024/05/11 18:51:33 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ void	orient_vec_check(double x, double y, double z, t_minirt *rt);
 t_vec3d	vec_def(t_num x, t_num y, t_num z);
 t_vec3d	vec_add(t_vec3d a, t_vec3d b);
 t_vec3d	vec_sub(t_vec3d a, t_vec3d b);
+t_vec3d	vec_prod(t_vec3d a, t_vec3d b);
+t_vec3d	vec_scale(t_num n, t_vec3d p);
+
+//dot_cross.c
 t_num	dot(t_vec3d a, t_vec3d b);
 t_num	dot2(t_vec3d a);
 t_vec3d	cross(t_vec3d a, t_vec3d b);
@@ -69,20 +73,20 @@ t_num	vec_norm(t_vec3d v);
 t_vec3d	vec_unit(t_vec3d p);
 t_num	vec_sin(t_vec3d a, t_vec3d b);
 t_num	vec_cos(t_vec3d a, t_vec3d b);
-t_vec3d	vec_scale(t_num n, t_vec3d p);
-t_vec3d	vec_prod(t_vec3d a, t_vec3d b);
 void	vec_print(char *str, t_vec3d vec);
 
 //viewport.c
 void	init_viewport(t_minirt *rt);
-
 void	hit_scene(t_minirt *rt);
 
 // make_norm_vec.c
 void	make_norm_vec(t_minirt *rt);
 
 // lighting.c
+int32_t	rgb_to_int(t_rgb3 rgb);
+t_vec3d	rgb_to_vec(t_rgb3 rgb);
 t_rgb3	vec_to_rgb(t_vec3d c);
+// color.c
 void lighting(t_minirt *rt, int pixel);
 
 // transform_scene.c
