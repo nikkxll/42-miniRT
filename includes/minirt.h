@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/11 18:51:33 by alex             ###   ########.fr       */
+/*   Updated: 2024/05/11 21:22:48 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,7 @@ t_hit_data	touch_planes(t_minirt *rt, t_hit_data *data, t_vec3d l);
 void hit_cylinder(t_minirt *rt, size_t pixel);
 t_hit_data	touch_cylinder(t_minirt *rt, t_hit_data *data, t_vec3d l);
 t_num	dist_to_cylin(t_vec3d v0, t_vec3d v1, t_cylinder *obj, t_dist_cc *p);
+
+t_vec3d	antialiasing(t_minirt *rt, int pos);
 
 #endif

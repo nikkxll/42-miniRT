@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/10 19:27:46 by alex             ###   ########.fr       */
+/*   Updated: 2024/05/12 00:08:42 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ enum	e_exit_codes
 enum	e_num_params
 {
 	VP_PARAMS = 3,
+	VP_PARAMS_OPT = 4,
 	AL_PARAMS = 3,
 	C_PARAMS = 4,
 	L_PARAMS = 4,
@@ -170,8 +171,11 @@ enum	e_angles
 # define CONFIG_MSG_21 "pl   x,y,z    x_n,y_n,x_n  r,g,b     (optional, "
 # define CONFIG_MSG_22 "cy   x,y,z    x_n,y_n,x_n  diameter  height  r,g,b  "
 # define CONFIG_MSG_23 "(optional, from 0 to n entities)\n"
-# define CONFIG_MSG_24 "R    width    height                 (optional, "
-# define CONFIG_MSG_25 "0 or 1 entity. If not valid, default parameters "
-# define CONFIG_MSG_26 "will be taken)\n\n"
+# define CONFIG_MSG_24 "co   x,y,z    x_n,y_n,x_n  diameter  height  r,g,b  "
+# define CONFIG_MSG_25 "(optional, from 0 to n entities)\n"
+# define CONFIG_MSG_26 "R    width    height       a         (optional, "
+# define CONFIG_MSG_27 "0 or 1 entity. If not valid, default parameters "
+# define CONFIG_MSG_28 "will be taken for w and h, a - flag for the "
+# define CONFIG_MSG_29 "pseudo anti-aliasing effect)\n\n"
 
 #endif

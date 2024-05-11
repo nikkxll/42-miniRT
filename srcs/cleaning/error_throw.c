@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:23:27 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 12:25:28 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 00:08:56 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ static void	show_valid_config(void)
 	ft_putstr_fd(CONFIG_MSG_24, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_25, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_26, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_27, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_28, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_29, STDERR_FILENO);
 }
 
 void	generic_errors_handler(char *msg, int status, t_minirt *rt)

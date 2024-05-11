@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/10 19:28:10 by alex             ###   ########.fr       */
+/*   Updated: 2024/05/12 00:27:06 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_screen
 	int	type;
 	int	width;
 	int	height;
+	int	a;
 }	t_screen;
 
 typedef struct s_am_light

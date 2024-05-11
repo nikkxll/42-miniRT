@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/11 18:02:07 by alex             ###   ########.fr       */
+/*   Updated: 2024/05/12 00:31:54 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,16 @@ void	print_picture(t_minirt *rt)
 	{
 		lighting(rt, j);
 	}
-	printf("ready to display picture/\n");
 	j = -1;
 	while (++j < rt->vp.n_y)
 	{
 		i = -1;
 		while (++i < rt->vp.n_x)
 		{
-			color = rgb_to_int(vec_to_rgb(rt->vp.hit[j * rt->vp.n_x + i].color));
+			if (rt->prs->screen->a)
+				color = rgb_to_int(vec_to_rgb(antialiasing(rt, j * rt->vp.n_x + i)));
+			else
+				color = rgb_to_int(vec_to_rgb(rt->vp.hit[j * rt->vp.n_x + i].color));
 			mlx_put_pixel(rt->image, i, j, color);
 		}
 	}
@@ -129,6 +131,7 @@ void	ft_hook_key(void *data)
 //int	main(int32_t argc, char *argv[])
 int	make_picture(t_minirt *rt)
 {
+	ft_printf("Transforming scene\n");
 	transform_scene(rt);
 /*
 	t_dist_cc precalc;
@@ -136,10 +139,14 @@ int	make_picture(t_minirt *rt)
 	printf("dist to cylinder t=%lf\n", t);
 	exit (0);
 */
+	ft_printf("Initializing viewport\n");
 	init_viewport(rt);
+	ft_printf("Setting hit scene\n");
 	hit_scene(rt);
 	// calc color of object in each pixel for bump and checkboard
+	ft_printf("Setting orientation vectors\n");
 	make_norm_vec(rt);
+	ft_printf("Setting MLX\n");
 	rt->mlx = mlx_init(rt->prs->screen->width, rt->prs->screen->height,
 			"MLX42", true);
 	if (!rt->mlx)
@@ -149,6 +156,7 @@ int	make_picture(t_minirt *rt)
 		generic_errors_handler(MLX_IMG_ERR_MSG, MLX_IMG_ERR, rt);
 	if (mlx_image_to_window(rt->mlx, rt->image, 0, 0) == -1)
 		generic_errors_handler(MLX_IMG_W_ERR_MSG, MLX_IMG_W_ERR, rt);
+	ft_printf("Rendering image\n");
 	print_picture(rt);
 	mlx_loop_hook(rt->mlx, ft_hook_key, rt);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
