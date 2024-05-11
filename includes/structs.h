@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/09 10:29:26 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/10 19:28:10 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,18 @@ typedef struct s_light
 {
 	int				type;
 	t_vec3d			r;
-	t_num			brt;
 	t_rgb3			rgb;
 	struct s_light	*next;
+	t_num			brt;
 }	t_light;
 
 typedef struct s_sphere
 {
 	int				type;
 	t_vec3d			r;
-	t_num			d;
 	t_rgb3			rgb;
 	struct s_sphere	*next;
+	t_num			d;
 }	t_sphere;
 
 typedef struct s_plane
@@ -91,10 +91,10 @@ typedef struct s_cylinder
 	int					type;
 	t_vec3d				r;
 	t_vec3d				n;
-	t_num				d;
-	t_num				h;
 	t_rgb3				rgb;
 	struct s_cylinder	*next;
+	t_num				d;
+	t_num				h;
 }	t_cylinder;
 
 typedef struct s_cone
@@ -102,10 +102,10 @@ typedef struct s_cone
 	int					type;
 	t_vec3d				r;
 	t_vec3d				n;
-	t_num				d;
-	t_num				h;
 	t_rgb3				rgb;
 	struct s_cone		*next;
+	t_num				d;
+	t_num				h;
 }	t_cone;
 
 typedef struct s_parse
@@ -122,16 +122,33 @@ typedef struct s_parse
 	t_cone		*cone;
 }	t_parse;
 
+typedef struct s_dist_cc
+{
+	t_num	k1;
+	t_num	k2;
+	t_num	vn;
+	t_num	cn;
+	t_num	cv;
+	t_num	c2;
+	t_vec3d cprime;
+}	t_dist_cc;
+
 typedef struct s_hit_data
 {
 	t_vec3d ray;
 	t_num	dist;
-	int 	type; // this is temporal
+	int 	type;
 	t_obj	*obj;
 	t_rgb3	rgb;
 	t_vec3d	color;
 	t_vec3d n;
+	t_vec3d v;
+	t_vec3d l;
+	t_vec3d ll;
+	t_vec3d r;
 	t_vec3d temp;
+	t_dist_cc	precalc;
+	t_num	obst;
 }	t_hit_data;
 
 typedef struct s_viewport

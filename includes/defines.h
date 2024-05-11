@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/09 10:30:26 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/10 19:27:46 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ enum	e_angles
 	BETA,
 };
 
+#define DEBUG_MOD 1
+
 # define RED "\x1B[31m"
 # define ORANGE "\e[38;5;208m"
 # define EC "\x1B[0m"
@@ -108,22 +110,21 @@ enum	e_angles
 # define POW pow
 # define SQRT sqrt
 
-# define IMAGE_WIDTH 700
-# define IMAGE_HIGHT 500
 
 # define MLXWIDTH 700
 # define MLXHEIGHT 500
 # define CHANNELBACK 100
 
-# define PI 3.141592653589793238462643383279502884197169399375105820974944592307
-# define EPSILON 0.0000000000000001
+# define PI 3.141592653589793238462
+# define EPSILON 0.0000001
 
 // matherial properties
-# define COEF_OBJS 0.5
-# define COEF_AMBI 2
-# define COEF_DIFF 0.5
+# define COEF_OBJS 0.1
+# define COEF_AMBI 1
+# define COEF_DIFF 1
 # define COEF_SPEC 1
 # define COEF_ALPHA 1000
+# define COEF_REFLECT 1
 
 
 # define LOG_MSG_1 "Parsing input file '%s'\n"
@@ -132,7 +133,7 @@ enum	e_angles
 
 # define ERR_MSG "Error\n"
 # define MALLOC_ERR_MSG "Malloc error occured\n"
-# define NUM_FILES_ERR_MSG "More than one file provided\n"
+# define NUM_FILES_ERR_MSG "More than one file or no files provided\n"
 # define FILE_OPEN_ERR_MSG "Failed to open the file\n"
 # define FILE_READ_ERR_MSG "Failed to read the file\n"
 # define FILE_CLOSE_ERR_MSG "Failed to close the file\n"
@@ -147,7 +148,7 @@ enum	e_angles
 # define MLX_IMG_W_ERR_MSG "Failed to put MLX image to window\n"
 
 # define CONFIG_MSG_1 "Example of the valid number ranges:\n\n"
-# define CONFIG_MSG_2 "ratio is in range         [0.0, 1.0]\n"
+# define CONFIG_MSG_2 "ratio is in range         (0.0, 1.0)\n"
 # define CONFIG_MSG_3 "r,g,b are in range        [0, 255]\n"
 # define CONFIG_MSG_4 "x,y,z are in range        (-1000000, 1000000)\n"
 # define CONFIG_MSG_5 "x_n,y_n,x_n are in range  [-1, 1]\n"

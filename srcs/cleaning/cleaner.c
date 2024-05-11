@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:06:55 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/09 10:34:33 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/10 19:27:21 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ void	cleaner(t_minirt *rt)
 		clean_elements(rt);
 		free(rt->prs);
 	}
-	if (rt->mlx && rt->image)
+	if (rt && rt->mlx && rt->image)
 		mlx_delete_image(rt->mlx, rt->image);
-	if (rt->mlx)
+	if (rt && rt->mlx)
 		mlx_terminate(rt->mlx);
 	if (rt)
 		free(rt);
