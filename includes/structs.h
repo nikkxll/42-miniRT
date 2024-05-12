@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 15:30:04 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:22:51 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_screen
 	int	type;
 	int	width;
 	int	height;
-	int	a;
+	int	antialiasing;
 }	t_screen;
 
 typedef struct s_am_light

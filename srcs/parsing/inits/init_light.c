@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 14:20:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 15:40:22 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:20:01 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,14 @@ static void	init_light_params(t_light *node, char *entities[ARGS_MAX],
 
 	if (init_light_params_util(entities, r, rgb) == false)
 		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
-	node->r.x = custom_atof(r[0], 0, 0, rt);
-	node->r.y = custom_atof(r[1], 0, 0, rt);
-	node->r.z = custom_atof(r[2], 0, 0, rt);
+	node->r = (t_vec3d){atod_minirt(r[0], 0, 0, rt),
+		atod_minirt(r[1], 0, 0, rt), atod_minirt(r[2], 0, 0, rt)};
 	coord_check(node->r.x, node->r.y, node->r.z, rt);
-	node->brt = custom_atof(entities[2], 0, 0, rt);
+	node->brt = atod_minirt(entities[2], 0, 0, rt);
 	if (node->brt < 0.0 || node->brt > 1.0)
 		generic_errors_handler(NUMBER_FORMAT_ERR_MSG, NUM_ERR, rt);
-	node->rgb.r = protected_atoi(rgb[0], rt);
-	node->rgb.g = protected_atoi(rgb[1], rt);
-	node->rgb.b = protected_atoi(rgb[2], rt);
+	node->rgb = (t_rgb3){atoi_minirt(rgb[0], rt),
+		atoi_minirt(rgb[1], rt), atoi_minirt(rgb[2], rt)};
 	rgb_check(node->rgb.r, node->rgb.g, node->rgb.b, rt);
 }
 

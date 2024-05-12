@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:22:37 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 15:42:27 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 19:11:01 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 static void	preprocessing(t_minirt *rt)
 {
-	if (VP_SIZE_MAX < 100 || VP_SIZE_MAX > 2000)
-		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
-	if (VP_WIDTH_DEFAULT < 1 || VP_WIDTH_DEFAULT > 9999)
-		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
-	if (VP_HEIGHT_DEFAULT < 1 || VP_HEIGHT_DEFAULT > 9999)
-		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
-	if (ELEM_SIZE_MAX < 0 || ELEM_SIZE_MAX > 999999.999999
-		|| COORD_MAX < -999999.999999 || COORD_MAX > 999999.999999
-		|| COORD_MIN < -999999.999999 || COORD_MIN > 999999.999999
-		|| COORD_MIN > COORD_MAX)
-		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
-	if (ARGS_MAX != 10 || ATOF_MAX != 6 || VEC_LEN != 3)
-		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
-	if (BUFFER_SIZE < 1 || BUFFER_SIZE > INT_MAX)
+	if (VP_SIZE_MAX < 100 || VP_SIZE_MAX > 2000 || VP_WIDTH_DEFAULT < 1
+		|| VP_WIDTH_DEFAULT > 9999 || VP_WIDTH_DEFAULT > VP_SIZE_MAX
+		|| VP_HEIGHT_DEFAULT < 1 || VP_HEIGHT_DEFAULT > 9999
+		|| VP_HEIGHT_DEFAULT > VP_SIZE_MAX || ELEM_SIZE_MAX < 0
+		|| ELEM_SIZE_MAX > 999999.999999 || COORD_MAX < -999999.999999
+		|| COORD_MAX > 999999.999999 || COORD_MIN < -999999.999999
+		|| COORD_MIN > 999999.999999 || COORD_MIN > COORD_MAX
+		|| ARGS_MAX != 15 || ATOF_MAX != 6 || VEC_LEN != 3
+		|| BUFFER_SIZE < 1 || BUFFER_SIZE > INT_MAX || MAX_FOV != 179
+		|| MIN_FOV != 1 || PI != 3.141592653589793238462
+		|| EPSILON != 0.0000001)
 		generic_errors_handler(DEF_ERR_MSG, DEF_ERR, rt);
 }
 
@@ -82,5 +79,5 @@ void	parser(char **av, t_minirt *rt)
 	}
 	close(rt->prs->fd);
 	postprocessing(rt);
-	ft_printf(LOG_MSG_2);
+	print_status(LOG_MSG_2, GREEN);
 }

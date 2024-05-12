@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:25:20 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 15:40:36 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:21:03 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,14 @@ static void	init_plane_params(t_plane *node, char *entities[ARGS_MAX],
 
 	if (init_plane_params_util(entities, r, n, rgb) == false)
 		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
-	node->r.x = custom_atof(r[0], 0, 0, rt);
-	node->r.y = custom_atof(r[1], 0, 0, rt);
-	node->r.z = custom_atof(r[2], 0, 0, rt);
+	node->r = (t_vec3d){atod_minirt(r[0], 0, 0, rt),
+		atod_minirt(r[1], 0, 0, rt), atod_minirt(r[2], 0, 0, rt)};
 	coord_check(node->r.x, node->r.y, node->r.z, rt);
-	node->n.x = custom_atof(n[0], 0, 0, rt);
-	node->n.y = custom_atof(n[1], 0, 0, rt);
-	node->n.z = custom_atof(n[2], 0, 0, rt);
+	node->n = (t_vec3d){atod_minirt(n[0], 0, 0, rt),
+		atod_minirt(n[1], 0, 0, rt), atod_minirt(n[2], 0, 0, rt)};
 	orient_vec_check(node->n.x, node->n.y, node->n.z, rt);
-	node->rgb.r = protected_atoi(rgb[0], rt);
-	node->rgb.g = protected_atoi(rgb[1], rt);
-	node->rgb.b = protected_atoi(rgb[2], rt);
+	node->rgb = (t_rgb3){atoi_minirt(rgb[0], rt),
+		atoi_minirt(rgb[1], rt), atoi_minirt(rgb[2], rt)};
 	rgb_check(node->rgb.r, node->rgb.g, node->rgb.b, rt);
 	init_plane_checker(node, rt, entities);
 }

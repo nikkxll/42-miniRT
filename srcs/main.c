@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 15:33:57 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:23:37 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	print_picture(t_minirt *rt)
 		i = -1;
 		while (++i < rt->vp.n_x)
 		{
-			if (rt->prs->screen->a)
+			if (rt->prs->screen->antialiasing == ON)
 				color = rgb_to_int(vec_to_rgb(antialiasing(rt, j * rt->vp.n_x + i)));
 			else
 				color = rgb_to_int(vec_to_rgb(rt->vp.hit[j * rt->vp.n_x + i].color));
