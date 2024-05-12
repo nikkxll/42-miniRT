@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/11 21:22:48 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:12:10 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,15 @@ void	init_sp(char *entities[ARGS_MAX], t_minirt *rt);
 void	init_pl(char *entities[ARGS_MAX], t_minirt *rt);
 void	init_cy(char *entities[ARGS_MAX], t_minirt *rt);
 void	init_co(char *entities[ARGS_MAX], t_minirt *rt);
+
+void	init_cone_checker(t_cone *node, t_minirt *rt,
+            char *entities[ARGS_MAX]);
+void	init_cylinder_checker(t_cylinder *node, t_minirt *rt,
+	        char *entities[ARGS_MAX]);
+void	init_plane_checker(t_plane *node, t_minirt *rt,
+	        char *entities[ARGS_MAX]);
+void	init_sphere_checker(t_sphere *node, t_minirt *rt,
+	        char *entities[ARGS_MAX]);
 
 void	rgb_check(int r, int g, int b, t_minirt *rt);
 void	coord_check(double x, double y, double z, t_minirt *rt);
@@ -106,6 +115,7 @@ void hit_cylinder(t_minirt *rt, size_t pixel);
 t_hit_data	touch_cylinder(t_minirt *rt, t_hit_data *data, t_vec3d l);
 t_num	dist_to_cylin(t_vec3d v0, t_vec3d v1, t_cylinder *obj, t_dist_cc *p);
 
+//antialiasing.c
 t_vec3d	antialiasing(t_minirt *rt, int pos);
 
 #endif

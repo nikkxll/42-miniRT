@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:09:18 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 21:44:02 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:36:30 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	init_sphere_params(t_sphere *node, char *entities[ARGS_MAX],
 	node->rgb.g = protected_atoi(rgb[1], rt);
 	node->rgb.b = protected_atoi(rgb[2], rt);
 	rgb_check(node->rgb.r, node->rgb.g, node->rgb.b, rt);
+	init_sphere_checker(node, rt, entities);
 }
 
 static t_sphere	*new_sphere_node(char *entities[ARGS_MAX], t_minirt *rt)
@@ -66,12 +67,14 @@ void	init_sp(char *entities[ARGS_MAX], t_minirt *rt)
 {
 	t_sphere	*curr;
 
-	if (!rt->prs->sphere && ft_arrlen((void **)entities) == SP_PARAMS)
+	if (!rt->prs->sphere && (ft_arrlen((void **)entities) == SP_PARAMS
+		|| ft_arrlen((void **)entities) == SP_PARAMS_CH))
 	{
 		rt->prs->sphere = new_sphere_node(entities, rt);
 		rt->prs->sphere->next = NULL;
 	}
-	else if (rt->prs->sphere && ft_arrlen((void **)entities) == SP_PARAMS)
+	else if (rt->prs->sphere && (ft_arrlen((void **)entities) == SP_PARAMS
+		|| ft_arrlen((void **)entities) == SP_PARAMS_CH))
 	{
 		curr = rt->prs->sphere;
 		while (curr->next)

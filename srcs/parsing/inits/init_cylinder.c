@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:40:46 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 19:21:28 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:34:37 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	init_cylinder_params(t_cylinder *node, char *entities[ARGS_MAX],
 	node->rgb.g = protected_atoi(rgb[1], rt);
 	node->rgb.b = protected_atoi(rgb[2], rt);
 	rgb_check(node->rgb.r, node->rgb.g, node->rgb.b, rt);
+	init_cylinder_checker(node, rt, entities);
 }
 
 static t_cylinder	*new_cylinder_node(char *entities[ARGS_MAX], t_minirt *rt)
@@ -77,12 +78,14 @@ void	init_cy(char *entities[ARGS_MAX], t_minirt *rt)
 {
 	t_cylinder	*curr;
 
-	if (!rt->prs->cylinder && ft_arrlen((void **)entities) == CY_PARAMS)
+	if (!rt->prs->cylinder && (ft_arrlen((void **)entities) == CY_PARAMS
+		|| ft_arrlen((void **)entities) == CY_PARAMS_CH))
 	{
 		rt->prs->cylinder = new_cylinder_node(entities, rt);
 		rt->prs->cylinder->next = NULL;
 	}
-	else if (rt->prs->cylinder && ft_arrlen((void **)entities) == CY_PARAMS)
+	else if (rt->prs->cylinder && (ft_arrlen((void **)entities) == CY_PARAMS
+		|| ft_arrlen((void **)entities) == CY_PARAMS_CH))
 	{
 		curr = rt->prs->cylinder;
 		while (curr->next)

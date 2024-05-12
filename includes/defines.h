@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 14:06:36 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:07:12 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,13 @@ enum	e_num_params_opt
 	PL_PARAMS_CH = 7,
 	CY_PARAMS_CH = 9,
 	CO_PARAMS_CH = 9,
+};
+
+enum	e_checker
+{
+	NO_OPTIONS,
+	CHECKER,
+	BUMP,
 };
 
 enum	e_gnl_error_codes

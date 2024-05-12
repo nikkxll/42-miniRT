@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:25:20 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/03 19:21:59 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:35:00 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	init_plane_params(t_plane *node, char *entities[ARGS_MAX],
 	node->rgb.g = protected_atoi(rgb[1], rt);
 	node->rgb.b = protected_atoi(rgb[2], rt);
 	rgb_check(node->rgb.r, node->rgb.g, node->rgb.b, rt);
+	init_plane_checker(node, rt, entities);
 }
 
 static t_plane	*new_plane_node(char *entities[ARGS_MAX], t_minirt *rt)
@@ -71,12 +72,14 @@ void	init_pl(char *entities[ARGS_MAX], t_minirt *rt)
 {
 	t_plane	*curr;
 
-	if (!rt->prs->plane && ft_arrlen((void **)entities) == PL_PARAMS)
+	if (!rt->prs->plane && (ft_arrlen((void **)entities) == PL_PARAMS
+		|| ft_arrlen((void **)entities) == PL_PARAMS_CH))
 	{
 		rt->prs->plane = new_plane_node(entities, rt);
 		rt->prs->plane->next = NULL;
 	}
-	else if (rt->prs->plane && ft_arrlen((void **)entities) == PL_PARAMS)
+	else if (rt->prs->plane && (ft_arrlen((void **)entities) == PL_PARAMS
+		|| ft_arrlen((void **)entities) == PL_PARAMS_CH))
 	{
 		curr = rt->prs->plane;
 		while (curr->next)
