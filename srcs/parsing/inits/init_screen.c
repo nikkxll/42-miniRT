@@ -6,11 +6,18 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 11:49:17 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 00:26:58 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:58:19 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
+
+static void	print_warning(char *msg)
+{
+	ft_printf(ORANGE);
+	ft_printf(msg);
+	ft_printf(EC);
+}
 
 static void	init_screen_params(t_screen *node, char *entities[ARGS_MAX],
 	t_minirt *rt)
@@ -22,17 +29,18 @@ static void	init_screen_params(t_screen *node, char *entities[ARGS_MAX],
 	{
 		node->width = VP_WIDTH_DEFAULT;
 		node->height = VP_HEIGHT_DEFAULT;
-		ft_printf(ORANGE);
-		ft_printf(LOG_MSG_3);
-		ft_printf(EC);
+		print_warning(LOG_MSG_3);
 	}
 	if (entities[3])
 	{
-		if (ft_strcmp(entities[3], "a") == 0)
+		if (ft_strcmp(entities[3], "antialiasing") == 0)
 			node->a = 1;
 		else
 			generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
+		print_warning(PRS_LOG_MSG_10);
 	}
+	else
+		print_warning(PRS_LOG_MSG_9);
 }
 
 static t_screen	*new_screen_node(char *entities[ARGS_MAX], t_minirt *rt)
@@ -60,4 +68,5 @@ void	init_r(char *entities[ARGS_MAX], t_minirt *rt)
 	}
 	else
 		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
+	ft_printf(PRS_LOG_MSG_8);
 }

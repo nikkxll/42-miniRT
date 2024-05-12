@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 15:09:40 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:33:57 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	ft_hook_key(void *data)
 //int	main(int32_t argc, char *argv[])
 int	make_picture(t_minirt *rt)
 {
-	ft_printf("-- Transforming scene\n");
+	ft_printf(LOG_MSG_4);
 	transform_scene(rt);
 /*
 	t_dist_cc precalc;
@@ -143,14 +143,14 @@ int	make_picture(t_minirt *rt)
 	printf("dist to cylinder t=%lf\n", t);
 	exit (0);
 */
-	ft_printf("-- Initializing viewport\n");
+	ft_printf(LOG_MSG_5);
 	init_viewport(rt);
-	ft_printf("-- Setting hit scene\n");
+	ft_printf(LOG_MSG_6);
 	hit_scene(rt);
 	// calc color of object in each pixel for bump and checkboard
-	ft_printf("-- Setting orientation vectors\n");
+	ft_printf(LOG_MSG_7);
 	make_norm_vec(rt);
-	ft_printf("-- Setting MLX\n");
+	ft_printf(LOG_MSG_8);
 	rt->mlx = mlx_init(rt->prs->screen->width, rt->prs->screen->height,
 			"miniRT", true);
 	if (!rt->mlx)
@@ -160,7 +160,7 @@ int	make_picture(t_minirt *rt)
 		generic_errors_handler(MLX_IMG_ERR_MSG, MLX_IMG_ERR, rt);
 	if (mlx_image_to_window(rt->mlx, rt->image, 0, 0) == -1)
 		generic_errors_handler(MLX_IMG_W_ERR_MSG, MLX_IMG_W_ERR, rt);
-	ft_printf("-- Rendering image\n");
+	ft_printf(LOG_MSG_9);
 	print_picture(rt);
 	mlx_loop_hook(rt->mlx, ft_hook_key, rt);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);

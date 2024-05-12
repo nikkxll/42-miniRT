@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 15:10:55 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:30:04 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ typedef struct s_light
 	int				type;
 	t_vec3d			r;
 	t_rgb3			rgb;
-	t_num			brt;
 	struct s_light	*next;
+	t_num			brt;
 }	t_light;
 
 typedef struct s_sphere

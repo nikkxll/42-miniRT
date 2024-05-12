@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 15:07:12 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:58:32 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,26 @@ enum	e_angles
 # define COEF_ALPHA 1000
 # define COEF_REFLECT 1
 
+# define PRS_LOG_MSG_1 "-- Camera initialized successfully\n"
+# define PRS_LOG_MSG_2 "-- Ambient light initialized successfully\n"
+# define PRS_LOG_MSG_3 "-- Sphere elements initialized successfully\n"
+# define PRS_LOG_MSG_4 "-- Plane elements initialized successfully\n"
+# define PRS_LOG_MSG_5 "-- Cylinder elements initialized successfully\n"
+# define PRS_LOG_MSG_6 "-- Cone elements initialized successfully\n"
+# define PRS_LOG_MSG_7 "-- Lights initialized successfully\n"
+# define PRS_LOG_MSG_8 "-- Viewport initialized successfully\n"
+# define PRS_LOG_MSG_9 "-- Antialiasing disabled\n"
+# define PRS_LOG_MSG_10 "-- Antialiasing enabled\n"
 
-# define LOG_MSG_1 "Parsing input file '%s'\n"
-# define LOG_MSG_2 "Parsing finished successfully!\n"
-# define LOG_MSG_3 "Warning! Viewport dimension are taken by default\n"
+# define LOG_MSG_1 "-- Parsing input file '%s'\n"
+# define LOG_MSG_2 "-- Parsing finished successfully\n"
+# define LOG_MSG_3 "-- Warning! Viewport dimension are taken by default\n"
+# define LOG_MSG_4 "-- Transforming scene\n"
+# define LOG_MSG_5 "-- Initializing viewport\n"
+# define LOG_MSG_6 "-- Setting hit scene\n"
+# define LOG_MSG_7 "-- Setting orientation vectors\n"
+# define LOG_MSG_8 "-- Setting MLX\n"
+# define LOG_MSG_9 "-- Rendering scene\n"
 
 # define ERR_MSG "Error\n"
 # define MALLOC_ERR_MSG "Malloc error occured\n"

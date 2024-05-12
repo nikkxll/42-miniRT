@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:40:46 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 14:34:37 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 15:39:48 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ void	init_cy(char *entities[ARGS_MAX], t_minirt *rt)
 	}
 	else
 		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
+	ft_printf(PRS_LOG_MSG_5);
 }
