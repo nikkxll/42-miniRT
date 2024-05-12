@@ -11,32 +11,32 @@ t_rgb3	checkboard_fun(t_num x, t_num y, t_rgb3 c1, t_rgb3 c2)
 
 void	set_chess_plane(t_hit_data *data)
 {
-	t_vec3d	xy;
+	// handle the case of (r x n) = 0
 	t_plane	*pl;
+	t_vec3d ab[2];
 	t_vec3d	m;
-	t_vec3d y_unit;
-//	t_num		norm;
+	t_num		xy[2];
 
 	pl = (t_plane *)data->obj;
-//	norm = vec_norm(vec_sub(data->v, pl->r));
 	m = vec_sub(data->v, pl->r);
-	// handle the case of (r x n) = 0 
-	y_unit = vec_unit(cross(pl->r, pl->n));
-	if (is_epsilon(pl->n.y) && is_epsilon(pl->n.x))
-		xy = m;
+	if (is_epsilon(pl->n.z))
+	{
+		ab[0] = cross((t_vec3d){0, 0, 1}, pl->n);
+		ab[1] = (t_vec3d){0, 0, 1};
+	}
 	else
 	{
-		xy.x = dot(y_unit, m);
-		xy.y = dot(\
-			vec_unit(vec_sub(vec_scale(dot(pl->r, pl->n), pl->n), pl->r)), \
-			m);
+		ab[0] = cross((t_vec3d){1, 0, 0}, pl->n);
+		ab[1] = cross((t_vec3d){0, 1, 0}, pl->n);
 	}
-	data->rgb = checkboard_fun(xy.x, xy.y, data->rgb, (t_rgb3){0,0,0});
+	xy[0] = dot(ab[0], m);
+	xy[1] = dot(ab[1], m);
+	data->rgb = checkboard_fun(xy[0], xy[1], data->rgb, (t_rgb3){0,0,0});
 }
 
 void	set_checkboard(t_minirt *rt)
 {
-//return ;
+//	return ;
 	int	i;
 	t_hit_data *data;
 

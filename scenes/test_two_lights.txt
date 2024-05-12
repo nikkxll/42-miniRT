@@ -1,5 +1,5 @@
 # Camera's position and direction 03
-R 1000 800
+R 1300 1000
 # Ambient Light
 # <intensity: 0-1> <color: red, green, blue>
 A                            0.01        255,255,255
@@ -26,4 +26,5 @@ sp  -3,2,5               2           0,255,0
 # <coordinates: x,y,z> <origin:x,y,z> <color:red,green,blue>
 pl  0,-2,10            0,1,0              0,0,250
 pl  0,15,0            0,1,0              0,250,0
-pl  0,0,50            0,0,1              250,250,250
+pl  0,-2,10            0.5,1,0              250,250,250
+pl  0,0,10            0,0,1              250,0,250
