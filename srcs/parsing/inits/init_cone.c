@@ -6,11 +6,38 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:28:35 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/09 10:32:57 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:06:40 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
+
+static void	init_cone_checker(t_cone *node, t_minirt *rt,
+	char *entities[ARGS_MAX])
+{
+	char	*rgb_ch[ARGS_MAX];
+
+	if (entities[6])
+	{
+		if (ft_strcmp(entities[6], "checker") == 0)
+		{
+			ft_bzero((void *)rgb_ch, ARGS_MAX * sizeof(char *));
+			if (process_args_w_commas(entities[7], rgb_ch, 0) == false)
+				generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
+			if (ft_arrlen((void **)rgb_ch) != VEC_LEN)
+				generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
+			node->rgb_ch.r = protected_atoi(rgb_ch[0], rt);
+			node->rgb_ch.g = protected_atoi(rgb_ch[1], rt);
+			node->rgb_ch.b = protected_atoi(rgb_ch[2], rt);
+			rgb_check(node->rgb_ch.r, node->rgb_ch.g, node->rgb_ch.b, rt);
+			node->quan_ch = protected_atoi(entities[8], rt);
+			if (node->quan_ch < 1 || node->quan_ch > MAX_CHECKER_QUAN)
+				generic_errors_handler(NUMBER_FORMAT_ERR_MSG, NUM_ERR, rt);
+		}
+		else
+			generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
+	}
+}
 
 static t_bool	init_cone_params_util(char *entities[ARGS_MAX],
 	char *r[ARGS_MAX], char *n[ARGS_MAX], char *rgb[ARGS_MAX])
@@ -55,6 +82,7 @@ static void	init_cone_params(t_cone *node, char *entities[ARGS_MAX],
 	node->rgb.g = protected_atoi(rgb[1], rt);
 	node->rgb.b = protected_atoi(rgb[2], rt);
 	rgb_check(node->rgb.r, node->rgb.g, node->rgb.b, rt);
+	init_cone_checker(node, rt, entities);
 }
 
 static t_cone	*new_cone_node(char *entities[ARGS_MAX], t_minirt *rt)
@@ -77,12 +105,14 @@ void	init_co(char *entities[ARGS_MAX], t_minirt *rt)
 {
 	t_cone  *curr;
 
-	if (!rt->prs->cone && ft_arrlen((void **)entities) == CO_PARAMS)
+	if (!rt->prs->cone && (ft_arrlen((void **)entities) == CO_PARAMS
+		|| ft_arrlen((void **)entities) == CO_PARAMS_CH))
 	{
 		rt->prs->cone = new_cone_node(entities, rt);
 		rt->prs->cone->next = NULL;
 	}
-	else if (rt->prs->cone && ft_arrlen((void **)entities) == CO_PARAMS)
+	else if (rt->prs->cone && (ft_arrlen((void **)entities) == CO_PARAMS
+		|| ft_arrlen((void **)entities) == CO_PARAMS_CH))
 	{
 		curr = rt->prs->cone;
 		while (curr->next)

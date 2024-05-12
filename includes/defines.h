@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 00:08:42 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:06:36 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ enum	e_exit_codes
 enum	e_num_params
 {
 	VP_PARAMS = 3,
-	VP_PARAMS_OPT = 4,
 	AL_PARAMS = 3,
 	C_PARAMS = 4,
 	L_PARAMS = 4,
@@ -72,6 +71,15 @@ enum	e_num_params
 	PL_PARAMS = 4,
 	CY_PARAMS = 6,
 	CO_PARAMS = 6,
+};
+
+enum	e_num_params_opt
+{
+	VP_PARAMS_OPT = 4,
+	SP_PARAMS_CH = 7,
+	PL_PARAMS_CH = 7,
+	CY_PARAMS_CH = 9,
+	CO_PARAMS_CH = 9,
 };
 
 enum	e_gnl_error_codes
@@ -88,7 +96,7 @@ enum	e_angles
 	BETA,
 };
 
-#define DEBUG_MOD 1
+# define DEBUG_MOD 1
 
 # define RED "\x1B[31m"
 # define ORANGE "\e[38;5;208m"
@@ -102,6 +110,7 @@ enum	e_angles
 # define VP_SIZE_MIN 100
 # define VP_WIDTH_DEFAULT 1000
 # define VP_HEIGHT_DEFAULT 800
+# define MAX_CHECKER_QUAN 999
 # define ELEM_SIZE_MAX 999999.999999
 # define COORD_MAX 999999.999999
 # define COORD_MIN -999999.999999
@@ -110,7 +119,6 @@ enum	e_angles
 # define TAN tan
 # define POW pow
 # define SQRT sqrt
-
 
 # define MLXWIDTH 700
 # define MLXHEIGHT 500

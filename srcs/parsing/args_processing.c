@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:16:00 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 01:05:41 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 13:27:45 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_bool	process_args_w_commas(char *line, char *entities[ARGS_MAX], int count)
 
 	comma_count = 0;
 	entities[count++] = line;
-	while (*line != NULL_TERM && count < ARGS_MAX)
+	while (*line != NULL_TERM && count < ARGS_MAX - 1)
 	{
 		line = ft_strchr(line, COMMA);
 		if (line == NULL)
@@ -40,7 +40,7 @@ t_bool	process_args_w_commas(char *line, char *entities[ARGS_MAX], int count)
 
 void	process_args_w_sp_ht(char *line, char *entities[ARGS_MAX], int count)
 {
-	while (*line != NULL_TERM && count < ARGS_MAX)
+	while (*line != NULL_TERM && count < ARGS_MAX - 1)
 	{
 		while (*line == SPACE || *line == HT)
 			line++;

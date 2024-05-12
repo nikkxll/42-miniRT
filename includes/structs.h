@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 00:27:06 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 13:13:46 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,48 +65,60 @@ typedef struct s_light
 	int				type;
 	t_vec3d			r;
 	t_rgb3			rgb;
-	struct s_light	*next;
 	t_num			brt;
+	struct s_light	*next;
 }	t_light;
 
 typedef struct s_sphere
 {
 	int				type;
+	int				opt;
 	t_vec3d			r;
 	t_rgb3			rgb;
-	struct s_sphere	*next;
+	t_rgb3			rgb_ch;
+	int				quan_ch;
 	t_num			d;
+	struct s_sphere	*next;
 }	t_sphere;
 
 typedef struct s_plane
 {
 	int					type;
+	int					opt;
 	t_vec3d				r;
 	t_vec3d				n;
 	t_rgb3				rgb;
+	t_rgb3				rgb_ch;
+	t_num				size_ch;
 	struct s_plane		*next;
 }	t_plane;
 
 typedef struct s_cylinder
 {
 	int					type;
+	int					opt;
 	t_vec3d				r;
 	t_vec3d				n;
-	t_rgb3				rgb;
-	struct s_cylinder	*next;
 	t_num				d;
 	t_num				h;
+	t_rgb3				rgb;
+	t_rgb3				rgb_ch;
+	int					quan_ch;
+	struct s_cylinder	*next;
 }	t_cylinder;
 
 typedef struct s_cone
 {
 	int					type;
+	int					opt;
 	t_vec3d				r;
 	t_vec3d				n;
-	t_rgb3				rgb;
-	struct s_cone		*next;
 	t_num				d;
 	t_num				h;
+	t_rgb3				rgb;
+	t_rgb3				rgb_ch;
+	int					quan_ch;
+	struct s_cone		*next;
 }	t_cone;
 
 typedef struct s_parse
