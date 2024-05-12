@@ -146,6 +146,7 @@ int	make_picture(t_minirt *rt)
 	// calc color of object in each pixel for bump and checkboard
 	ft_printf("Setting orientation vectors\n");
 	make_norm_vec(rt);
+	set_checkboard(rt);
 	ft_printf("Setting MLX\n");
 	rt->mlx = mlx_init(rt->prs->screen->width, rt->prs->screen->height,
 			"MLX42", true);
