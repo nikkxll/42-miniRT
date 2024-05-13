@@ -115,11 +115,14 @@ void	hit_planes(t_minirt *rt, size_t pixel);
 t_hit_data	touch_planes(t_minirt *rt, t_hit_data *data, t_vec3d l);
 
 //hit_cylin.c
+int	is_epsilon(t_num a);
 void hit_cylinder(t_minirt *rt, size_t pixel);
 t_hit_data	touch_cylinder(t_minirt *rt, t_hit_data *data, t_vec3d l);
 t_num	dist_to_cylin(t_vec3d v0, t_vec3d v1, t_cylinder *obj, t_dist_cc *p);
 
 //antialiasing.c
 t_vec3d	antialiasing(t_minirt *rt, int pos);
+
+void	set_checkboard(t_minirt *rt);
 
 #endif

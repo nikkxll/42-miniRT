@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 18:23:37 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:45:11 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ int	make_picture(t_minirt *rt)
 	// calc color of object in each pixel for bump and checkboard
 	ft_printf(LOG_MSG_7);
 	make_norm_vec(rt);
+	set_checkboard(rt);
 	ft_printf(LOG_MSG_8);
 	rt->mlx = mlx_init(rt->prs->screen->width, rt->prs->screen->height,
 			"miniRT", true);

@@ -2,6 +2,21 @@
 R 1000 800
 # Ambient Light
 # <intensity: 0-1> <color: red, green, blue>
+<<<<<<< HEAD
+A                      0.1        255,255,255
+
+# Camera
+# <coordinates of camera position: x,y,z> <camera view: x,y,z> <pov:x,y,z>
+C   0,10,0         0,1,1   60
+
+# Light
+# <coordinates: x,y,z> <brightness: 0-1> <color:red,green,blue>
+l   0,10,15               0.3           255,0,255
+l   0,10,10                0.3         	255,0,0
+l   0,10,5               0.3           0,255,255
+l   -5,10,10              0.3           0,0,255
+l   5,10,10               0.3           255,255,0
+=======
 A                      0.7        255,255,255
 
 # Camera
@@ -15,6 +30,7 @@ l  100,2,10               0.7         	255,0,0
 l   0,100,10              0.7           0,255,255
 l   0,100,100            0.7           0,0,255
 l  0,0,100              0.7           255,255,0
+>>>>>>> e6d8aa1d20be6cff0770d9777c11bdf5abd5c8f0
 
 # Sphere
 # <coordinates: x,y,z> <diameter> <color:red,green,blue>
