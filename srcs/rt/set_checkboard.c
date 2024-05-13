@@ -1,3 +1,4 @@
+
 #include "../../includes/minirt.h"
 
 t_rgb3	checkboard_fun(t_num x, t_num y, t_rgb3 c1, t_rgb3 c2)
