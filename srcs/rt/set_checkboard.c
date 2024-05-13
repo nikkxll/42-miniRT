@@ -28,8 +28,8 @@ void	set_chess_plane(t_hit_data *data)
 		ab[0] = cross((t_vec3d){1, 0, 0}, pl->n);
 		ab[1] = cross((t_vec3d){0, 1, 0}, pl->n);
 	}
-	xy[0] = dot(ab[0], m) * pl->size_ch;
-	xy[1] = dot(ab[1], m) * pl->size_ch;
+	xy[0] = dot(ab[0], m) / pl->size_ch;
+	xy[1] = dot(ab[1], m) / pl->size_ch;
 	data->rgb = checkboard_fun(xy[0], xy[1], data->rgb, pl->rgb_ch);
 }
 
@@ -57,7 +57,7 @@ void	set_chess_cyliner(t_hit_data *data)
 
 	cy = (t_cylinder *)data->obj;
 	rr = vec_sub(data->v, cy->r);
-	z = (dot(rr, cy->n) + cy->h / 2) / cy->quan_ch;
+	z = cy->quan_ch * (dot(rr, cy->n) + cy->h / 2) / cy->h;
 	if (cy->type == CYLINDER)
 		rr = data->n;
 	else if (cy->type == CONE)
@@ -73,7 +73,7 @@ void	set_chess_cyliner(t_hit_data *data)
 	alpha = acos(vec_cos(rr, axis));
 	if (dot(cross(rr, axis), cy->n) < 0)
 		alpha = 2 * PI - alpha;
-	data->rgb = checkboard_fun(cy->quan_ch * alpha, z, data->rgb, cy->rgb_ch);
+	data->rgb = checkboard_fun(cy->quan_ch * alpha / 2 / PI, z, data->rgb, cy->rgb_ch);
 }
 
 void	set_checkboard(t_minirt *rt)
