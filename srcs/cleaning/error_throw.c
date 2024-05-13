@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:23:27 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 19:34:29 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:49:52 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	show_number_ranges(void)
 	ft_putstr_fd(CONFIG_MSG_10, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_21, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_22, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_24, STDERR_FILENO);
 }
 
 static void	show_valid_config(void)
@@ -36,7 +37,9 @@ static void	show_valid_config(void)
 	ft_putstr_fd(CONFIG_MSG_14, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_15, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_16, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_20, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_17, STDERR_FILENO);
+	ft_putstr_fd(CONFIG_MSG_20, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_18, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_20, STDERR_FILENO);
 	ft_putstr_fd(CONFIG_MSG_19, STDERR_FILENO);

@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 18:11:13 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:50:33 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,14 +208,15 @@ enum	e_angles
 # define CONFIG_MSG_12 "A   ratio   r,g,b       [blur]\n"
 # define CONFIG_MSG_13 "C   x,y,z   x_n,y_n,x_n  FOV\n"
 # define CONFIG_MSG_14 "L   x,y,z   ratio        r,g,b (one light)\n"
-# define CONFIG_MSG_15 "l   x,y,z   ratio        r,g,b (multiple)\n"
-# define CONFIG_MSG_16 "sp  x,y,z   d            r,g,b [checker] [r,g,b] [q]\n"
-# define CONFIG_MSG_17 "pl  x,y,z   x_n,y_n,x_n  r,g,b [checker] [r,g,b] [s]\n"
-# define CONFIG_MSG_18 "cy  x,y,z   x_n,y_n,x_n  d      h         r,g,b  "
-# define CONFIG_MSG_19 "co  x,y,z   x_n,y_n,x_n  d      h         r,g,b  "
-# define CONFIG_MSG_20 "[checker] [r,g,b] [q]\n"
+# define CONFIG_MSG_15 "l   x,y,z   ratio        r,g,b (one or multiple)\n"
+# define CONFIG_MSG_16 "sp  x,y,z   d            r,g,b  "
+# define CONFIG_MSG_17 "pl  x,y,z   x_n,y_n,x_n  r,g,b  "
+# define CONFIG_MSG_18 "cy  x,y,z   x_n,y_n,x_n  d   h   r,g,b  "
+# define CONFIG_MSG_19 "co  x,y,z   x_n,y_n,x_n  d   h   r,g,b  "
+# define CONFIG_MSG_20 "[checker or bump]\n"
 # define CONFIG_MSG_21 "q is in range             (0, 1000)\n"
 # define CONFIG_MSG_22 "s is in range             (0, 1000000)\n\n"
 # define CONFIG_MSG_23 "R   width   height       a\n\n"
+# define CONFIG_MSG_24 "Use template.rt file as a reference layout\n"
 
 #endif
