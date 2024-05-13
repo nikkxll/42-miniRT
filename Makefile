@@ -23,7 +23,7 @@ CLEANING		:=	$(addprefix $(CLEANING_PATH), $(CLEANING_NAME))
 
 # RT
 RT_NAME			:=	hit_plane.c hit_sphere.c hit_cylin.c viewport.c transform_scene.c make_norm_vec.c \
-					lighting.c color.c antialiasing.c set_checkboard.c
+					lighting.c color.c antialiasing.c set_texture.c
 RT_PATH			:=	rt/
 RT				:=	$(addprefix $(RT_PATH), $(RT_NAME))
 

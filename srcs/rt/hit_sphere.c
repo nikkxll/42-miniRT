@@ -2,7 +2,7 @@
 
 t_num	dist_to_sphere_from(t_sphere *sp, t_vec3d v0, t_vec3d v)
 {
-	t_vec3d r;
+	t_vec3d	r;
 	t_num	denom;
 	t_num	prod;
 	t_num	t[2];
@@ -32,29 +32,6 @@ t_num	dist_to_sphere(t_sphere *sp, t_vec3d v)
 	return (t);
 }
 
-/*
-t_num	dist_to_sphere(t_sphere *sp, t_vec3d v)
-{
-	t_num	denom;
-	t_num	prod;
-	t_num	t[2];
-
-	prod = dot(v, sp->r);
-	denom = prod * prod - dot2(sp->r) + POW(sp->d, 2) / 4;
-	if (denom < 0) // EPSILON)
-		return (-1);
-	t[0] = SQRT(denom);
-	t[1] = (-1) * t[0];
-	t[0] += prod;
-	t[1] += prod;
-	if (t[1] > 0) //EPSILON)
-		return (t[1]);
-	if (t[0] > 0) //EPSILON)
-		return (t[0]);
-	return (0);
-}
-*/
-
 void	hit_spheres(t_minirt *rt, size_t pixel)
 {
 	t_num		t;
@@ -70,8 +47,8 @@ void	hit_spheres(t_minirt *rt, size_t pixel)
 		{
 			data->dist = t;
 			data->obj = (t_obj *)s;
-			data->type = SPHERE; // this is for convinience . type also is inside the obj
-			data->rgb = s->rgb; // this probably temporal 
+			data->type = SPHERE;
+			data->rgb = s->rgb;
 		}
 		s = s->next;
 	}
@@ -97,13 +74,7 @@ t_hit_data	touch_spheres(t_minirt *rt, t_hit_data *data, t_vec3d l)
 			ret.dist = t;
 			ret.obj = (t_obj *)s;
 			ret.type = SPHERE;
-			ret.rgb = s->rgb; 
-		/*	if (t < vec_norm(data->ll))
-			{
-			//	printf("t=%lf, light distance =%lf\n", t, vec_norm(data->ll));
-				break;
-			}
-		*/
+			ret.rgb = s->rgb;
 		}
 		s = s->next;
 	}

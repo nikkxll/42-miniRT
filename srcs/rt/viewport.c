@@ -9,7 +9,7 @@ void	hit_scene(t_minirt *rt)
 	{
 		hit_spheres(rt, pixel);
 		hit_planes(rt, pixel);
-		hit_cylinder(rt, pixel); // change name to hit_cylinder_cone
+		hit_cylinder_cone(rt, pixel);
 		pixel++;
 	}
 }

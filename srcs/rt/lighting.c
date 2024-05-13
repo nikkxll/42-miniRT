@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 18:54:26 by apimikov          #+#    #+#             */
-/*   Updated: 2024/05/11 18:54:30 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:36:43 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void add_light_reflected_obj(t_minirt *rt, t_hit_data *data)
 	t_vec3d	c;
 
 	c = touch_spheres(rt, data, data->r).color;
-	c = vec_scale(COEF_REFLECT * 10000, c);
+	c = vec_scale(COEF_REFLECT * 1, c);
 	data->color = vec_add(data->color, c);
 }
 */
@@ -37,7 +37,7 @@ int	is_light_visible(t_minirt *rt, t_hit_data *data)
 	data->obst = -1;
 	touch_spheres(rt, data, data->l);
 	touch_planes(rt, data, data->l);
-	touch_cylinder(rt, data, data->l);
+	touch_cylinder_cone(rt, data, data->l);
 	if (data->obst > EPSILON && data->obst + EPSILON < vec_norm(data->ll))
 		return (0);
 	return (1);

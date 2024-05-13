@@ -1,5 +1,4 @@
 #include "../../includes/minirt.h"
-#include <math.h>
 
 int	is_epsilon(t_num	a)
 {
@@ -57,8 +56,8 @@ t_num	dist_to_cylin(t_vec3d v0, t_vec3d v1, t_cylinder *obj, t_dist_cc *v)
 	t_vec3d		t;
 
 	init_dist_cylin(v, v0, v1, obj);
-	t = solve_equation(1 - v->k1 * v->vn *v->vn, \
-		-2 * (v->cv - v->k1 * v->vn *v->cn), \
+	t = solve_equation(1 - v->k1 * v->vn * v->vn, \
+		-2 * (v->cv - v->k1 * v->vn * v->cn), \
 		v->c2 - v->k1 * v->cn * v->cn - v->k2);
 	if ((t.x == 1 || t.x == 2) && t.y >= EPSILON && is_cylin_h(v, t.y, obj->h))
 		return (t.y);
@@ -67,7 +66,7 @@ t_num	dist_to_cylin(t_vec3d v0, t_vec3d v1, t_cylinder *obj, t_dist_cc *v)
 	return (-1);
 }
 
-void	hit_cylinder(t_minirt *rt, size_t pixel)
+void	hit_cylinder_cone(t_minirt *rt, size_t pixel)
 {
 	t_num		t;
 	t_cylinder	*s;
@@ -96,7 +95,16 @@ void	hit_cylinder(t_minirt *rt, size_t pixel)
 	}
 }
 
-t_hit_data	touch_cylinder(t_minirt *rt, t_hit_data *data, t_vec3d l)
+void	set_dat_cy_co(t_hit_data *ret, t_cylinder *s, t_num t, t_dist_cc *p)
+{
+	ret->dist = t;
+	ret->obj = (t_obj *)s;
+	ret->type = s->type;
+	ret->rgb = s->rgb;
+	ret->precalc = *p;
+}
+
+t_hit_data	touch_cylinder_cone(t_minirt *rt, t_hit_data *data, t_vec3d l)
 {
 	t_hit_data	ret;
 	t_num		t;
@@ -113,20 +121,7 @@ t_hit_data	touch_cylinder(t_minirt *rt, t_hit_data *data, t_vec3d l)
 		copy = *s;
 		t = dist_to_cylin(data->v, l, &copy, &precalc);
 		if (t > EPSILON && (data->obst == -1 || t < data->obst))
-		{
-			data->obst = t;
-			ret.dist = t;
-			ret.obj = (t_obj *)s;
-			ret.type = s->type;
-			ret.rgb = s->rgb;
-			ret.precalc = precalc;
-		}
-		/*	if (t < vec_norm(data->ll))
-			{
-			//	printf("t=%lf, light distance =%lf\n", t, vec_norm(data->ll));
-				break;
-			}
-		*/
+			set_dat_cy_co(&ret, s, t, &precalc);
 		if (!s->next && s->type == CYLINDER)
 			s = (t_cylinder *)rt->prs->cone;
 		else

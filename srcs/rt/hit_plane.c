@@ -56,12 +56,9 @@ t_hit_data	touch_planes(t_minirt *rt, t_hit_data *data, t_vec3d l)
 			data->obst = t;
 			ret.obj = (t_obj *)p;
 			ret.type = PLANE;
-			ret.rgb = p->rgb; 
+			ret.rgb = p->rgb;
 			if (t < vec_norm(data->ll))
-			{
-			//	printf("t=%lf, light distance =%lf\n", t, vec_norm(data->ll));
-				break;
-			}
+				break ;
 		}
 		p = p->next;
 	}

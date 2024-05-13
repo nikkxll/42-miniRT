@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 19:11:52 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:21:30 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,19 +95,20 @@ void	hit_scene(t_minirt *rt);
 // make_norm_vec.c
 void	make_norm_vec(t_minirt *rt);
 
-// lighting.c
+// color.c
 int32_t	rgb_to_int(t_rgb3 rgb);
 t_vec3d	rgb_to_vec(t_rgb3 rgb);
 t_rgb3	vec_to_rgb(t_vec3d c);
-// color.c
-void lighting(t_minirt *rt, int pixel);
+
+// lighting.c
+void		lighting(t_minirt *rt, int pixel);
 
 // transform_scene.c
-void	transform_scene(t_minirt *rt);
+void		transform_scene(t_minirt *rt);
 
 // hit_sphere.c
-t_num	dist_to_sphere(t_sphere *sp, t_vec3d v);
-void	hit_spheres(t_minirt *rt, size_t pixel);
+t_num		dist_to_sphere(t_sphere *sp, t_vec3d v);
+void		hit_spheres(t_minirt *rt, size_t pixel);
 t_hit_data	touch_spheres(t_minirt *rt, t_hit_data *data, t_vec3d l);
 
 // hit_plane.c
@@ -115,14 +116,16 @@ void	hit_planes(t_minirt *rt, size_t pixel);
 t_hit_data	touch_planes(t_minirt *rt, t_hit_data *data, t_vec3d l);
 
 //hit_cylin.c
-int	is_epsilon(t_num a);
-void hit_cylinder(t_minirt *rt, size_t pixel);
-t_hit_data	touch_cylinder(t_minirt *rt, t_hit_data *data, t_vec3d l);
-t_num	dist_to_cylin(t_vec3d v0, t_vec3d v1, t_cylinder *obj, t_dist_cc *p);
+int			is_epsilon(t_num a);
+void		hit_cylinder_cone(t_minirt *rt, size_t pixel);
+t_hit_data	touch_cylinder_cone(t_minirt *rt, t_hit_data *data, t_vec3d l);
+t_num		dist_to_cylin(t_vec3d v0, t_vec3d v1, \
+	t_cylinder *obj, t_dist_cc *p);
 
 //antialiasing.c
-t_vec3d	antialiasing(t_minirt *rt, int pos);
+t_vec3d		antialiasing(t_minirt *rt, int pos);
 
-void	set_checkboard(t_minirt *rt);
+// set_texture.c
+void		set_checkerboard_texture(t_minirt *rt);
 
 #endif
