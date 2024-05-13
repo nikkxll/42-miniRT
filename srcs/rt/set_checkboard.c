@@ -28,9 +28,9 @@ void	set_chess_plane(t_hit_data *data)
 		ab[0] = cross((t_vec3d){1, 0, 0}, pl->n);
 		ab[1] = cross((t_vec3d){0, 1, 0}, pl->n);
 	}
-	xy[0] = dot(ab[0], m);
-	xy[1] = dot(ab[1], m);
-	data->rgb = checkboard_fun(xy[0], xy[1], data->rgb, (t_rgb3){0,0,0});
+	xy[0] = dot(ab[0], m) / pl->size_ch;
+	xy[1] = dot(ab[1], m) / pl->size_ch;
+	data->rgb = checkboard_fun(xy[0], xy[1], data->rgb, pl->rgb_ch);
 }
 
 void	set_chess_sphere(t_hit_data *data)
@@ -42,9 +42,9 @@ void	set_chess_sphere(t_hit_data *data)
 
 	sp = (t_sphere *)data->obj;
 	m = vec_unit(vec_sub(data->v, sp->r));
-	theta = acos(m.y) / PI;
-	alpha = acos(m.x / sqrt(1 - m.y * m.y)) / PI;
-	data->rgb = checkboard_fun(10 * alpha, 10 * theta, data->rgb, (t_rgb3){0,0,0});
+	theta = sp->quan_ch * acos(m.y) / PI;
+	alpha = sp->quan_ch * acos(m.x / sqrt(1 - m.y * m.y)) / PI;
+	data->rgb = checkboard_fun(alpha, theta, data->rgb, sp->rgb_ch);
 }
 
 void	set_chess_cyliner(t_hit_data *data)
@@ -57,7 +57,7 @@ void	set_chess_cyliner(t_hit_data *data)
 
 	cy = (t_cylinder *)data->obj;
 	rr = vec_sub(data->v, cy->r);
-	z = (dot(rr, cy->n) + cy->h / 2) / cy->h;
+	z = cy->quan_ch * (dot(rr, cy->n) + cy->h / 2) / cy->h;
 	if (cy->type == CYLINDER)
 		rr = data->n;
 	else if (cy->type == CONE)
@@ -70,11 +70,10 @@ void	set_chess_cyliner(t_hit_data *data)
 		axis = cross(cy->n, (t_vec3d){0, 0, 1});
 	else
 		axis = vec_unit(cross(cy->n, (t_vec3d){1, 0, 0}));
-	//vec_print("axis=",axis);
 	alpha = acos(vec_cos(rr, axis));
 	if (dot(cross(rr, axis), cy->n) < 0)
 		alpha = 2 * PI - alpha;
-	data->rgb = checkboard_fun(10 * alpha / 2 / PI, 10 * z, data->rgb, (t_rgb3){0,0,0});
+	data->rgb = checkboard_fun(cy->quan_ch * alpha / 2 / PI, z, data->rgb, cy->rgb_ch);
 }
 
 void	set_checkboard(t_minirt *rt)
@@ -87,7 +86,7 @@ void	set_checkboard(t_minirt *rt)
 	while (++i < rt->vp.size)
 	{
 		data = &(rt->vp.hit[i]);
-		if (data->type == TYPE_OBJ_NONE)
+		if (data->type == TYPE_OBJ_NONE || data->obj->opt == 0)
 			continue ;
 		if (data->type == PLANE)
 			set_chess_plane(data);
