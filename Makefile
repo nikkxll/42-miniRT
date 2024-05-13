@@ -11,7 +11,7 @@ PARSING_NAME	:=	parsing.c minirt_atof.c args_processing.c minirt_atoi.c range_ch
 PARSING_PATH	:=	parsing/
 PARSING_I_NAME	:=	init_ambient_light.c init_camera.c init_light.c init_sphere.c init_plane.c \
 					init_cylinder.c init_element.c init_struct.c init_screen.c init_cone.c \
-					init_checkerboard.c
+					init_checkerboard.c init_bump.c
 PARSING_I_PATH	:=	parsing/inits/
 PARSING			:=	$(addprefix $(PARSING_PATH), $(PARSING_NAME)) \
 					$(addprefix $(PARSING_I_PATH), $(PARSING_I_NAME))
@@ -23,7 +23,7 @@ CLEANING		:=	$(addprefix $(CLEANING_PATH), $(CLEANING_NAME))
 
 # RT
 RT_NAME			:=	hit_plane.c hit_sphere.c hit_cylin.c viewport.c transform_scene.c make_norm_vec.c \
-					lighting.c color.c antialiasing.c set_texture.c
+					lighting.c color.c blur.c set_texture.c set_bump.c
 RT_PATH			:=	rt/
 RT				:=	$(addprefix $(RT_PATH), $(RT_NAME))
 
@@ -63,7 +63,7 @@ HEAD_DIR	= -I./includes -I$(LIBMLX)/include  -I./libft
 
 # MLX FOR SCHOOL COMPUTERS 
 #LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
-#					-lglfw -framework OpenGL -framework AppKit
+					-lglfw -framework OpenGL -framework AppKit
 
 
 # MLX FOR MacOS (M1 and later)
@@ -72,7 +72,7 @@ HEAD_DIR	= -I./includes -I$(LIBMLX)/include  -I./libft
 
 #GLFW_DIR = ~/.brew/opt/glfw/lib
  GLFW_DIR = /Users/apimikov/.brew/opt/glfw/lib
- LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
+LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
 
 # LOADING PROGRESS BAR INIT
 TOTAL_OBJS		:=	$(words $(OBJS))
@@ -103,6 +103,8 @@ $(LIBFT): $(LIBFT_SOURSES)
 
 $(MLX):
 	@echo "$(CYAN)\nMLX compilation started\n$(EC)"
+	@git submodule init
+	@git submodule update
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 	@echo "$(CYAN)\nMLX compilation completed$(EC)"
 	@echo "$(GREEN)Library 'libmlx42.a' created successfully$(EC)"
@@ -110,7 +112,7 @@ $(MLX):
 clean:
 	@$(MAKE) clean -C $(LIBFT_PATH)
 	@rm -rf $(OBJS_PATH)
-	@rm -rf $(LIBMLX)/build
+	@rm -rf $(LIBMLX)/build	
 	@echo "$(RED)Object files successfully removed!$(EC)"
 
 fclean: clean

@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 19:35:51 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:50:33 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ enum	e_exit_codes
 	MLX_ERR = 300,
 	MLX_IMG_ERR = 301,
 	MLX_IMG_W_ERR = 302,
+	MLX_TXR_ERR = 303,
 	DEF_ERR = 999,
 };
 
@@ -73,13 +74,21 @@ enum	e_num_params
 	CO_PARAMS = 6,
 };
 
-enum	e_num_params_opt
+enum	e_num_params_ch
 {
 	VP_PARAMS_OPT = 4,
 	SP_PARAMS_CH = 7,
 	PL_PARAMS_CH = 7,
 	CY_PARAMS_CH = 9,
 	CO_PARAMS_CH = 9,
+};
+
+enum	e_num_params_bump
+{
+	SP_PARAMS_BP = 6,
+	PL_PARAMS_BP = 6,
+	CY_PARAMS_BP = 8,
+	CO_PARAMS_BP = 8,
 };
 
 enum	e_checker
@@ -89,7 +98,7 @@ enum	e_checker
 	BUMP,
 };
 
-enum	e_antialiasing
+enum	e_blur
 {
 	ON,
 	OFF,
@@ -155,8 +164,8 @@ enum	e_angles
 # define PRS_LOG_MSG_6 "-- Cone element initialized successfully\n"
 # define PRS_LOG_MSG_7 "-- Light element initialized successfully\n"
 # define PRS_LOG_MSG_8 "-- Viewport initialized successfully\n"
-# define PRS_LOG_MSG_9 "-- Antialiasing disabled\n"
-# define PRS_LOG_MSG_10 "-- Antialiasing enabled\n"
+# define PRS_LOG_MSG_9 "-- Blur effect disabled\n"
+# define PRS_LOG_MSG_10 "-- Blur effect enabled\n"
 
 # define LOG_MSG_1 "-- Parsing input file '%s'\n"
 # define LOG_MSG_2 "-- Parsing finished successfully\n"
@@ -183,6 +192,7 @@ enum	e_angles
 # define MLX_ERR_MSG "Failed to initiate MLX entity\n"
 # define MLX_IMG_ERR_MSG "Failed to create MLX image\n"
 # define MLX_IMG_W_ERR_MSG "Failed to put MLX image to window\n"
+# define MLX_TXR_ERR_MSG "Failed to load .png and put it into MLX texture\n"
 
 # define CONFIG_MSG_1 "Example of the valid number ranges:\n\n"
 # define CONFIG_MSG_2 "ratio is in range         (0.0, 1.0)\n"
@@ -195,17 +205,18 @@ enum	e_angles
 # define CONFIG_MSG_9 "R width is in range       (100, 2000)\n"
 # define CONFIG_MSG_10 "R height is in range      (100, 2000)\n"
 # define CONFIG_MSG_11 "\nExample of the valid .rt file format:\n\n"
-# define CONFIG_MSG_12 "A   ratio   r,g,b        [antialiasing]\n"
+# define CONFIG_MSG_12 "A   ratio   r,g,b       [blur]\n"
 # define CONFIG_MSG_13 "C   x,y,z   x_n,y_n,x_n  FOV\n"
 # define CONFIG_MSG_14 "L   x,y,z   ratio        r,g,b (one light)\n"
-# define CONFIG_MSG_15 "l   x,y,z   ratio        r,g,b (multiple)\n"
-# define CONFIG_MSG_16 "sp  x,y,z   d            r,g,b [checker] [r,g,b] [q]\n"
-# define CONFIG_MSG_17 "pl  x,y,z   x_n,y_n,x_n  r,g,b [checker] [r,g,b] [s]\n"
-# define CONFIG_MSG_18 "cy  x,y,z   x_n,y_n,x_n  d      h         r,g,b  "
-# define CONFIG_MSG_19 "co  x,y,z   x_n,y_n,x_n  d      h         r,g,b  "
-# define CONFIG_MSG_20 "[checker] [r,g,b] [q]\n"
+# define CONFIG_MSG_15 "l   x,y,z   ratio        r,g,b (one or multiple)\n"
+# define CONFIG_MSG_16 "sp  x,y,z   d            r,g,b  "
+# define CONFIG_MSG_17 "pl  x,y,z   x_n,y_n,x_n  r,g,b  "
+# define CONFIG_MSG_18 "cy  x,y,z   x_n,y_n,x_n  d   h   r,g,b  "
+# define CONFIG_MSG_19 "co  x,y,z   x_n,y_n,x_n  d   h   r,g,b  "
+# define CONFIG_MSG_20 "[checker or bump]\n"
 # define CONFIG_MSG_21 "q is in range             (0, 1000)\n"
 # define CONFIG_MSG_22 "s is in range             (0, 1000000)\n\n"
 # define CONFIG_MSG_23 "R   width   height       a\n\n"
+# define CONFIG_MSG_24 "Use template.rt file as a reference layout\n"
 
 #endif

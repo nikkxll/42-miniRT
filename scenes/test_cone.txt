@@ -1,5 +1,5 @@
 # Camera's position and direction 03
-R 1000 800 antialiasing
+R 1000 800 blur
 # Ambient Light
 # <intensity: 0-1> <color: red, green, blue>
 A                            0.2         255,255,255

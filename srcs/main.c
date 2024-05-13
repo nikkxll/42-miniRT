@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 15:09:05 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:09:48 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ void	print_picture(t_minirt *rt)
 		i = -1;
 		while (++i < rt->vp.n_x)
 		{
-			if (rt->prs->screen->antialiasing == ON)
-				color = rgb_to_int(vec_to_rgb(antialiasing(rt, j * rt->vp.n_x + i)));
+			if (rt->prs->screen->blur == ON)
+				color = rgb_to_int(vec_to_rgb(blur(rt, j * rt->vp.n_x + i)));
 			else
 				color = rgb_to_int(vec_to_rgb(rt->vp.hit[j * rt->vp.n_x + i].color));
 			mlx_put_pixel(rt->image, i, j, color);
@@ -179,6 +179,16 @@ int	main(int ac, char **av)
 	init_struct(&rt);
 	parser(av, rt);
 	// print_ll(rt);
+	// unsigned int i = -1;
+	// unsigned int j = -1;
+	// while (++j < rt->prs->sphere->txr->height / 2)
+	// {
+	// 	i = -1;
+	// 	while (++i < rt->prs->sphere->txr->width / 2)
+	// 	{
+	// 		vec_print("color ",vec_scale(255,rgb_to_vec(get_bump_pixel(rt->prs->sphere->txr, i, j))));
+	// 	}
+	// }	
 	make_picture(rt);
 	cleaner(rt);
 	return (SUCCESS);

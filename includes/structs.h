@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 14:30:32 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:06:27 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_screen
 	int	type;
 	int	width;
 	int	height;
-	int	antialiasing;
+	int	blur;
 }	t_screen;
 
 typedef struct s_am_light
@@ -80,6 +80,7 @@ typedef struct s_sphere
 	t_num			d;
 	t_rgb3			rgb_ch;
 	int				quan_ch;
+	mlx_texture_t	*txr;
 }	t_sphere;
 
 typedef struct s_plane
@@ -92,6 +93,7 @@ typedef struct s_plane
 	struct s_plane		*next;
 	t_rgb3				rgb_ch;
 	t_num				size_ch;
+	mlx_texture_t		*txr;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -106,6 +108,7 @@ typedef struct s_cylinder
 	t_num				h;
 	t_rgb3				rgb_ch;
 	int					quan_ch;
+	mlx_texture_t		*txr;
 }	t_cylinder;
 
 typedef struct s_cone
@@ -120,6 +123,7 @@ typedef struct s_cone
 	t_num				h;
 	t_rgb3				rgb_ch;
 	int					quan_ch;
+	mlx_texture_t		*txr;
 }	t_cone;
 
 typedef struct s_parse
@@ -181,7 +185,6 @@ typedef struct s_minirt
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 	t_viewport	vp;
-	//t_sphere	sphere;  // this is temporal
 }	t_minirt;
 
 #endif
