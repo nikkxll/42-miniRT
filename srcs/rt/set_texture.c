@@ -14,8 +14,8 @@ t_rgb3	texture_selector(t_hit_data *data, t_rgb3 c2)
 	if (data->obj->opt == 2 && txr)
 	{
 		printf("bump x=%lf, y=%lf\n", x, y);
-		x *= (t_num)txr->width / 2;
-		y *= (t_num)txr->height / 2;
+		x *= (t_num)txr->width * 2; // / 2;
+		y *= (t_num)txr->height * 2; // / 2;
 		printf("bump x=%d, y=%d\n", (int)x, (int)y);
 		return (get_bump_pixel(txr, (int)x, (int)y));
 	}

@@ -25,7 +25,7 @@ sp  3,2,5             2           0,255,0 bump textures/bones.png
 pl  0,-2,10            0,1,0              0,0,250  bump textures/bones.png
 #checker 250,0,0 1
 #pl  0,10,0            0,1,0              0,250,0
-pl  0,0,10            0,0,-1              250,0,0 bump textures/bones.png
+pl  0,0,1          0,0,-1              250,0,0 bump textures/bones.png
 
 # Cylinder
 # <coordinates: x,y,z>  <orientation: x,y,z> <diameter: >= 0> <height: >= 0> <color:red,green,blue>
