@@ -1,5 +1,5 @@
 # Camera's position and direction 03
-R 1000 800
+R 1000 800 blur
 # Ambient Light
 # <intensity: 0-1> <color: red, green, blue>
 A                      0.3        255,255,255
@@ -21,7 +21,7 @@ l   0,10,0            0.5         	255,255,255
 #sp  0,0,0              2           255,0,0
 #sp  0.2,1.7,3.7        1           0,0,255
 #sp  -3,0.5,5           1           255,255,0
-sp  3,2,5             2           0,255,0 checker 0,0,250 999
+sp  3,2,5             2           0,255,0 checker 0,0,250 998
 sp  3,-2,5             2           0,255,0 
 
 # Plane 

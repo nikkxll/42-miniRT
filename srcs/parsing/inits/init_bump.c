@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:39:55 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 16:30:32 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:59:40 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_cone_bump(t_cone *node, t_minirt *rt,
 			if (!node->txr)
 				generic_errors_handler(MLX_TXR_ERR_MSG, MLX_TXR_ERR, rt);
 		}
-		else
+		else if (ft_strcmp(entities[6], "checker") != 0)
 			generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
 	}
 }
@@ -41,7 +41,7 @@ void	init_cylinder_bump(t_cylinder *node, t_minirt *rt,
 			if (!node->txr)
 				generic_errors_handler(MLX_TXR_ERR_MSG, MLX_TXR_ERR, rt);
 		}
-		else
+		else if (ft_strcmp(entities[6], "checker") != 0)
 			generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
 	}
 }
@@ -58,7 +58,7 @@ void	init_plane_bump(t_plane *node, t_minirt *rt,
 			if (!node->txr)
 				generic_errors_handler(MLX_TXR_ERR_MSG, MLX_TXR_ERR, rt);
 		}
-		else
+		else if (ft_strcmp(entities[4], "checker") != 0)
 			generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
 	}
 }
@@ -75,7 +75,7 @@ void	init_sphere_bump(t_sphere *node, t_minirt *rt,
 			if (!node->txr)
 				generic_errors_handler(MLX_TXR_ERR_MSG, MLX_TXR_ERR, rt);
 		}
-		else
+		else if (ft_strcmp(entities[4], "checker") != 0)
 			generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
 	}
 }

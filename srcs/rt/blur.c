@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 21:09:25 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 16:53:45 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:03:31 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_vec3d	find_average(t_num square[9][3])
 	return (res_vec);
 }
 
-t_vec3d	antialiasing(t_minirt *rt, int pos)
+t_vec3d	blur(t_minirt *rt, int pos)
 {
 	t_num	square[9][3];
 	int		new_pos;
