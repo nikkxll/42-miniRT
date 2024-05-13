@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:09:18 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 11:17:24 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:00:55 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	init_sphere_params(t_sphere *node, char *entities[ARGS_MAX],
 		atoi_minirt(rgb[1], rt), atoi_minirt(rgb[2], rt)};
 	rgb_check(node->rgb.r, node->rgb.g, node->rgb.b, rt);
 	init_sphere_checker(node, rt, entities);
+	init_sphere_bump(node, rt, entities);
 }
 
 static t_sphere	*new_sphere_node(char *entities[ARGS_MAX], t_minirt *rt)
@@ -66,13 +67,15 @@ void	init_sp(char *entities[ARGS_MAX], t_minirt *rt)
 	t_sphere	*curr;
 
 	if (!rt->prs->sphere && (ft_arrlen((void **)entities) == SP_PARAMS
-			|| ft_arrlen((void **)entities) == SP_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == SP_PARAMS_CH
+			|| ft_arrlen((void **)entities) == SP_PARAMS_BP))
 	{
 		rt->prs->sphere = new_sphere_node(entities, rt);
 		rt->prs->sphere->next = NULL;
 	}
 	else if (rt->prs->sphere && (ft_arrlen((void **)entities) == SP_PARAMS
-			|| ft_arrlen((void **)entities) == SP_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == SP_PARAMS_CH
+			|| ft_arrlen((void **)entities) == SP_PARAMS_BP))
 	{
 		curr = rt->prs->sphere;
 		while (curr->next)

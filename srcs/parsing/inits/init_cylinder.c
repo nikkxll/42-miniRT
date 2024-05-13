@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:40:46 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 11:16:19 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:00:17 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	init_cylinder_params(t_cylinder *node, char *entities[ARGS_MAX],
 		atoi_minirt(rgb[1], rt), atoi_minirt(rgb[2], rt)};
 	rgb_check(node->rgb.r, node->rgb.g, node->rgb.b, rt);
 	init_cylinder_checker(node, rt, entities);
+	init_cylinder_bump(node, rt, entities);
 }
 
 static t_cylinder	*new_cylinder_node(char *entities[ARGS_MAX], t_minirt *rt)
@@ -76,13 +77,15 @@ void	init_cy(char *entities[ARGS_MAX], t_minirt *rt)
 	t_cylinder	*curr;
 
 	if (!rt->prs->cylinder && (ft_arrlen((void **)entities) == CY_PARAMS
-			|| ft_arrlen((void **)entities) == CY_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == CY_PARAMS_CH
+			|| ft_arrlen((void **)entities) == CY_PARAMS_BP))
 	{
 		rt->prs->cylinder = new_cylinder_node(entities, rt);
 		rt->prs->cylinder->next = NULL;
 	}
 	else if (rt->prs->cylinder && (ft_arrlen((void **)entities) == CY_PARAMS
-			|| ft_arrlen((void **)entities) == CY_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == CY_PARAMS_CH
+			|| ft_arrlen((void **)entities) == CY_PARAMS_BP))
 	{
 		curr = rt->prs->cylinder;
 		while (curr->next)

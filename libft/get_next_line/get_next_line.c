@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:39:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/04/27 11:59:56 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:31:59 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_string(char *s, int fd, ssize_t bytes, int	*status);
 
 char	*ft_get_line(char *str, int	*status);
 
-char	*dealloc(char *s, char *line);
+char	*dealloc(char *s, char *line, int *status);
 
 char	*get_next_line(int fd, int *status, char **string)
 {
@@ -40,7 +40,7 @@ char	*get_next_line(int fd, int *status, char **string)
 		*string = ft_free(*string);
 		return (NULL);
 	}
-	*string = dealloc(*string, line);
+	*string = dealloc(*string, line, status);
 	return (line);
 }
 
@@ -63,7 +63,7 @@ char	*get_string(char *s, int fd, ssize_t bytes, int	*status)
 				s = ft_free(s);
 			return (s);
 		}
-		s = add_to_string(s, buffer, bytes);
+		s = add_to_string(s, buffer, bytes, status);
 		if (s == NULL)
 			*status = 3;
 	}
@@ -91,7 +91,7 @@ char	*ft_get_line(char *str, int	*status)
 	return (line);
 }
 
-char	*dealloc(char *s, char *line)
+char	*dealloc(char *s, char *line, int *status)
 {
 	char	*new_s;
 	size_t	s_len;
@@ -109,7 +109,10 @@ char	*dealloc(char *s, char *line)
 		return (ft_free(s));
 	new_s = (char *)malloc(sizeof(char) * (n_len + 1));
 	if (!new_s)
+	{
+		*status = 1;
 		return (ft_free(s));
+	}
 	ft_strncpy(new_s, s + line_len, n_len);
 	new_s[n_len] = 0;
 	free(s);
