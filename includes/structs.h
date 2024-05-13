@@ -17,11 +17,6 @@
 
 typedef double	t_num;
 
-typedef struct s_obj
-{
-	int	type;
-	int	opt;
-}	t_obj;
 
 typedef struct s_rgb3
 {
@@ -36,6 +31,14 @@ typedef struct s_vec3d
 	t_num	y;
 	t_num	z;
 }	t_vec3d;
+
+typedef struct s_obj
+{
+	int	type;
+	t_vec3d			r;
+	int	opt;
+	mlx_texture_t	*txr;
+}	t_obj;
 
 typedef struct s_screen
 {
@@ -73,34 +76,35 @@ typedef struct s_light
 typedef struct s_sphere
 {
 	int				type;
-	int				opt;
 	t_vec3d			r;
+	int				opt;
+	mlx_texture_t	*txr;
 	t_rgb3			rgb;
 	struct s_sphere	*next;
 	t_num			d;
 	t_rgb3			rgb_ch;
 	int				quan_ch;
-	mlx_texture_t	*txr;
 }	t_sphere;
 
 typedef struct s_plane
 {
 	int					type;
-	int					opt;
 	t_vec3d				r;
+	int					opt;
+	mlx_texture_t		*txr;
 	t_vec3d				n;
 	t_rgb3				rgb;
 	struct s_plane		*next;
 	t_rgb3				rgb_ch;
 	t_num				size_ch;
-	mlx_texture_t		*txr;
 }	t_plane;
 
 typedef struct s_cylinder
 {
 	int					type;
-	int					opt;
 	t_vec3d				r;
+	int					opt;
+	mlx_texture_t		*txr;
 	t_vec3d				n;
 	t_rgb3				rgb;
 	struct s_cylinder	*next;
@@ -108,14 +112,14 @@ typedef struct s_cylinder
 	t_num				h;
 	t_rgb3				rgb_ch;
 	int					quan_ch;
-	mlx_texture_t		*txr;
 }	t_cylinder;
 
 typedef struct s_cone
 {
 	int					type;
-	int					opt;
 	t_vec3d				r;
+	int					opt;
+	mlx_texture_t		*txr;
 	t_vec3d				n;
 	t_rgb3				rgb;
 	struct s_cone		*next;
@@ -123,7 +127,6 @@ typedef struct s_cone
 	t_num				h;
 	t_rgb3				rgb_ch;
 	int					quan_ch;
-	mlx_texture_t		*txr;
 }	t_cone;
 
 typedef struct s_parse
