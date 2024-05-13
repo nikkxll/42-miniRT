@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 11:49:17 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 11:17:18 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:03:08 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static void	init_screen_params(t_screen *node, char *entities[ARGS_MAX],
 	}
 	if (entities[3])
 	{
-		if (ft_strcmp(entities[3], "antialiasing") == 0)
-			node->antialiasing = ON;
+		if (ft_strcmp(entities[3], "blur") == 0)
+			node->blur = ON;
 		else
 			generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
 		print_status(PRS_LOG_MSG_10, ORANGE);
@@ -51,7 +51,7 @@ static t_screen	*new_screen_node(char *entities[ARGS_MAX], t_minirt *rt)
 	if (node)
 	{
 		node->type = VIEWPORT;
-		node->antialiasing = OFF;
+		node->blur = OFF;
 		init_screen_params(node, entities, rt);
 		return (node);
 	}

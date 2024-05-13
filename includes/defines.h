@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 14:44:34 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:11:13 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ enum	e_checker
 	BUMP,
 };
 
-enum	e_antialiasing
+enum	e_blur
 {
 	ON,
 	OFF,
@@ -164,8 +164,8 @@ enum	e_angles
 # define PRS_LOG_MSG_6 "-- Cone element initialized successfully\n"
 # define PRS_LOG_MSG_7 "-- Light element initialized successfully\n"
 # define PRS_LOG_MSG_8 "-- Viewport initialized successfully\n"
-# define PRS_LOG_MSG_9 "-- Antialiasing disabled\n"
-# define PRS_LOG_MSG_10 "-- Antialiasing enabled\n"
+# define PRS_LOG_MSG_9 "-- Blur effect disabled\n"
+# define PRS_LOG_MSG_10 "-- Blur effect enabled\n"
 
 # define LOG_MSG_1 "-- Parsing input file '%s'\n"
 # define LOG_MSG_2 "-- Parsing finished successfully\n"
@@ -205,7 +205,7 @@ enum	e_angles
 # define CONFIG_MSG_9 "R width is in range       (100, 2000)\n"
 # define CONFIG_MSG_10 "R height is in range      (100, 2000)\n"
 # define CONFIG_MSG_11 "\nExample of the valid .rt file format:\n\n"
-# define CONFIG_MSG_12 "A   ratio   r,g,b        [antialiasing]\n"
+# define CONFIG_MSG_12 "A   ratio   r,g,b       [blur]\n"
 # define CONFIG_MSG_13 "C   x,y,z   x_n,y_n,x_n  FOV\n"
 # define CONFIG_MSG_14 "L   x,y,z   ratio        r,g,b (one light)\n"
 # define CONFIG_MSG_15 "l   x,y,z   ratio        r,g,b (multiple)\n"

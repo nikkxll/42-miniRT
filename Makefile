@@ -23,7 +23,7 @@ CLEANING		:=	$(addprefix $(CLEANING_PATH), $(CLEANING_NAME))
 
 # RT
 RT_NAME			:=	hit_plane.c hit_sphere.c hit_cylin.c viewport.c transform_scene.c make_norm_vec.c \
-					lighting.c color.c antialiasing.c set_checkboard.c set_bump.c
+					lighting.c color.c blur.c set_checkboard.c set_bump.c
 RT_PATH			:=	rt/
 RT				:=	$(addprefix $(RT_PATH), $(RT_NAME))
 
@@ -103,6 +103,8 @@ $(LIBFT): $(LIBFT_SOURSES)
 
 $(MLX):
 	@echo "$(CYAN)\nMLX compilation started\n$(EC)"
+	@git submodule init
+	@git submodule update
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 	@echo "$(CYAN)\nMLX compilation completed$(EC)"
 	@echo "$(GREEN)Library 'libmlx42.a' created successfully$(EC)"
@@ -110,7 +112,7 @@ $(MLX):
 clean:
 	@$(MAKE) clean -C $(LIBFT_PATH)
 	@rm -rf $(OBJS_PATH)
-	@rm -rf $(LIBMLX)/build
+	@rm -rf $(LIBMLX)/build	
 	@echo "$(RED)Object files successfully removed!$(EC)"
 
 fclean: clean
