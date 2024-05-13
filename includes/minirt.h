@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/11 21:22:48 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 19:11:52 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ void	cleaner(t_minirt *rt);
 
 void	parser(char **av, t_minirt *rt);
 
-double	custom_atof(char *c, double int_prt, double dec_prt, t_minirt *rt);
-int		protected_atoi(char *str, t_minirt *rt);
+double	atod_minirt(char *c, double int_prt, double dec_prt, t_minirt *rt);
+int		atoi_minirt(char *str, t_minirt *rt);
 
 void	process_args_w_sp_ht(char *line, char *entities[ARGS_MAX], int count);
 t_bool	process_args_w_commas(char *line, char *entities[ARGS_MAX], int count);
+
+void	print_status(char *msg, char *color);
 
 void	init_struct(t_minirt **rt);
 void	init_element(t_minirt *rt);
@@ -46,9 +48,20 @@ void	init_pl(char *entities[ARGS_MAX], t_minirt *rt);
 void	init_cy(char *entities[ARGS_MAX], t_minirt *rt);
 void	init_co(char *entities[ARGS_MAX], t_minirt *rt);
 
+void	init_cone_checker(t_cone *node, t_minirt *rt,
+            char *entities[ARGS_MAX]);
+void	init_cylinder_checker(t_cylinder *node, t_minirt *rt,
+	        char *entities[ARGS_MAX]);
+void	init_plane_checker(t_plane *node, t_minirt *rt,
+	        char *entities[ARGS_MAX]);
+void	init_sphere_checker(t_sphere *node, t_minirt *rt,
+	        char *entities[ARGS_MAX]);
+
 void	rgb_check(int r, int g, int b, t_minirt *rt);
 void	coord_check(double x, double y, double z, t_minirt *rt);
 void	orient_vec_check(double x, double y, double z, t_minirt *rt);
+
+/*_____ Ray-Tracing _____*/
 
 //vec3.c
 t_vec3d	vec_def(t_num x, t_num y, t_num z);
@@ -106,6 +119,7 @@ void hit_cylinder(t_minirt *rt, size_t pixel);
 t_hit_data	touch_cylinder(t_minirt *rt, t_hit_data *data, t_vec3d l);
 t_num	dist_to_cylin(t_vec3d v0, t_vec3d v1, t_cylinder *obj, t_dist_cc *p);
 
+//antialiasing.c
 t_vec3d	antialiasing(t_minirt *rt, int pos);
 
 #endif

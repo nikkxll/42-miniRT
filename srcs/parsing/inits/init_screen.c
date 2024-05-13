@@ -6,33 +6,41 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 11:49:17 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 00:26:58 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:17:18 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minirt.h"
 
+void	print_status(char *msg, char *color)
+{
+	ft_printf(color);
+	ft_printf(msg);
+	ft_printf(EC);
+}
+
 static void	init_screen_params(t_screen *node, char *entities[ARGS_MAX],
 	t_minirt *rt)
 {
-	node->width = protected_atoi(entities[1], rt);
-	node->height = protected_atoi(entities[2], rt);
+	node->width = atoi_minirt(entities[1], rt);
+	node->height = atoi_minirt(entities[2], rt);
 	if (node->width < VP_SIZE_MIN || node->width > VP_SIZE_MAX
 		|| node->height < VP_SIZE_MIN || node->height > VP_SIZE_MAX)
 	{
 		node->width = VP_WIDTH_DEFAULT;
 		node->height = VP_HEIGHT_DEFAULT;
-		ft_printf(ORANGE);
-		ft_printf(LOG_MSG_3);
-		ft_printf(EC);
+		print_status(LOG_MSG_3, ORANGE);
 	}
 	if (entities[3])
 	{
-		if (ft_strcmp(entities[3], "a") == 0)
-			node->a = 1;
+		if (ft_strcmp(entities[3], "antialiasing") == 0)
+			node->antialiasing = ON;
 		else
 			generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
+		print_status(PRS_LOG_MSG_10, ORANGE);
 	}
+	else
+		print_status(PRS_LOG_MSG_9, ORANGE);
 }
 
 static t_screen	*new_screen_node(char *entities[ARGS_MAX], t_minirt *rt)
@@ -43,6 +51,7 @@ static t_screen	*new_screen_node(char *entities[ARGS_MAX], t_minirt *rt)
 	if (node)
 	{
 		node->type = VIEWPORT;
+		node->antialiasing = OFF;
 		init_screen_params(node, entities, rt);
 		return (node);
 	}
@@ -54,10 +63,11 @@ static t_screen	*new_screen_node(char *entities[ARGS_MAX], t_minirt *rt)
 void	init_r(char *entities[ARGS_MAX], t_minirt *rt)
 {
 	if (!rt->prs->screen && (ft_arrlen((void **)entities) == VP_PARAMS
-		|| ft_arrlen((void **)entities) == VP_PARAMS_OPT))
+			|| ft_arrlen((void **)entities) == VP_PARAMS_OPT))
 	{
 		rt->prs->screen = new_screen_node(entities, rt);
 	}
 	else
 		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
+	ft_printf(PRS_LOG_MSG_8);
 }

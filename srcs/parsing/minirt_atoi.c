@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 19:14:22 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/05 01:08:57 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:32:43 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_bool	number_check(char *str)
 	return (false);
 }
 
-int	protected_atoi(char *str, t_minirt *rt)
+int	atoi_minirt(char *str, t_minirt *rt)
 {
 	int	number;
 

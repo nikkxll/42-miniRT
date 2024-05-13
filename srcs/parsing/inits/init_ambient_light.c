@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ambient_light.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:52:45 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/08 15:22:24 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:47:15 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ static void	init_aml_params(t_am_light *node, char *entities[ARGS_MAX],
 
 	if (init_aml_params_util(entities, rgb) == false)
 		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
-	node->ratio = custom_atof(entities[1], 0, 0, rt);
+	node->ratio = atod_minirt(entities[1], 0, 0, rt);
 	if (node->ratio < EPSILON || node->ratio > 1.0)
 		generic_errors_handler(NUMBER_FORMAT_ERR_MSG, NUM_ERR, rt);
-	node->rgb.r = protected_atoi(rgb[0], rt);
-	node->rgb.g = protected_atoi(rgb[1], rt);
-	node->rgb.b = protected_atoi(rgb[2], rt);
+	node->rgb = (t_rgb3){atoi_minirt(rgb[0], rt), atoi_minirt(rgb[1], rt),
+		atoi_minirt(rgb[2], rt)};
 	rgb_check(node->rgb.r, node->rgb.g, node->rgb.b, rt);
 }
 
@@ -63,4 +62,5 @@ void	init_a(char *entities[ARGS_MAX], t_minirt *rt)
 	}
 	else
 		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
+	ft_printf(PRS_LOG_MSG_2);
 }

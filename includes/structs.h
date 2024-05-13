@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 00:27:06 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 18:22:51 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_screen
 	int	type;
 	int	width;
 	int	height;
-	int	a;
+	int	antialiasing;
 }	t_screen;
 
 typedef struct s_am_light
@@ -76,6 +76,9 @@ typedef struct s_sphere
 	t_rgb3			rgb;
 	struct s_sphere	*next;
 	t_num			d;
+	int				opt;
+	t_rgb3			rgb_ch;
+	int				quan_ch;
 }	t_sphere;
 
 typedef struct s_plane
@@ -85,6 +88,9 @@ typedef struct s_plane
 	t_vec3d				n;
 	t_rgb3				rgb;
 	struct s_plane		*next;
+	int					opt;
+	t_rgb3				rgb_ch;
+	t_num				size_ch;
 }	t_plane;
 
 typedef struct s_cylinder
@@ -96,6 +102,9 @@ typedef struct s_cylinder
 	struct s_cylinder	*next;
 	t_num				d;
 	t_num				h;
+	int					opt;
+	t_rgb3				rgb_ch;
+	int					quan_ch;
 }	t_cylinder;
 
 typedef struct s_cone
@@ -107,6 +116,9 @@ typedef struct s_cone
 	struct s_cone		*next;
 	t_num				d;
 	t_num				h;
+	int					opt;
+	t_rgb3				rgb_ch;
+	int					quan_ch;
 }	t_cone;
 
 typedef struct s_parse
@@ -166,7 +178,6 @@ typedef struct s_viewport
 typedef struct s_minirt
 {
 	t_parse		*prs;
-	int			status;
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 	t_viewport	vp;

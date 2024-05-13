@@ -6,9 +6,9 @@ void	transform_general(t_camera *cam, t_num angles[2])
 	angles[BETA] = 0;
 	// ??? fix camera orintation flip in case r.x =0  or r.y = 0 and probably r.z=0
 	angles[ALPHA] = atan2(cam->n.x, cam->n.y) * 180 / PI;
-	printf("alpha=%lf degree\n", angles[ALPHA]);
+	// printf("alpha=%lf degree\n", angles[ALPHA]);
 	angles[BETA] = acos(vec_unit(cam->n).z) * 180 / PI;
-	printf("beta=%lf degree\n", angles[BETA]);
+	// printf("beta=%lf degree\n", angles[BETA]);
 }
 
 void	transform_spheres(t_sphere *sphere, t_camera *cam, t_num angles[2])
