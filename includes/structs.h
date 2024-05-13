@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 18:22:51 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 12:13:31 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef double	t_num;
 typedef struct s_obj
 {
 	int	type;
+	int	opt;
 }	t_obj;
 
 typedef struct s_rgb3
@@ -72,11 +73,11 @@ typedef struct s_light
 typedef struct s_sphere
 {
 	int				type;
+	int				opt;
 	t_vec3d			r;
 	t_rgb3			rgb;
 	struct s_sphere	*next;
 	t_num			d;
-	int				opt;
 	t_rgb3			rgb_ch;
 	int				quan_ch;
 }	t_sphere;
@@ -84,11 +85,11 @@ typedef struct s_sphere
 typedef struct s_plane
 {
 	int					type;
+	int					opt;
 	t_vec3d				r;
 	t_vec3d				n;
 	t_rgb3				rgb;
 	struct s_plane		*next;
-	int					opt;
 	t_rgb3				rgb_ch;
 	t_num				size_ch;
 }	t_plane;
@@ -96,13 +97,13 @@ typedef struct s_plane
 typedef struct s_cylinder
 {
 	int					type;
+	int					opt;
 	t_vec3d				r;
 	t_vec3d				n;
 	t_rgb3				rgb;
 	struct s_cylinder	*next;
 	t_num				d;
 	t_num				h;
-	int					opt;
 	t_rgb3				rgb_ch;
 	int					quan_ch;
 }	t_cylinder;
@@ -110,13 +111,13 @@ typedef struct s_cylinder
 typedef struct s_cone
 {
 	int					type;
+	int					opt;
 	t_vec3d				r;
 	t_vec3d				n;
 	t_rgb3				rgb;
 	struct s_cone		*next;
 	t_num				d;
 	t_num				h;
-	int					opt;
 	t_rgb3				rgb_ch;
 	int					quan_ch;
 }	t_cone;
@@ -143,35 +144,33 @@ typedef struct s_dist_cc
 	t_num	cn;
 	t_num	cv;
 	t_num	c2;
-	t_vec3d cprime;
+	t_vec3d	cprime;
 }	t_dist_cc;
 
 typedef struct s_hit_data
 {
-	t_vec3d ray;
-	t_num	dist;
-	int 	type;
-	t_obj	*obj;
-	t_rgb3	rgb;
-	t_vec3d	color;
-	t_vec3d n;
-	t_vec3d v;
-	t_vec3d l;
-	t_vec3d ll;
-	t_vec3d r;
-	t_vec3d temp;
+	t_vec3d		ray;
+	t_num		dist;
+	int			type;
+	t_obj		*obj;
+	t_rgb3		rgb;
+	t_vec3d		color;
+	t_vec3d		n;
+	t_vec3d		v;
+	t_vec3d		l;
+	t_vec3d		ll;
+	t_vec3d		r;
+	t_vec3d		temp;
 	t_dist_cc	precalc;
-	t_num	obst;
+	t_num		obst;
 }	t_hit_data;
 
 typedef struct s_viewport
 {
-//	t_camera *cam;
-	int		fov;
-	int		n_x;
-	int		n_y;
-	int		size;
-	//t_vec3d	*rays;  // this is temporal
+	int			fov;
+	int			n_x;
+	int			n_y;
+	int			size;
 	t_hit_data	*hit;
 }	t_viewport;
 
