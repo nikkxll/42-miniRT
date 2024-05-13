@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 00:31:54 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:45:11 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,22 @@ void print_ll(t_minirt *rt)
 		rt->prs->camera->fov);
 	while (rt->prs->cylinder)
 	{
-		printf("CYLINDER %d   %f   %f   %f   %f   %f   %f   %f   %f   %i   %i   %i\n", rt->prs->cylinder->type,
+		printf("CYLINDER %d   %f   %f   %f   %f   %f   %f   %f   %f   %i   %i   %i   %i   %i   %i   %i   |||%d\n", rt->prs->cylinder->type,
 		rt->prs->cylinder->r.x, rt->prs->cylinder->r.y, rt->prs->cylinder->r.z,
 		rt->prs->cylinder->n.x, rt->prs->cylinder->n.y, rt->prs->cylinder->n.z,
 		rt->prs->cylinder->d, rt->prs->cylinder->h, rt->prs->cylinder->rgb.r,
-		rt->prs->cylinder->rgb.g, rt->prs->cylinder->rgb.b);
+		rt->prs->cylinder->rgb.g, rt->prs->cylinder->rgb.b, rt->prs->cylinder->rgb_ch.r, rt->prs->cylinder->rgb_ch.g, rt->prs->cylinder->rgb_ch.b,
+		rt->prs->cylinder->quan_ch, rt->prs->cylinder->opt);
 		rt->prs->cylinder = rt->prs->cylinder->next;
 	}
 	while (rt->prs->cone)
 	{
-		printf("CONE %d   %f   %f   %f   %f   %f   %f   %f   %f   %i   %i   %i\n", rt->prs->cone->type,
+		printf("CONE %d   %f   %f   %f   %f   %f   %f   %f   %f   %i   %i   %i   %i   %i   %i   %i   |||%d\n", rt->prs->cone->type,
 		rt->prs->cone->r.x, rt->prs->cone->r.y, rt->prs->cone->r.z,
 		rt->prs->cone->n.x, rt->prs->cone->n.y, rt->prs->cone->n.z,
 		rt->prs->cone->d, rt->prs->cone->h, rt->prs->cone->rgb.r,
-		rt->prs->cone->rgb.g, rt->prs->cone->rgb.b);
+		rt->prs->cone->rgb.g, rt->prs->cone->rgb.b, rt->prs->cone->rgb_ch.r, rt->prs->cone->rgb_ch.g, rt->prs->cone->rgb_ch.b,
+		rt->prs->cone->quan_ch, rt->prs->cone->opt);
 		rt->prs->cone = rt->prs->cone->next;
 	}
 	while (rt->prs->light)
@@ -53,18 +55,20 @@ void print_ll(t_minirt *rt)
 	}
 	while (rt->prs->plane)
 	{
-		printf("PLANE %d   %f   %f   %f   %f   %f   %f   %i   %i   %i\n", rt->prs->plane->type,
+		printf("PLANE %d   %f   %f   %f   %f   %f   %f   %i   %i   %i   %i   %i   %i   %f   |||%d\n", rt->prs->plane->type,
 		rt->prs->plane->r.x, rt->prs->plane->r.y, rt->prs->plane->r.z,
 		rt->prs->plane->n.x, rt->prs->plane->n.y, rt->prs->plane->n.z,
-		rt->prs->plane->rgb.r, rt->prs->plane->rgb.g, rt->prs->plane->rgb.b);
+		rt->prs->plane->rgb.r, rt->prs->plane->rgb.g, rt->prs->plane->rgb.b, rt->prs->plane->rgb_ch.r, rt->prs->plane->rgb_ch.g, rt->prs->plane->rgb_ch.b,
+		rt->prs->plane->size_ch, rt->prs->plane->opt);
 		rt->prs->plane = rt->prs->plane->next;
 	}
 	while (rt->prs->sphere)
 	{
-		printf("SPHERE %d   %f   %f   %f   %f   %d   %d   %d\n", rt->prs->sphere->type, 
+		printf("SPHERE %d   %f   %f   %f   %f   %d   %d   %d   %i   %i   %i   %i   |||%d\n", rt->prs->sphere->type, 
 		rt->prs->sphere->r.x, rt->prs->sphere->r.y, rt->prs->sphere->r.z,
 		rt->prs->sphere->d, rt->prs->sphere->rgb.r, rt->prs->sphere->rgb.g,
-		rt->prs->sphere->rgb.b);
+		rt->prs->sphere->rgb.b, rt->prs->sphere->rgb_ch.r, rt->prs->sphere->rgb_ch.g, rt->prs->sphere->rgb_ch.b,
+		rt->prs->sphere->quan_ch, rt->prs->sphere->opt);
 		rt->prs->sphere = rt->prs->sphere->next;
 	}
 }
@@ -93,7 +97,7 @@ void	print_picture(t_minirt *rt)
 		i = -1;
 		while (++i < rt->vp.n_x)
 		{
-			if (rt->prs->screen->a)
+			if (rt->prs->screen->antialiasing == ON)
 				color = rgb_to_int(vec_to_rgb(antialiasing(rt, j * rt->vp.n_x + i)));
 			else
 				color = rgb_to_int(vec_to_rgb(rt->vp.hit[j * rt->vp.n_x + i].color));
@@ -131,7 +135,7 @@ void	ft_hook_key(void *data)
 //int	main(int32_t argc, char *argv[])
 int	make_picture(t_minirt *rt)
 {
-	ft_printf("Transforming scene\n");
+	ft_printf(LOG_MSG_4);
 	transform_scene(rt);
 /*
 	t_dist_cc precalc;
@@ -139,17 +143,17 @@ int	make_picture(t_minirt *rt)
 	printf("dist to cylinder t=%lf\n", t);
 	exit (0);
 */
-	ft_printf("Initializing viewport\n");
+	ft_printf(LOG_MSG_5);
 	init_viewport(rt);
-	ft_printf("Setting hit scene\n");
+	ft_printf(LOG_MSG_6);
 	hit_scene(rt);
 	// calc color of object in each pixel for bump and checkboard
-	ft_printf("Setting orientation vectors\n");
+	ft_printf(LOG_MSG_7);
 	make_norm_vec(rt);
 	set_checkboard(rt);
-	ft_printf("Setting MLX\n");
+	ft_printf(LOG_MSG_8);
 	rt->mlx = mlx_init(rt->prs->screen->width, rt->prs->screen->height,
-			"MLX42", true);
+			"miniRT", true);
 	if (!rt->mlx)
 		generic_errors_handler(MLX_ERR_MSG, MLX_ERR, rt);
 	rt->image = mlx_new_image(rt->mlx, rt->vp.n_x, rt->vp.n_y);
@@ -157,7 +161,7 @@ int	make_picture(t_minirt *rt)
 		generic_errors_handler(MLX_IMG_ERR_MSG, MLX_IMG_ERR, rt);
 	if (mlx_image_to_window(rt->mlx, rt->image, 0, 0) == -1)
 		generic_errors_handler(MLX_IMG_W_ERR_MSG, MLX_IMG_W_ERR, rt);
-	ft_printf("Rendering image\n");
+	ft_printf(LOG_MSG_9);
 	print_picture(rt);
 	mlx_loop_hook(rt->mlx, ft_hook_key, rt);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
@@ -175,7 +179,7 @@ int	main(int ac, char **av)
 		generic_errors_handler(NUM_FILES_ERR_MSG, NUM_FILES_ERR, rt);
 	init_struct(&rt);
 	parser(av, rt);
-	//print_ll(rt);
+	// print_ll(rt);
 	make_picture(rt);
 	cleaner(rt);
 	return (SUCCESS);

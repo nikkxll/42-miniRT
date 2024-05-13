@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:09:18 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 21:44:02 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:17:24 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,16 @@ static void	init_sphere_params(t_sphere *node, char *entities[ARGS_MAX],
 
 	if (init_sphere_params_util(entities, r, rgb) == false)
 		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
-	node->r.x = custom_atof(r[0], 0, 0, rt);
-	node->r.y = custom_atof(r[1], 0, 0, rt);
-	node->r.z = custom_atof(r[2], 0, 0, rt);
+	node->r = (t_vec3d){atod_minirt(r[0], 0, 0, rt),
+		atod_minirt(r[1], 0, 0, rt), atod_minirt(r[2], 0, 0, rt)};
 	coord_check(node->r.x, node->r.y, node->r.z, rt);
-	node->d = custom_atof(entities[2], 0, 0, rt);
+	node->d = atod_minirt(entities[2], 0, 0, rt);
 	if (node->d < 0.0 || node->d > ELEM_SIZE_MAX)
 		generic_errors_handler(NUMBER_FORMAT_ERR_MSG, NUM_ERR, rt);
-	node->rgb.r = protected_atoi(rgb[0], rt);
-	node->rgb.g = protected_atoi(rgb[1], rt);
-	node->rgb.b = protected_atoi(rgb[2], rt);
+	node->rgb = (t_rgb3){atoi_minirt(rgb[0], rt),
+		atoi_minirt(rgb[1], rt), atoi_minirt(rgb[2], rt)};
 	rgb_check(node->rgb.r, node->rgb.g, node->rgb.b, rt);
+	init_sphere_checker(node, rt, entities);
 }
 
 static t_sphere	*new_sphere_node(char *entities[ARGS_MAX], t_minirt *rt)
@@ -66,12 +65,14 @@ void	init_sp(char *entities[ARGS_MAX], t_minirt *rt)
 {
 	t_sphere	*curr;
 
-	if (!rt->prs->sphere && ft_arrlen((void **)entities) == SP_PARAMS)
+	if (!rt->prs->sphere && (ft_arrlen((void **)entities) == SP_PARAMS
+			|| ft_arrlen((void **)entities) == SP_PARAMS_CH))
 	{
 		rt->prs->sphere = new_sphere_node(entities, rt);
 		rt->prs->sphere->next = NULL;
 	}
-	else if (rt->prs->sphere && ft_arrlen((void **)entities) == SP_PARAMS)
+	else if (rt->prs->sphere && (ft_arrlen((void **)entities) == SP_PARAMS
+			|| ft_arrlen((void **)entities) == SP_PARAMS_CH))
 	{
 		curr = rt->prs->sphere;
 		while (curr->next)
@@ -81,4 +82,5 @@ void	init_sp(char *entities[ARGS_MAX], t_minirt *rt)
 	}
 	else
 		generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
+	ft_printf(PRS_LOG_MSG_3);
 }

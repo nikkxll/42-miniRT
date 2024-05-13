@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:24:46 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/04 21:16:01 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:47:15 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static double	ft_round(char *c, int len)
 	return (0);
 }
 
-double	custom_atof(char *c, double int_prt, double dec_prt, t_minirt *rt)
+double	atod_minirt(char *c, double int_prt, double dec_prt, t_minirt *rt)
 {
 	int		len;
 	int		sign_flag;

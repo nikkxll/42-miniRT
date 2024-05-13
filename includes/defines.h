@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 00:08:42 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/12 19:35:51 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ enum	e_exit_codes
 enum	e_num_params
 {
 	VP_PARAMS = 3,
-	VP_PARAMS_OPT = 4,
 	AL_PARAMS = 3,
 	C_PARAMS = 4,
 	L_PARAMS = 4,
@@ -72,6 +71,28 @@ enum	e_num_params
 	PL_PARAMS = 4,
 	CY_PARAMS = 6,
 	CO_PARAMS = 6,
+};
+
+enum	e_num_params_opt
+{
+	VP_PARAMS_OPT = 4,
+	SP_PARAMS_CH = 7,
+	PL_PARAMS_CH = 7,
+	CY_PARAMS_CH = 9,
+	CO_PARAMS_CH = 9,
+};
+
+enum	e_checker
+{
+	NO_OPTIONS,
+	CHECKER,
+	BUMP,
+};
+
+enum	e_antialiasing
+{
+	ON,
+	OFF,
 };
 
 enum	e_gnl_error_codes
@@ -88,13 +109,14 @@ enum	e_angles
 	BETA,
 };
 
-#define DEBUG_MOD 1
+# define DEBUG_MOD 1
 
 # define RED "\x1B[31m"
+# define GREEN "\x1B[32m"
 # define ORANGE "\e[38;5;208m"
 # define EC "\x1B[0m"
 
-# define ARGS_MAX 10
+# define ARGS_MAX 15
 # define ATOF_MAX 6
 # define VEC_LEN 3
 
@@ -102,6 +124,9 @@ enum	e_angles
 # define VP_SIZE_MIN 100
 # define VP_WIDTH_DEFAULT 1000
 # define VP_HEIGHT_DEFAULT 800
+# define MAX_CHECKER_QUAN 999
+# define MAX_FOV 179
+# define MIN_FOV 1
 # define ELEM_SIZE_MAX 999999.999999
 # define COORD_MAX 999999.999999
 # define COORD_MIN -999999.999999
@@ -110,11 +135,6 @@ enum	e_angles
 # define TAN tan
 # define POW pow
 # define SQRT sqrt
-
-
-# define MLXWIDTH 700
-# define MLXHEIGHT 500
-# define CHANNELBACK 100
 
 # define PI 3.141592653589793238462
 # define EPSILON 0.0000001
@@ -127,10 +147,26 @@ enum	e_angles
 # define COEF_ALPHA 1000
 # define COEF_REFLECT 1
 
+# define PRS_LOG_MSG_1 "-- Camera initialized successfully\n"
+# define PRS_LOG_MSG_2 "-- Ambient light initialized successfully\n"
+# define PRS_LOG_MSG_3 "-- Sphere element initialized successfully\n"
+# define PRS_LOG_MSG_4 "-- Plane element initialized successfully\n"
+# define PRS_LOG_MSG_5 "-- Cylinder element initialized successfully\n"
+# define PRS_LOG_MSG_6 "-- Cone element initialized successfully\n"
+# define PRS_LOG_MSG_7 "-- Light element initialized successfully\n"
+# define PRS_LOG_MSG_8 "-- Viewport initialized successfully\n"
+# define PRS_LOG_MSG_9 "-- Antialiasing disabled\n"
+# define PRS_LOG_MSG_10 "-- Antialiasing enabled\n"
 
-# define LOG_MSG_1 "Parsing input file '%s'\n"
-# define LOG_MSG_2 "Parsing finished successfully!\n"
-# define LOG_MSG_3 "Warning! Viewport dimension are taken by default\n"
+# define LOG_MSG_1 "-- Parsing input file '%s'\n"
+# define LOG_MSG_2 "-- Parsing finished successfully\n"
+# define LOG_MSG_3 "-- Warning! Viewport dimension are taken by default\n"
+# define LOG_MSG_4 "-- Transforming scene\n"
+# define LOG_MSG_5 "-- Initializing viewport\n"
+# define LOG_MSG_6 "-- Setting hit scene\n"
+# define LOG_MSG_7 "-- Setting orientation vectors\n"
+# define LOG_MSG_8 "-- Setting MLX\n"
+# define LOG_MSG_9 "-- Rendering scene\n"
 
 # define ERR_MSG "Error\n"
 # define MALLOC_ERR_MSG "Malloc error occured\n"
@@ -153,29 +189,23 @@ enum	e_angles
 # define CONFIG_MSG_3 "r,g,b are in range        [0, 255]\n"
 # define CONFIG_MSG_4 "x,y,z are in range        (-1000000, 1000000)\n"
 # define CONFIG_MSG_5 "x_n,y_n,x_n are in range  [-1, 1]\n"
-# define CONFIG_MSG_6 "FOV is in range           [0, 180]\n"
-# define CONFIG_MSG_7 "cy diameter is in range   (-1000000, 1000000)\n"
-# define CONFIG_MSG_8 "cy height is in range     (-1000000, 1000000)\n"
-# define CONFIG_MSG_9 "R width is in range       (0, 10000)\n"
-# define CONFIG_MSG_10 "R height is in range      (0, 10000)\n\n"
+# define CONFIG_MSG_6 "FOV is in range           (0, 180)\n"
+# define CONFIG_MSG_7 "cy diameter is in range   (0, 1000000)\n"
+# define CONFIG_MSG_8 "cy height is in range     (0, 1000000)\n"
+# define CONFIG_MSG_9 "R width is in range       (100, 2000)\n"
+# define CONFIG_MSG_10 "R height is in range      (100, 2000)\n"
 # define CONFIG_MSG_11 "\nExample of the valid .rt file format:\n\n"
-# define CONFIG_MSG_12 "A    ratio    r,g,b                  "
-# define CONFIG_MSG_13 "(required, strictly one entity)\n"
-# define CONFIG_MSG_14 "C    x,y,z    x_n,y_n,x_n  FOV       "
-# define CONFIG_MSG_15 "L    x,y,z    ratio        r,g,b "
-# define CONFIG_MSG_16 "    (optional, if only one light source)\n"
-# define CONFIG_MSG_17 "l    x,y,z    ratio        r,g,b "
-# define CONFIG_MSG_18 "    (optional, if multiple light sources)\n"
-# define CONFIG_MSG_19 "sp   x,y,z    diameter     r,g,b     (optional, "
-# define CONFIG_MSG_20 "from 0 to n entities)\n"
-# define CONFIG_MSG_21 "pl   x,y,z    x_n,y_n,x_n  r,g,b     (optional, "
-# define CONFIG_MSG_22 "cy   x,y,z    x_n,y_n,x_n  diameter  height  r,g,b  "
-# define CONFIG_MSG_23 "(optional, from 0 to n entities)\n"
-# define CONFIG_MSG_24 "co   x,y,z    x_n,y_n,x_n  diameter  height  r,g,b  "
-# define CONFIG_MSG_25 "(optional, from 0 to n entities)\n"
-# define CONFIG_MSG_26 "R    width    height       a         (optional, "
-# define CONFIG_MSG_27 "0 or 1 entity. If not valid, default parameters "
-# define CONFIG_MSG_28 "will be taken for w and h, a - flag for the "
-# define CONFIG_MSG_29 "pseudo anti-aliasing effect)\n\n"
+# define CONFIG_MSG_12 "A   ratio   r,g,b        [antialiasing]\n"
+# define CONFIG_MSG_13 "C   x,y,z   x_n,y_n,x_n  FOV\n"
+# define CONFIG_MSG_14 "L   x,y,z   ratio        r,g,b (one light)\n"
+# define CONFIG_MSG_15 "l   x,y,z   ratio        r,g,b (multiple)\n"
+# define CONFIG_MSG_16 "sp  x,y,z   d            r,g,b [checker] [r,g,b] [q]\n"
+# define CONFIG_MSG_17 "pl  x,y,z   x_n,y_n,x_n  r,g,b [checker] [r,g,b] [s]\n"
+# define CONFIG_MSG_18 "cy  x,y,z   x_n,y_n,x_n  d      h         r,g,b  "
+# define CONFIG_MSG_19 "co  x,y,z   x_n,y_n,x_n  d      h         r,g,b  "
+# define CONFIG_MSG_20 "[checker] [r,g,b] [q]\n"
+# define CONFIG_MSG_21 "q is in range             (0, 1000)\n"
+# define CONFIG_MSG_22 "s is in range             (0, 1000000)\n\n"
+# define CONFIG_MSG_23 "R   width   height       a\n\n"
 
 #endif
