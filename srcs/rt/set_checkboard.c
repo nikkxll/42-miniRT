@@ -11,11 +11,10 @@ t_rgb3	checkboard_fun(t_num x, t_num y, t_rgb3 c1, t_rgb3 c2)
 
 void	set_chess_plane(t_hit_data *data)
 {
-	// handle the case of (r x n) = 0
 	t_plane	*pl;
-	t_vec3d ab[2];
+	t_vec3d	ab[2];
 	t_vec3d	m;
-	t_num		xy[2];
+	t_num	xy[2];
 
 	pl = (t_plane *)data->obj;
 	m = vec_sub(data->v, pl->r);
@@ -34,19 +33,67 @@ void	set_chess_plane(t_hit_data *data)
 	data->rgb = checkboard_fun(xy[0], xy[1], data->rgb, (t_rgb3){0,0,0});
 }
 
+void	set_chess_sphere(t_hit_data *data)
+{
+	t_sphere	*sp;
+	t_vec3d		m;
+	t_num		theta;
+	t_num		alpha;
+
+	sp = (t_sphere *)data->obj;
+	m = vec_unit(vec_sub(data->v, sp->r));
+	theta = acos(m.y) / PI;
+	alpha = acos(m.x / sqrt(1 - m.y * m.y)) / PI;
+	data->rgb = checkboard_fun(10 * alpha, 10 * theta, data->rgb, (t_rgb3){0,0,0});
+}
+
+void	set_chess_cyliner(t_hit_data *data)
+{
+	t_cylinder	*cy;
+	t_vec3d		rr;
+	t_num		z;
+	t_num		alpha;
+	t_vec3d		axis;
+
+	cy = (t_cylinder *)data->obj;
+	rr = vec_sub(data->v, cy->r);
+	z = (dot(rr, cy->n) + cy->h / 2) / cy->h;
+	if (cy->type == CYLINDER)
+		rr = data->n;
+	else if (cy->type == CONE)
+		rr = vec_sub(rr, vec_scale(dot(rr, cy->n), cy->n));
+	if (!cy->n.x)
+		axis = cross(cy->n, (t_vec3d){1, 0, 0});
+	else if (!cy->n.y)
+		axis = cross(cy->n, (t_vec3d){0, 1, 0});
+	else if (!cy->n.z)
+		axis = cross(cy->n, (t_vec3d){0, 0, 1});
+	else
+		axis = vec_unit(cross(cy->n, (t_vec3d){1, 0, 0}));
+	//vec_print("axis=",axis);
+	alpha = acos(vec_cos(rr, axis));
+	if (dot(cross(rr, axis), cy->n) < 0)
+		alpha = 2 * PI - alpha;
+	data->rgb = checkboard_fun(10 * alpha / 2 / PI, 10 * z, data->rgb, (t_rgb3){0,0,0});
+}
+
 void	set_checkboard(t_minirt *rt)
 {
 //	return ;
-	int	i;
-	t_hit_data *data;
+	int			i;
+	t_hit_data	*data;
 
 	i = -1;
 	while (++i < rt->vp.size)
 	{
 		data = &(rt->vp.hit[i]);
 		if (data->type == TYPE_OBJ_NONE)
-			continue;
+			continue ;
 		if (data->type == PLANE)
 			set_chess_plane(data);
+		if (data->type == SPHERE)
+			set_chess_sphere(data);
+		if (data->type == CYLINDER || data->type == CONE)
+			set_chess_cyliner(data);
 	}
 }
