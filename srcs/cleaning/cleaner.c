@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 20:06:55 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 16:28:40 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 19:32:42 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,16 @@
 
 static void	free_node(void *current, int type)
 {
-	if (type == LIGHT)
-		free((t_light *)current);
-	else if (type == SPHERE)
-	{
-		if (((t_sphere *)current)->txr)
-			mlx_delete_texture(((t_sphere *)current)->txr);
-		free((t_sphere *)current);
-	}
-	else if (type == PLANE)
-	{
-		if (((t_plane *)current)->txr)
-			mlx_delete_texture(((t_plane *)current)->txr);
-		free((t_plane *)current);
-	}
-	else if (type == CYLINDER)
-	{
-		if (((t_cylinder *)current)->txr)
-			mlx_delete_texture(((t_cylinder *)current)->txr);
-		free((t_cylinder *)current);
-	}
-	else if (type == CONE)
-	{
-		if (((t_cone *)current)->txr)
-			mlx_delete_texture(((t_cone *)current)->txr);
-		free((t_cone *)current);
-	}
+	if (type == SPHERE && ((t_sphere *)current)->txr)
+		mlx_delete_texture(((t_sphere *)current)->txr);
+	else if (type == PLANE && ((t_plane *)current)->txr)
+		mlx_delete_texture(((t_plane *)current)->txr);
+	else if (type == CYLINDER && ((t_cylinder *)current)->txr)
+		mlx_delete_texture(((t_cylinder *)current)->txr);
+	else if (type == CONE && ((t_cone *)current)->txr)
+		mlx_delete_texture(((t_cone *)current)->txr);
+	free(current);
 }
-
-// static void	free_node(void *current, int type)
-// {
-// 	if (type == SPHERE && ((t_sphere *)current)->txr)
-// 		mlx_delete_texture(((t_sphere *)current)->txr);
-// 	else if (type == PLANE && ((t_plane *)current)->txr)
-// 		mlx_delete_texture(((t_plane *)current)->txr);
-// 	else if (type == CYLINDER && ((t_cylinder *)current)->txr)
-// 		mlx_delete_texture(((t_cylinder *)current)->txr);
-// 	else if (type == CONE && ((t_cone *)current)->txr)
-// 		mlx_delete_texture(((t_cone *)current)->txr);
-// 	free(current);
-// }
 
 static void	*next(void **lst, int type)
 {
@@ -82,39 +52,19 @@ static void	ft_lst_remove(void **lst, int type)
 		current = *lst;
 		*lst = next(lst, type);
 		if (type == LIGHT)
-			free((t_light *)current);
+			free_node(current, type);
 		else if (type == SPHERE)
-		{
 			free_node(current, type);
-			// if (((t_sphere *)current)->txr)
-			// 	mlx_delete_texture(((t_sphere *)current)->txr);
-			// free((t_sphere *)current);
-		}
 		else if (type == PLANE)
-		{
 			free_node(current, type);
-			// if (((t_plane *)current)->txr)
-			// 	mlx_delete_texture(((t_plane *)current)->txr);
-			// free((t_plane *)current);
-		}
 		else if (type == CYLINDER)
-		{
 			free_node(current, type);
-			// if (((t_cylinder *)current)->txr)
-			// 	mlx_delete_texture(((t_cylinder *)current)->txr);
-			// free((t_cylinder *)current);
-		}
 		else if (type == CONE)
-		{
 			free_node(current, type);
-			// if (((t_cone *)current)->txr)
-			// 	mlx_delete_texture(((t_cone *)current)->txr);
-			// free((t_cone *)current);
-		}
 	}
 }
 
-void	clean_elements(t_minirt *rt)
+static void	clean_elements(t_minirt *rt)
 {
 	if (rt->prs->screen)
 		free(rt->prs->screen);
