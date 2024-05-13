@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 19:11:52 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:10:05 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,27 @@ void	init_cy(char *entities[ARGS_MAX], t_minirt *rt);
 void	init_co(char *entities[ARGS_MAX], t_minirt *rt);
 
 void	init_cone_checker(t_cone *node, t_minirt *rt,
-            char *entities[ARGS_MAX]);
+			char *entities[ARGS_MAX]);
 void	init_cylinder_checker(t_cylinder *node, t_minirt *rt,
-	        char *entities[ARGS_MAX]);
+			char *entities[ARGS_MAX]);
 void	init_plane_checker(t_plane *node, t_minirt *rt,
-	        char *entities[ARGS_MAX]);
+			char *entities[ARGS_MAX]);
 void	init_sphere_checker(t_sphere *node, t_minirt *rt,
-	        char *entities[ARGS_MAX]);
+			char *entities[ARGS_MAX]);
+void	init_cone_bump(t_cone *node, t_minirt *rt,
+			char *entities[ARGS_MAX]);
+void	init_cylinder_bump(t_cylinder *node, t_minirt *rt,
+			char *entities[ARGS_MAX]);
+void	init_plane_bump(t_plane *node, t_minirt *rt,
+			char *entities[ARGS_MAX]);
+void	init_sphere_bump(t_sphere *node, t_minirt *rt,
+			char *entities[ARGS_MAX]);
+
+/*_____ Ray-Tracing _____*/
 
 void	rgb_check(int r, int g, int b, t_minirt *rt);
 void	coord_check(double x, double y, double z, t_minirt *rt);
 void	orient_vec_check(double x, double y, double z, t_minirt *rt);
-
-/*_____ Ray-Tracing _____*/
 
 //vec3.c
 t_vec3d	vec_def(t_num x, t_num y, t_num z);
@@ -124,5 +132,6 @@ t_num	dist_to_cylin(t_vec3d v0, t_vec3d v1, t_cylinder *obj, t_dist_cc *p);
 t_vec3d	antialiasing(t_minirt *rt, int pos);
 
 void	set_checkboard(t_minirt *rt);
+t_rgb3	get_bump_pixel(mlx_texture_t *texture, int i, int j);
 
 #endif

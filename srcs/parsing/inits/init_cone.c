@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:28:35 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 11:16:58 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:46:16 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	init_cone_params(t_cone *node, char *entities[ARGS_MAX],
 		atoi_minirt(rgb[1], rt), atoi_minirt(rgb[2], rt)};
 	rgb_check(node->rgb.r, node->rgb.g, node->rgb.b, rt);
 	init_cone_checker(node, rt, entities);
+	init_cone_bump(node, rt, entities);
 }
 
 static t_cone	*new_cone_node(char *entities[ARGS_MAX], t_minirt *rt)
@@ -76,13 +77,15 @@ void	init_co(char *entities[ARGS_MAX], t_minirt *rt)
 	t_cone	*curr;
 
 	if (!rt->prs->cone && (ft_arrlen((void **)entities) == CO_PARAMS
-			|| ft_arrlen((void **)entities) == CO_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == CO_PARAMS_CH
+			|| ft_arrlen((void **)entities) == CO_PARAMS_BP))
 	{
 		rt->prs->cone = new_cone_node(entities, rt);
 		rt->prs->cone->next = NULL;
 	}
 	else if (rt->prs->cone && (ft_arrlen((void **)entities) == CO_PARAMS
-			|| ft_arrlen((void **)entities) == CO_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == CO_PARAMS_CH
+			|| ft_arrlen((void **)entities) == CO_PARAMS_BP))
 	{
 		curr = rt->prs->cone;
 		while (curr->next)

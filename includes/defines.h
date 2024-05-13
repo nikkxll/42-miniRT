@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 19:35:51 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:44:34 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ enum	e_exit_codes
 	MLX_ERR = 300,
 	MLX_IMG_ERR = 301,
 	MLX_IMG_W_ERR = 302,
+	MLX_TXR_ERR = 303,
 	DEF_ERR = 999,
 };
 
@@ -73,13 +74,21 @@ enum	e_num_params
 	CO_PARAMS = 6,
 };
 
-enum	e_num_params_opt
+enum	e_num_params_ch
 {
 	VP_PARAMS_OPT = 4,
 	SP_PARAMS_CH = 7,
 	PL_PARAMS_CH = 7,
 	CY_PARAMS_CH = 9,
 	CO_PARAMS_CH = 9,
+};
+
+enum	e_num_params_bump
+{
+	SP_PARAMS_BP = 6,
+	PL_PARAMS_BP = 6,
+	CY_PARAMS_BP = 8,
+	CO_PARAMS_BP = 8,
 };
 
 enum	e_checker
@@ -183,6 +192,7 @@ enum	e_angles
 # define MLX_ERR_MSG "Failed to initiate MLX entity\n"
 # define MLX_IMG_ERR_MSG "Failed to create MLX image\n"
 # define MLX_IMG_W_ERR_MSG "Failed to put MLX image to window\n"
+# define MLX_TXR_ERR_MSG "Failed to load .png and put it into MLX texture\n"
 
 # define CONFIG_MSG_1 "Example of the valid number ranges:\n\n"
 # define CONFIG_MSG_2 "ratio is in range         (0.0, 1.0)\n"

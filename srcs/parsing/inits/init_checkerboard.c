@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 14:34:13 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 17:56:36 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:03:48 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_cone_checker(t_cone *node, t_minirt *rt,
 			if (node->quan_ch < 1 || node->quan_ch > MAX_CHECKER_QUAN)
 				generic_errors_handler(NUMBER_FORMAT_ERR_MSG, NUM_ERR, rt);
 		}
-		else
+		else if (ft_strcmp(entities[6], "bump") != 0)
 			generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
 	}
 	else
@@ -63,7 +63,7 @@ void	init_cylinder_checker(t_cylinder *node, t_minirt *rt,
 			if (node->quan_ch < 1 || node->quan_ch > MAX_CHECKER_QUAN)
 				generic_errors_handler(NUMBER_FORMAT_ERR_MSG, NUM_ERR, rt);
 		}
-		else
+		else if (ft_strcmp(entities[6], "bump") != 0)
 			generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
 	}
 	else
@@ -92,7 +92,7 @@ void	init_plane_checker(t_plane *node, t_minirt *rt,
 			if (node->size_ch < ROUND_PRT || node->size_ch > ELEM_SIZE_MAX)
 				generic_errors_handler(NUMBER_FORMAT_ERR_MSG, NUM_ERR, rt);
 		}
-		else
+		else if (ft_strcmp(entities[4], "bump") != 0)
 			generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
 	}
 	else
@@ -121,7 +121,7 @@ void	init_sphere_checker(t_sphere *node, t_minirt *rt,
 			if (node->quan_ch < 1 || node->quan_ch > MAX_CHECKER_QUAN)
 				generic_errors_handler(NUMBER_FORMAT_ERR_MSG, NUM_ERR, rt);
 		}
-		else
+		else if (ft_strcmp(entities[4], "bump") != 0)
 			generic_errors_handler(CONF_FORMAT_ERR_MSG, CONF_ERR, rt);
 	}
 	else

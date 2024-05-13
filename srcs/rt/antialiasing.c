@@ -6,11 +6,20 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 21:09:25 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 11:18:25 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:53:45 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+static void	square_init(t_num square[9][3])
+{
+	size_t	i;
+
+	i = 0;
+	while (i < 9)
+		square[i++][0] = -1;
+}
 
 static t_vec3d	find_average(t_num square[9][3])
 {
@@ -45,14 +54,14 @@ t_vec3d	antialiasing(t_minirt *rt, int pos)
 	int		j;
 
 	i = -1;
-	ft_memset(square, -1, sizeof(square));
+	square_init(square);
 	while (i <= 1)
 	{
 		j = -1;
 		while (j <= 1)
 		{
 			new_pos = pos + i * rt->vp.n_x + j;
-			if (new_pos >= 0 && new_pos < rt->vp.size)
+			if (new_pos > 0 && new_pos < rt->vp.size)
 			{
 				square[(i + 1) * 3 + (j + 1)][0] = rt->vp.hit[new_pos].color.x;
 				square[(i + 1) * 3 + (j + 1)][1] = rt->vp.hit[new_pos].color.y;

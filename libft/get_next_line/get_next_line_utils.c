@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:39:50 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/04/27 11:59:49 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 14:30:26 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_free(char *s)
 	return (0);
 }
 
-char	*add_to_string(char *s, char *buffer, size_t buf_len)
+char	*add_to_string(char *s, char *buffer, size_t buf_len, int *status)
 {
 	size_t	s_len;
 	size_t	new_len;
@@ -45,7 +45,10 @@ char	*add_to_string(char *s, char *buffer, size_t buf_len)
 	new_len = s_len + buf_len;
 	new_s = (char *)malloc(sizeof(char) * (new_len + 1));
 	if (!new_s)
+	{
+		*status = 1;
 		return (ft_free(s));
+	}
 	new_s[new_len] = 0;
 	ft_strncpy(new_s, s, s_len);
 	ft_strncpy(new_s + s_len, buffer, buf_len);
