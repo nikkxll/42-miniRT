@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 10:28:35 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 18:16:11 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:16:58 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,16 @@ static t_cone	*new_cone_node(char *entities[ARGS_MAX], t_minirt *rt)
 
 void	init_co(char *entities[ARGS_MAX], t_minirt *rt)
 {
-	t_cone  *curr;
+	t_cone	*curr;
 
 	if (!rt->prs->cone && (ft_arrlen((void **)entities) == CO_PARAMS
-		|| ft_arrlen((void **)entities) == CO_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == CO_PARAMS_CH))
 	{
 		rt->prs->cone = new_cone_node(entities, rt);
 		rt->prs->cone->next = NULL;
 	}
 	else if (rt->prs->cone && (ft_arrlen((void **)entities) == CO_PARAMS
-		|| ft_arrlen((void **)entities) == CO_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == CO_PARAMS_CH))
 	{
 		curr = rt->prs->cone;
 		while (curr->next)

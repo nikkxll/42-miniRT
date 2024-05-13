@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:25:20 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 18:21:03 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:17:13 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ void	init_pl(char *entities[ARGS_MAX], t_minirt *rt)
 	t_plane	*curr;
 
 	if (!rt->prs->plane && (ft_arrlen((void **)entities) == PL_PARAMS
-		|| ft_arrlen((void **)entities) == PL_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == PL_PARAMS_CH))
 	{
 		rt->prs->plane = new_plane_node(entities, rt);
 		rt->prs->plane->next = NULL;
 	}
 	else if (rt->prs->plane && (ft_arrlen((void **)entities) == PL_PARAMS
-		|| ft_arrlen((void **)entities) == PL_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == PL_PARAMS_CH))
 	{
 		curr = rt->prs->plane;
 		while (curr->next)

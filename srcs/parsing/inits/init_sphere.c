@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:09:18 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 18:25:42 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:17:24 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ void	init_sp(char *entities[ARGS_MAX], t_minirt *rt)
 	t_sphere	*curr;
 
 	if (!rt->prs->sphere && (ft_arrlen((void **)entities) == SP_PARAMS
-		|| ft_arrlen((void **)entities) == SP_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == SP_PARAMS_CH))
 	{
 		rt->prs->sphere = new_sphere_node(entities, rt);
 		rt->prs->sphere->next = NULL;
 	}
 	else if (rt->prs->sphere && (ft_arrlen((void **)entities) == SP_PARAMS
-		|| ft_arrlen((void **)entities) == SP_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == SP_PARAMS_CH))
 	{
 		curr = rt->prs->sphere;
 		while (curr->next)

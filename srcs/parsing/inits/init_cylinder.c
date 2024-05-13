@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:40:46 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 19:30:52 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:16:19 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ void	init_cy(char *entities[ARGS_MAX], t_minirt *rt)
 	t_cylinder	*curr;
 
 	if (!rt->prs->cylinder && (ft_arrlen((void **)entities) == CY_PARAMS
-		|| ft_arrlen((void **)entities) == CY_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == CY_PARAMS_CH))
 	{
 		rt->prs->cylinder = new_cylinder_node(entities, rt);
 		rt->prs->cylinder->next = NULL;
 	}
 	else if (rt->prs->cylinder && (ft_arrlen((void **)entities) == CY_PARAMS
-		|| ft_arrlen((void **)entities) == CY_PARAMS_CH))
+			|| ft_arrlen((void **)entities) == CY_PARAMS_CH))
 	{
 		curr = rt->prs->cylinder;
 		while (curr->next)

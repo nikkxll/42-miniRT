@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 11:49:17 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/12 19:11:08 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/13 11:17:18 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static t_screen	*new_screen_node(char *entities[ARGS_MAX], t_minirt *rt)
 	if (node)
 	{
 		node->type = VIEWPORT;
+		node->antialiasing = OFF;
 		init_screen_params(node, entities, rt);
 		return (node);
 	}
@@ -62,7 +63,7 @@ static t_screen	*new_screen_node(char *entities[ARGS_MAX], t_minirt *rt)
 void	init_r(char *entities[ARGS_MAX], t_minirt *rt)
 {
 	if (!rt->prs->screen && (ft_arrlen((void **)entities) == VP_PARAMS
-		|| ft_arrlen((void **)entities) == VP_PARAMS_OPT))
+			|| ft_arrlen((void **)entities) == VP_PARAMS_OPT))
 	{
 		rt->prs->screen = new_screen_node(entities, rt);
 	}
