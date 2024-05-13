@@ -1,12 +1,21 @@
 
 #include "../../includes/minirt.h"
 
-t_rgb3	checkboard_fun(t_num x, t_num y, t_rgb3 c1, t_rgb3 c2)
+t_rgb3	texture_selector(t_hit_data *data, t_rgb3 c2)
 {
+	t_num	x;
+	t_num	y;
+
+	x = data->texture.x;
+	y = data->texture.y;
 	x = x - floor(x);
 	y = y - floor(y);
+	if (data->obj->opt == 2)
+		return ((t_rgb3){255,255,255});
+	if (data->obj->opt != 1)
+		return (data->rgb);
 	if ((x <= 0.5 && y <= 0.5) || (x > 0.5 && y > 0.5))
-		return (c1);
+		return (data->rgb);
 	return (c2);
 }
 
@@ -15,7 +24,6 @@ void	set_chess_plane(t_hit_data *data)
 	t_plane	*pl;
 	t_vec3d	ab[2];
 	t_vec3d	m;
-	t_num	xy[2];
 
 	pl = (t_plane *)data->obj;
 	m = vec_sub(data->v, pl->r);
@@ -29,36 +37,32 @@ void	set_chess_plane(t_hit_data *data)
 		ab[0] = cross((t_vec3d){1, 0, 0}, pl->n);
 		ab[1] = cross((t_vec3d){0, 1, 0}, pl->n);
 	}
-	xy[0] = dot(ab[0], m) / pl->size_ch;
-	xy[1] = dot(ab[1], m) / pl->size_ch;
-	data->rgb = checkboard_fun(xy[0], xy[1], data->rgb, pl->rgb_ch);
+	data->texture.x = dot(ab[0], m) / pl->size_ch;
+	data->texture.y = dot(ab[1], m) / pl->size_ch;
+	data->rgb = texture_selector(data, pl->rgb_ch);
 }
 
 void	set_chess_sphere(t_hit_data *data)
 {
 	t_sphere	*sp;
 	t_vec3d		m;
-	t_num		theta;
-	t_num		alpha;
 
 	sp = (t_sphere *)data->obj;
 	m = vec_unit(vec_sub(data->v, sp->r));
-	theta = sp->quan_ch * acos(m.y) / PI;
-	alpha = sp->quan_ch * acos(m.x / sqrt(1 - m.y * m.y)) / PI;
-	data->rgb = checkboard_fun(alpha, theta, data->rgb, sp->rgb_ch);
+	data->texture.x = sp->quan_ch * acos(m.y) / PI;
+	data->texture.y = sp->quan_ch * acos(m.x / sqrt(1 - m.y * m.y)) / PI;
+	data->rgb = texture_selector(data, sp->rgb_ch);
 }
 
 void	set_chess_cyliner(t_hit_data *data)
 {
 	t_cylinder	*cy;
 	t_vec3d		rr;
-	t_num		z;
-	t_num		alpha;
 	t_vec3d		axis;
 
 	cy = (t_cylinder *)data->obj;
 	rr = vec_sub(data->v, cy->r);
-	z = cy->quan_ch * (dot(rr, cy->n) + cy->h / 2) / cy->h;
+	data->texture.y = cy->quan_ch * (dot(rr, cy->n) + cy->h / 2) / cy->h;
 	if (cy->type == CYLINDER)
 		rr = data->n;
 	else if (cy->type == CONE)
@@ -71,15 +75,15 @@ void	set_chess_cyliner(t_hit_data *data)
 		axis = cross(cy->n, (t_vec3d){0, 0, 1});
 	else
 		axis = vec_unit(cross(cy->n, (t_vec3d){1, 0, 0}));
-	alpha = acos(vec_cos(rr, axis));
+	data->texture.x = acos(vec_cos(rr, axis));
 	if (dot(cross(rr, axis), cy->n) < 0)
-		alpha = 2 * PI - alpha;
-	data->rgb = checkboard_fun(cy->quan_ch * alpha / 2 / PI, z, data->rgb, cy->rgb_ch);
+		data->texture.x = 2 * PI - data->texture.x;
+	data->texture.x *= cy->quan_ch / 2 / PI;
+	data->rgb = texture_selector(data, cy->rgb_ch);
 }
 
 void	set_checkboard(t_minirt *rt)
 {
-//	return ;
 	int			i;
 	t_hit_data	*data;
 
