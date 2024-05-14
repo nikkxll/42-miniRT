@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/14 11:55:31 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:20:05 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ enum	e_angles
 # define VEC_LEN 3
 
 # define VP_SIZE_MAX 2000
-# define VP_SIZE_MIN 2
+# define VP_SIZE_MIN 200
 # define VP_WIDTH_DEFAULT 1000
 # define VP_HEIGHT_DEFAULT 800
 # define MAX_CHECKER_QUAN 999
@@ -216,7 +216,7 @@ enum	e_angles
 # define CONFIG_MSG_20 "[checker or bump]\n"
 # define CONFIG_MSG_21 "q is in range             (0, 1000)\n"
 # define CONFIG_MSG_22 "s is in range             (0, 1000000)\n\n"
-# define CONFIG_MSG_23 "R   width   height       a\n\n"
+# define CONFIG_MSG_23 "R   width   height       blur\n\n"
 # define CONFIG_MSG_24 "Use template.rt file as a reference layout\n"
 
 #endif
