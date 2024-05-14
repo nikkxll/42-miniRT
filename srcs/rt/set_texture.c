@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:48:27 by apimikov          #+#    #+#             */
-/*   Updated: 2024/05/14 13:05:33 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:57:16 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ t_rgb3	texture_selector(t_hit_data *data, t_rgb3 c2)
 	t_num			y;
 	mlx_texture_t	*txr;
 
-	x = data->texture.x;
-	y = data->texture.y;
+	x = data->texture.x - EPSILON;
+	y = data->texture.y - EPSILON;
 	x = x - floor(x);
 	y = y - floor(y);
 	txr = data->obj->txr;
@@ -95,7 +95,7 @@ void	set_texture_cyliner(t_hit_data *data)
 		axis = vec_unit(cross(cy->n, (t_vec3d){1, 0, 0}));
 	data->texture.x = acos(vec_cos(rr, axis)) / 2 / M_PI;
 	if (dot(cross(rr, axis), cy->n) < 0)
-		data->texture.x = 1 - data->texture.x;
+		data->texture.x = -1 + data->texture.x;
 	if (data->obj->opt == 1)
 		data->texture = vec_scale(cy->quan_ch, data->texture);
 	data->rgb = texture_selector(data, cy->rgb_ch);
