@@ -23,7 +23,8 @@ GNL_HEADERS		:=	get_next_line.h
 #AUXILIARY_FUNCTIONS
 AUX_PATH		:=	auxiliary/
 AUX_SRCS		:=	ft_abs.c ft_free_2d_array.c ft_free_3d_array.c ft_max.c ft_min.c \
-					ft_arrlen.c ft_isspace.c ft_atol.c ft_strcmp.c ft_splitset.c
+					ft_arrlen.c ft_isspace.c ft_atol.c ft_strcmp.c ft_splitset.c \
+					ft_strrncmp.c
 
 #MAIN_LIBFT
 LIBFT			:=	libft.a
@@ -55,4 +56,3 @@ define progress
 	@perl -e 'printf "%-48s", "#" x int(($(COMPILED_OBJS) * 48 / $(TOTAL_OBJS)));'
 	@printf "] $(GREY)%.2f%%$(EC)" "$(shell echo "$(COMPILED_OBJS) / $(TOTAL_OBJS) * 100" | bc -l)"
 endef
-

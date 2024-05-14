@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/14 14:10:09 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:40:34 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-void	print_picture(t_minirt *rt)
+static void	print_picture(t_minirt *rt)
 {
 	int			i;
 	int			j;
@@ -39,7 +39,7 @@ void	print_picture(t_minirt *rt)
 	}
 }
 
-void	ft_hook_key(void *data)
+static void	ft_hook_key(void *data)
 {
 	t_minirt	*rt;
 
@@ -52,7 +52,7 @@ void	ft_hook_key(void *data)
 	}
 }
 
-int	make_picture(t_minirt *rt)
+static int	make_picture(t_minirt *rt)
 {
 	ft_printf(LOG_MSG_4);
 	transform_scene(rt);
@@ -81,13 +81,22 @@ int	make_picture(t_minirt *rt)
 	return (EXIT_SUCCESS);
 }
 
+static void	precheck(t_minirt *rt, int ac, char **av)
+{
+	if (ac != 2)
+		generic_errors_handler(NUM_FILES_ERR_MSG, NUM_FILES_ERR, rt);
+	if (ac == 2 && ft_strlen(av[1]) <= 3)
+		generic_errors_handler(FILE_FORM_ERR_MSG, FILE_FORM_ERR, rt);
+	if (ac == 2 && ft_strrncmp(av[1], ".rt", 3) != 0)
+		generic_errors_handler(FILE_FORM_ERR_MSG, FILE_FORM_ERR, rt);
+}
+
 int	main(int ac, char **av)
 {
 	t_minirt	*rt;
 
 	rt = NULL;
-	if (ac != 2)
-		generic_errors_handler(NUM_FILES_ERR_MSG, NUM_FILES_ERR, rt);
+	precheck(rt, ac, av);
 	init_struct(&rt);
 	parser(av, rt);
 	make_picture(rt);

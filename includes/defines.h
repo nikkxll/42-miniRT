@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/14 16:20:05 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:39:53 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ enum	e_exit_codes
 	SUCCESS,
 	MALLOC_ERR,
 	NUM_FILES_ERR,
+	FILE_FORM_ERR,
 	FILE_OPEN_ERR = 10,
 	FILE_READ_ERR = 20,
 	FILE_CLOSE_ERR = 30,
@@ -180,6 +181,7 @@ enum	e_angles
 # define ERR_MSG "Error\n"
 # define MALLOC_ERR_MSG "Malloc error occured\n"
 # define NUM_FILES_ERR_MSG "More than one file or no files provided\n"
+# define FILE_FORM_ERR_MSG "File in the wrong format, expected .rt\n"
 # define FILE_OPEN_ERR_MSG "Failed to open the file\n"
 # define FILE_READ_ERR_MSG "Failed to read the file\n"
 # define FILE_CLOSE_ERR_MSG "Failed to close the file\n"

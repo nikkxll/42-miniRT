@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 16:06:39 by dshatilo          #+#    #+#             */
-/*   Updated: 2024/05/05 00:55:49 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:22:46 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ long	ft_max(long num1, long num2);
 long	ft_min(long num1, long num2);
 int		ft_strcmp(const char *s1, const char *s2);
 t_bool	ft_isspace(char c);
+int		ft_strrncmp(const char *s1, const char *s2, size_t n);
 
 #endif

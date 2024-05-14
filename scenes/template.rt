@@ -12,8 +12,8 @@ C   0,0,0         0,0,1   90
 
 # Light
 # <coordinates: x,y,z> <brightness: 0-1> <color:red,green,blue>
-l   0,9.99999,0                0.3         	255,255,255
-l   10,10,0               0.3           255,255,255
+l   0,9.99999,0                0.3         	255,255,0
+l   10,10,0               0.3           255,255,0
 
 # Sphere
 # <coordinates: x,y,z> <diameter> <color:red,green,blue>
@@ -22,7 +22,7 @@ sp  -3,0,5               2           255,255,0		bump textures/mars.png
 sp  3,0,5               2           255,255,255		bump textures/earth.png
 sp  2,-1.5,3               0.5           255,255,255		bump textures/txr2.png
 sp  1,-1.5,3               0.5           255,255,255		bump textures/txr2.png
-sp  0,-1.5,3               0.5           255,255,255		checker 0,0,0 30
+sp  0,-1.5,3               0.5           255,255,255		checker 0,0,0 2
 sp  -1,-1.5,3               0.5           255,255,255		bump textures/txr2.png
 sp  -2,-1.5,3               0.5           255,255,255		bump textures/txr2.png
 
