@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 20:06:27 by alex             ###   ########.fr       */
+/*   Updated: 2024/05/14 12:18:23 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "MLX42.h"
 
 typedef double	t_num;
-
 
 typedef struct s_rgb3
 {
@@ -34,9 +33,9 @@ typedef struct s_vec3d
 
 typedef struct s_obj
 {
-	int	type;
+	int				type;
 	t_vec3d			r;
-	int	opt;
+	int				opt;
 	mlx_texture_t	*txr;
 }	t_obj;
 
@@ -68,9 +67,9 @@ typedef struct s_light
 {
 	int				type;
 	t_vec3d			r;
+	t_num			brt;
 	t_rgb3			rgb;
 	struct s_light	*next;
-	t_num			brt;
 }	t_light;
 
 typedef struct s_sphere

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:48:27 by apimikov          #+#    #+#             */
-/*   Updated: 2024/05/14 06:48:28 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:35:07 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_rgb3	texture_selector(t_hit_data *data, t_rgb3 c2)
 {
-	t_num	x;
-	t_num	y;
-	mlx_texture_t *txr;
+	t_num			x;
+	t_num			y;
+	mlx_texture_t	*txr;
 
 	x = data->texture.x;
 	y = data->texture.y;
@@ -25,17 +25,13 @@ t_rgb3	texture_selector(t_hit_data *data, t_rgb3 c2)
 	txr = data->obj->txr;
 	if (data->obj->opt == 2 && txr)
 	{
-		printf("bump x=%lf, y=%lf\n", x, y);
-		x *= (t_num)txr->width * 2;
-		y *= (t_num)txr->height * 2;
-		printf("bump x=%d, y=%d\n", (int)x, (int)y);
+		x *= (t_num)txr->width;
+		y *= (t_num)txr->height ;
 		return (get_bump_pixel(txr, (int)x, (int)y));
 	}
-		//return ((t_rgb3){0,0,0});
-
 	if (data->obj->opt != 1)
 		return (data->rgb);
-	if ((x <= 0.5 && y <= 0.5) || (x > 0.5 && y > 0.5))
+	if ((x < 0.5 && y < 0.5) || (x > 0.5 && y > 0.5))
 		return (data->rgb);
 	return (c2);
 }
@@ -73,18 +69,11 @@ void	set_texture_sphere(t_hit_data *data)
 	m = vec_unit(vec_sub(data->v, sp->r));
 	data->texture = (t_vec3d){acos(m.y) / M_PI,
 		acos(m.x / sqrt(1 - m.y * m.y)) / M_PI, 0};
-	//data->texture.x = sp->quan_ch * acos(m.y) / M_PI;
-	//data->texture.y = sp->quan_ch * acos(m.x / sqrt(1 - m.y * m.y)) / M_PI;
 	if (data->obj->opt == 1)
 		data->texture = vec_scale(sp->quan_ch, data->texture);
 	data->rgb = texture_selector(data, sp->rgb_ch);
 }
 
-//	data->texture.y = cy->quan_ch * (dot(rr, cy->n) + cy->h / 2) / cy->h;
-//	if (!cy->n.x)
-//		axis = cross(cy->n, (t_vec3d){1, 0, 0});
-	//else if (!cy->n.y)
-//	data->texture.x *= (t_num) 1 / 2 / M_PI;
 void	set_texture_cyliner(t_hit_data *data)
 {
 	t_cylinder	*cy;

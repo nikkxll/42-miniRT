@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 19:50:33 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:55:31 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ enum	e_angles
 # define VEC_LEN 3
 
 # define VP_SIZE_MAX 2000
-# define VP_SIZE_MIN 100
+# define VP_SIZE_MIN 2
 # define VP_WIDTH_DEFAULT 1000
 # define VP_HEIGHT_DEFAULT 800
 # define MAX_CHECKER_QUAN 999
@@ -154,7 +154,7 @@ enum	e_angles
 # define COEF_DIFF 1
 # define COEF_SPEC 1
 # define COEF_ALPHA 1000
-# define COEF_REFLECT 1
+# define COEF_REFLECT 1	
 
 # define PRS_LOG_MSG_1 "-- Camera initialized successfully\n"
 # define PRS_LOG_MSG_2 "-- Ambient light initialized successfully\n"

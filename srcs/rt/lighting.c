@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:47:54 by apimikov          #+#    #+#             */
-/*   Updated: 2024/05/14 06:47:55 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:19:47 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,6 @@ void	add_light_ambient(t_minirt *rt, t_hit_data *data)
 	data->color = vec_add(data->color, \
 		vec_scale(COEF_AMBI * a->ratio, rgb_to_vec(a->rgb)));
 }
-
-
-void add_light_reflected_obj(t_minirt *rt, t_hit_data *data)
-{
-	t_vec3d	c;
-
-	c = touch_spheres(rt, data, data->r).color;
-	c = vec_scale(COEF_REFLECT * 1, c);
-	data->color = vec_add(data->color, c);
-}
-
 
 int	is_light_visible(t_minirt *rt, t_hit_data *data)
 {
@@ -83,6 +72,5 @@ void	lighting(t_minirt *rt, int pixel)
 		add_light_diff_spec(rt, data, light);
 		light = light->next;
 	}
-	// add_light_reflected_obj(rt, data);
 	data->color = vec_prod(data->color, rgb_to_vec(data->rgb));
 }

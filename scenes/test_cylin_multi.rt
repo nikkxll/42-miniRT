@@ -23,7 +23,7 @@ l   0,10,0            0.5         	255,255,255
 #sp  -3,0.5,5           1           255,255,0
 #sp  3,2,5             2           0,255,0 checker 0,0,250 10
 sp  3,2,5             2           0,255,0 bump textures/bones.png
-sp  3,-2,5             2           0,255,0 
+sp  3,-2,5             2           0,255,0  bump textures/bones.png
 
 # Plane 
 # <coordinates: x,y,z> <origin:x,y,z> <color:red,green,blue>
@@ -45,7 +45,7 @@ cy  -3,0,5       0,0,1          1      4      255,255,255
 # Cylinder
 # <coordinates: x,y,z>  <orientation: x,y,z> <diameter: >= 0> <height: >= 0> <color:red,green,blue>
 co  -3,2,5       1,1,1          1      4      255,255,255 checker 255,0,0 10
-co  -3,2,5       0,1,0          1      4      0,255,0 checker 0,0,0 10
+co  -3,2,5       0,1,0          1      4      0,255,0  bump textures/bones.png
 co  -3,2,5       1,0,0          1      4      255,0,0 checker 0,0,0 10
 co  -3,2,5       0,0,1          1      4      255,255,255 checker 0,0,0 10
 #co  -3,2,5       0,0,1          1      4      255,255,255
