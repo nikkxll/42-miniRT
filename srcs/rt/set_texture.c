@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_texture.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apimikov <apimikov@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/14 06:48:27 by apimikov          #+#    #+#             */
+/*   Updated: 2024/05/14 06:48:28 by apimikov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minirt.h"
 
 t_rgb3	texture_selector(t_hit_data *data, t_rgb3 c2)
@@ -14,8 +26,8 @@ t_rgb3	texture_selector(t_hit_data *data, t_rgb3 c2)
 	if (data->obj->opt == 2 && txr)
 	{
 		printf("bump x=%lf, y=%lf\n", x, y);
-		x *= (t_num)txr->width * 2; // / 2;
-		y *= (t_num)txr->height * 2; // / 2;
+		x *= (t_num)txr->width * 2;
+		y *= (t_num)txr->height * 2;
 		printf("bump x=%d, y=%d\n", (int)x, (int)y);
 		return (get_bump_pixel(txr, (int)x, (int)y));
 	}
