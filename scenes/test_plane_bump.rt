@@ -2,7 +2,7 @@
 R 1000 800 
 # Ambient Light
 # <intensity: 0-1> <color: red, green, blue>
-A                      0.3        255,255,255
+A                      0.99        255,255,255
 
 # Camera
 # <coordinates of camera position: x,y,z> <camera view: x,y,z> <pov:x,y,z>
@@ -22,10 +22,10 @@ sp  0,0,5             2           0,255,0 bump textures/earth.png
 
 # Plane 
 # <coordinates: x,y,z> <origin:x,y,z> <color:red,green,blue>
-pl  0,-2,10            0,1,0              0,0,250  bump textures/bones.png
+pl  0,-2,10            0,1,0              0,0,250  bump textures/earth.png	
 #checker 250,0,0 1
 #pl  0,10,0            0,1,0              0,250,0
-pl   -0.5,-0.5,5          0,0,-1              250,0,0 checker 0,0,0 1.
+pl   -0.5,-0.5,5          0,0,-1              250,0,0 checker 0,0,0 9
 #pl  0,0,5          0,0,-1              250,0,0 bump textures/bones.png
 #pl  -0.5,-0.5,0.5          0,0,-1              250,0,0 bump textures/test.png
 
