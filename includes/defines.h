@@ -6,7 +6,7 @@
 /*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/14 18:39:53 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/14 22:48:26 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ enum	e_angles
 # define VEC_LEN 3
 
 # define VP_SIZE_MAX 2000
-# define VP_SIZE_MIN 200
+# define VP_SIZE_MIN 100
 # define VP_WIDTH_DEFAULT 1000
 # define VP_HEIGHT_DEFAULT 800
 # define MAX_CHECKER_QUAN 999
@@ -207,8 +207,8 @@ enum	e_angles
 # define CONFIG_MSG_9 "R width is in range       (100, 2000)\n"
 # define CONFIG_MSG_10 "R height is in range      (100, 2000)\n"
 # define CONFIG_MSG_11 "\nExample of the valid .rt file format:\n\n"
-# define CONFIG_MSG_12 "A   ratio   r,g,b       [blur]\n"
-# define CONFIG_MSG_13 "C   x,y,z   x_n,y_n,x_n  FOV\n"
+# define CONFIG_MSG_12 "A   ratio   r,g,b             (required)\n"
+# define CONFIG_MSG_13 "C   x,y,z   x_n,y_n,x_n  FOV  (required)\n"
 # define CONFIG_MSG_14 "L   x,y,z   ratio        r,g,b (one light)\n"
 # define CONFIG_MSG_15 "l   x,y,z   ratio        r,g,b (one or multiple)\n"
 # define CONFIG_MSG_16 "sp  x,y,z   d            r,g,b  "
