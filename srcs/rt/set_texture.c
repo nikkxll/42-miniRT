@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:48:27 by apimikov          #+#    #+#             */
-/*   Updated: 2024/05/14 12:39:44 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/14 13:05:33 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	set_texture_plane(t_hit_data *data)
 	m = vec_sub(data->v, pl->r);
 	if (is_epsilon(pl->n.z))
 	{
-		ab[0] = cross((t_vec3d){0, 0, 1}, pl->n);
-		ab[1] = (t_vec3d){0, 0, 1};
+		ab[0] = cross((t_vec3d){0, 0, 1.}, pl->n);
+		ab[1] = (t_vec3d){0, 0, 1.};
 	}
 	else
 	{
-		ab[0] = cross((t_vec3d){1, 0, 0}, pl->n);
-		ab[1] = cross((t_vec3d){0, 1, 0}, pl->n);
+		ab[0] = cross((t_vec3d){1., 0, 0}, pl->n);
+		ab[1] = cross((t_vec3d){0, 1., 0}, pl->n);
 	}
 	data->texture = (t_vec3d){dot(ab[0], m), dot(ab[1], m), 0};
 	if (data->obj->opt == 1)
@@ -67,8 +67,6 @@ void	set_texture_sphere(t_hit_data *data)
 
 	sp = (t_sphere *)data->obj;
 	m = vec_unit(vec_sub(data->v, sp->r));
-	//data->texture = (t_vec3d){acos(m.y) / M_PI,
-	//	acos(m.x / sqrt(1 - m.y * m.y)) / M_PI, 0};
 	data->texture = (t_vec3d){-acos(m.x) / M_PI,
 		acos(m.y / sqrt(1 - m.x * m.x)) / M_PI, 0};
 	if (data->obj->opt == 1)
