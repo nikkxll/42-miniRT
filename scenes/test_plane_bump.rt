@@ -17,7 +17,7 @@ l   0,10,0            0.5         	255,255,255
 # Sphere
 # <coordinates: x,y,z> <diameter> <color:red,green,blue>
 #sp  3,2,5             2           0,255,0 checker 0,0,250 10
-sp  3,2,5             2           0,255,0 bump textures/bones.png
+sp  0,0,5             2           0,255,0 bump textures/earth.png
 #sp  3,-2,5             2           0,255,0 
 
 # Plane 
@@ -31,10 +31,11 @@ pl   -0.5,-0.5,5          0,0,-1              250,0,0 checker 0,0,0 1
 
 # Cylinder
 # <coordinates: x,y,z>  <orientation: x,y,z> <diameter: >= 0> <height: >= 0> <color:red,green,blue>
-#cy  0,0,5       1,1,1          1      4      255,255,255 checker 255,0,0 10
+cy  2,2,5       1,1,1          1      4      255,255,255 bump textures/earth.png
 #cy  0,0,5       0,1,0          1      4      0,255,0 checker 0,0,0 10
 
 # Cylinder
 # <coordinates: x,y,z>  <orientation: x,y,z> <diameter: >= 0> <height: >= 0> <color:red,green,blue>
 #co  -3,2,5       1,1,1          1      4      255,255,255 checker 255,0,0 10
 #co  -3,2,5       0,1,0          1      4      0,255,0 checker 0,0,0 10
+co  -2,2,5       1,1,1          1      4      255,255,255 bump textures/earth.png

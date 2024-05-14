@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:48:27 by apimikov          #+#    #+#             */
-/*   Updated: 2024/05/14 11:35:07 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:39:44 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,10 @@ void	set_texture_sphere(t_hit_data *data)
 
 	sp = (t_sphere *)data->obj;
 	m = vec_unit(vec_sub(data->v, sp->r));
-	data->texture = (t_vec3d){acos(m.y) / M_PI,
-		acos(m.x / sqrt(1 - m.y * m.y)) / M_PI, 0};
+	//data->texture = (t_vec3d){acos(m.y) / M_PI,
+	//	acos(m.x / sqrt(1 - m.y * m.y)) / M_PI, 0};
+	data->texture = (t_vec3d){-acos(m.x) / M_PI,
+		acos(m.y / sqrt(1 - m.x * m.x)) / M_PI, 0};
 	if (data->obj->opt == 1)
 		data->texture = vec_scale(sp->quan_ch, data->texture);
 	data->rgb = texture_selector(data, sp->rgb_ch);

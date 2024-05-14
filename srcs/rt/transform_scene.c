@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:48:36 by apimikov          #+#    #+#             */
-/*   Updated: 2024/05/14 12:03:11 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:35:07 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ void	transform_scene(t_minirt *rt)
 	cam = rt->prs->camera;
 	angles[ALPHA] = atan2(cam->n.x, cam->n.y) * 180 / M_PI;
 	angles[BETA] = acos(vec_unit(cam->n).z) * 180 / M_PI;
-	printf("Rotation: alpha=%lf betat=%lf\n", angles[ALPHA], angles[BETA]);
+	printf("-- Rotation: alpha = %lf\n", angles[ALPHA]);
+	printf("-- Rotation: beta = %lf\n", angles[BETA]);
 	transform_spheres(rt->prs->sphere, cam, angles);
 	transform_light(rt->prs->light, cam, angles);
 	transform_planes(rt->prs->plane, cam, angles);
