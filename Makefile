@@ -22,8 +22,8 @@ CLEANING_PATH	:=	cleaning/
 CLEANING		:=	$(addprefix $(CLEANING_PATH), $(CLEANING_NAME))
 
 # RT
-RT_NAME			:=	hit_plane.c hit_sphere.c hit_cylin.c viewport.c transform_scene.c make_norm_vec.c \
-					lighting.c color.c blur.c set_checkboard.c set_bump.c
+RT_NAME			:=	hit_plane.c hit_sphere.c hit_cylin.c hit_cylin_utils.c viewport.c transform_scene.c make_norm_vec.c \
+					lighting.c color.c blur.c set_texture.c set_bump.c
 RT_PATH			:=	rt/
 RT				:=	$(addprefix $(RT_PATH), $(RT_NAME))
 
@@ -62,7 +62,7 @@ HEAD_DIR	= -I./includes -I$(LIBMLX)/include  -I./libft
 # 					-lglfw -framework OpenGL -framework AppKit
 
 # MLX FOR SCHOOL COMPUTERS 
-LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
+#LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
 					-lglfw -framework OpenGL -framework AppKit
 
 
@@ -71,8 +71,8 @@ LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.bre
 # 					-lglfw -framework OpenGL -framework AppKit
 
 #GLFW_DIR = ~/.brew/opt/glfw/lib
-#  GLFW_DIR = /Users/apimikov/.brew/opt/glfw/lib
-#  LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
+ GLFW_DIR = /Users/apimikov/.brew/opt/glfw/lib
+LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
 
 # LOADING PROGRESS BAR INIT
 TOTAL_OBJS		:=	$(words $(OBJS))

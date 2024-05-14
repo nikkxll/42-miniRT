@@ -3,82 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 12:33:31 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 18:02:16 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:19:32 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
-
-void print_ll(t_minirt *rt)
-{
-	if (rt->prs->screen)
-	{
-		printf("VIEWPORT %d   %d   %d\n", rt->prs->screen->type,
-			rt->prs->screen->width, rt->prs->screen->height);
-	}
-	printf("AML %d   %f   %d   %d   %d\n", rt->prs->aml->type,
-		rt->prs->aml->ratio, rt->prs->aml->rgb.r, rt->prs->aml->rgb.g,
-		rt->prs->aml->rgb.b);
-	printf("CAMERA %d   %f   %f   %f   %f   %f   %f   %f\n", rt->prs->camera->type,
-		rt->prs->camera->r.x, rt->prs->camera->r.y, rt->prs->camera->r.z,
-		rt->prs->camera->n.x, rt->prs->camera->n.y, rt->prs->camera->n.z,
-		rt->prs->camera->fov);
-	while (rt->prs->cylinder)
-	{
-		printf("CYLINDER %d   %f   %f   %f   %f   %f   %f   %f   %f   %i   %i   %i   %i   %i   %i   %i   |||%d\n", rt->prs->cylinder->type,
-		rt->prs->cylinder->r.x, rt->prs->cylinder->r.y, rt->prs->cylinder->r.z,
-		rt->prs->cylinder->n.x, rt->prs->cylinder->n.y, rt->prs->cylinder->n.z,
-		rt->prs->cylinder->d, rt->prs->cylinder->h, rt->prs->cylinder->rgb.r,
-		rt->prs->cylinder->rgb.g, rt->prs->cylinder->rgb.b, rt->prs->cylinder->rgb_ch.r, rt->prs->cylinder->rgb_ch.g, rt->prs->cylinder->rgb_ch.b,
-		rt->prs->cylinder->quan_ch, rt->prs->cylinder->opt);
-		rt->prs->cylinder = rt->prs->cylinder->next;
-	}
-	while (rt->prs->cone)
-	{
-		printf("CONE %d   %f   %f   %f   %f   %f   %f   %f   %f   %i   %i   %i   %i   %i   %i   %i   |||%d\n", rt->prs->cone->type,
-		rt->prs->cone->r.x, rt->prs->cone->r.y, rt->prs->cone->r.z,
-		rt->prs->cone->n.x, rt->prs->cone->n.y, rt->prs->cone->n.z,
-		rt->prs->cone->d, rt->prs->cone->h, rt->prs->cone->rgb.r,
-		rt->prs->cone->rgb.g, rt->prs->cone->rgb.b, rt->prs->cone->rgb_ch.r, rt->prs->cone->rgb_ch.g, rt->prs->cone->rgb_ch.b,
-		rt->prs->cone->quan_ch, rt->prs->cone->opt);
-		rt->prs->cone = rt->prs->cone->next;
-	}
-	while (rt->prs->light)
-	{
-		printf("LIGHT %d   %f   %f   %f   %f   %i   %i   %i\n", rt->prs->light->type,
-		rt->prs->light->r.x, rt->prs->light->r.y, rt->prs->light->r.z,
-		rt->prs->light->brt, rt->prs->light->rgb.r, rt->prs->light->rgb.g, rt->prs->light->rgb.b);
-		rt->prs->light = rt->prs->light->next;
-	}
-	while (rt->prs->plane)
-	{
-		printf("PLANE %d   %f   %f   %f   %f   %f   %f   %i   %i   %i   %i   %i   %i   %f   |||%d\n", rt->prs->plane->type,
-		rt->prs->plane->r.x, rt->prs->plane->r.y, rt->prs->plane->r.z,
-		rt->prs->plane->n.x, rt->prs->plane->n.y, rt->prs->plane->n.z,
-		rt->prs->plane->rgb.r, rt->prs->plane->rgb.g, rt->prs->plane->rgb.b, rt->prs->plane->rgb_ch.r, rt->prs->plane->rgb_ch.g, rt->prs->plane->rgb_ch.b,
-		rt->prs->plane->size_ch, rt->prs->plane->opt);
-		rt->prs->plane = rt->prs->plane->next;
-	}
-	while (rt->prs->sphere)
-	{
-		printf("SPHERE %d   %f   %f   %f   %f   %d   %d   %d   %i   %i   %i   %i   |||%d\n", rt->prs->sphere->type, 
-		rt->prs->sphere->r.x, rt->prs->sphere->r.y, rt->prs->sphere->r.z,
-		rt->prs->sphere->d, rt->prs->sphere->rgb.r, rt->prs->sphere->rgb.g,
-		rt->prs->sphere->rgb.b, rt->prs->sphere->rgb_ch.r, rt->prs->sphere->rgb_ch.g, rt->prs->sphere->rgb_ch.b,
-		rt->prs->sphere->quan_ch, rt->prs->sphere->opt);
-		rt->prs->sphere = rt->prs->sphere->next;
-	}
-}
-
-/*
-int32_t	rgb_to_int(t_rgb3 rgb)
-{
-	return (rgb.r << 24 | rgb.g << 16 | rgb.b << 8 | 255);
-}
-*/
 
 void	print_picture(t_minirt *rt)
 {
@@ -100,24 +32,12 @@ void	print_picture(t_minirt *rt)
 			if (rt->prs->screen->blur == ON)
 				color = rgb_to_int(vec_to_rgb(blur(rt, j * rt->vp.n_x + i)));
 			else
-				color = rgb_to_int(vec_to_rgb(rt->vp.hit[j * rt->vp.n_x + i].color));
+				color = rgb_to_int(
+						vec_to_rgb(rt->vp.hit[j * rt->vp.n_x + i].color));
 			mlx_put_pixel(rt->image, i, j, color);
 		}
 	}
 }
-
-/*
-void	ft_hook_image(void *data)
-{
-	t_minirt	*rt;
-
-	rt = data;
-	//ft_memset(rt->image->pixels, 100, //255, //CHANNELBACK,
-	//	rt->image->width * rt->image->height * sizeof(int32_t));
-	print_picture(rt);
-}
-
-*/
 
 void	ft_hook_key(void *data)
 {
@@ -132,25 +52,17 @@ void	ft_hook_key(void *data)
 	}
 }
 
-//int	main(int32_t argc, char *argv[])
 int	make_picture(t_minirt *rt)
 {
 	ft_printf(LOG_MSG_4);
 	transform_scene(rt);
-/*
-	t_dist_cc precalc;
-	t_num	t = dist_to_cylin((t_vec3d){0,0,0},(t_vec3d){0,0,1}, (t_cylinder *)rt->prs->cone, &precalc);
-	printf("dist to cylinder t=%lf\n", t);
-	exit (0);
-*/
 	ft_printf(LOG_MSG_5);
 	init_viewport(rt);
 	ft_printf(LOG_MSG_6);
 	hit_scene(rt);
-	// calc color of object in each pixel for bump and checkboard
 	ft_printf(LOG_MSG_7);
 	make_norm_vec(rt);
-	set_checkboard(rt);
+	set_checkerboard_texture(rt);
 	ft_printf(LOG_MSG_8);
 	rt->mlx = mlx_init(rt->prs->screen->width, rt->prs->screen->height,
 			"miniRT", true);
@@ -169,7 +81,6 @@ int	make_picture(t_minirt *rt)
 	return (EXIT_SUCCESS);
 }
 
-
 int	main(int ac, char **av)
 {
 	t_minirt	*rt;
@@ -179,17 +90,6 @@ int	main(int ac, char **av)
 		generic_errors_handler(NUM_FILES_ERR_MSG, NUM_FILES_ERR, rt);
 	init_struct(&rt);
 	parser(av, rt);
-	// print_ll(rt);
-	// unsigned int i = -1;
-	// unsigned int j = -1;
-	// while (++j < rt->prs->sphere->txr->height / 2)
-	// {
-	// 	i = -1;
-	// 	while (++i < rt->prs->sphere->txr->width / 2)
-	// 	{
-	// 		vec_print("color ",vec_scale(255,rgb_to_vec(get_bump_pixel(rt->prs->sphere->txr, i, j))));
-	// 	}
-	// }	
 	make_picture(rt);
 	cleaner(rt);
 	return (SUCCESS);

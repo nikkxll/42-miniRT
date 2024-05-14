@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hit_plane.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apimikov <apimikov@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/14 06:47:29 by apimikov          #+#    #+#             */
+/*   Updated: 2024/05/14 06:47:31 by apimikov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minirt.h"
 
 static t_num	dist_to_plane(t_plane *pl, t_vec3d v)
@@ -56,12 +68,9 @@ t_hit_data	touch_planes(t_minirt *rt, t_hit_data *data, t_vec3d l)
 			data->obst = t;
 			ret.obj = (t_obj *)p;
 			ret.type = PLANE;
-			ret.rgb = p->rgb; 
+			ret.rgb = p->rgb;
 			if (t < vec_norm(data->ll))
-			{
-			//	printf("t=%lf, light distance =%lf\n", t, vec_norm(data->ll));
-				break;
-			}
+				break ;
 		}
 		p = p->next;
 	}

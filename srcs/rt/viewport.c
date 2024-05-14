@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   viewport.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apimikov <apimikov@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/14 06:48:42 by apimikov          #+#    #+#             */
+/*   Updated: 2024/05/14 06:48:43 by apimikov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minirt.h"
 
 void	hit_scene(t_minirt *rt)
@@ -9,7 +21,7 @@ void	hit_scene(t_minirt *rt)
 	{
 		hit_spheres(rt, pixel);
 		hit_planes(rt, pixel);
-		hit_cylinder(rt, pixel); // change name to hit_cylinder_cone
+		hit_cylinder_cone(rt, pixel);
 		pixel++;
 	}
 }

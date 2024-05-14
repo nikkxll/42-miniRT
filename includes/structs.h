@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:25:03 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 18:01:58 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:18:23 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 # include "MLX42.h"
 
 typedef double	t_num;
-
-typedef struct s_obj
-{
-	int	type;
-	int	opt;
-}	t_obj;
 
 typedef struct s_rgb3
 {
@@ -36,6 +30,14 @@ typedef struct s_vec3d
 	t_num	y;
 	t_num	z;
 }	t_vec3d;
+
+typedef struct s_obj
+{
+	int				type;
+	t_vec3d			r;
+	int				opt;
+	mlx_texture_t	*txr;
+}	t_obj;
 
 typedef struct s_screen
 {
@@ -65,42 +67,43 @@ typedef struct s_light
 {
 	int				type;
 	t_vec3d			r;
+	t_num			brt;
 	t_rgb3			rgb;
 	struct s_light	*next;
-	t_num			brt;
 }	t_light;
 
 typedef struct s_sphere
 {
 	int				type;
-	int				opt;
 	t_vec3d			r;
+	int				opt;
+	mlx_texture_t	*txr;
 	t_rgb3			rgb;
 	struct s_sphere	*next;
 	t_num			d;
 	t_rgb3			rgb_ch;
 	int				quan_ch;
-	mlx_texture_t	*txr;
 }	t_sphere;
 
 typedef struct s_plane
 {
 	int					type;
-	int					opt;
 	t_vec3d				r;
+	int					opt;
+	mlx_texture_t		*txr;
 	t_vec3d				n;
 	t_rgb3				rgb;
 	struct s_plane		*next;
 	t_rgb3				rgb_ch;
 	t_num				size_ch;
-	mlx_texture_t		*txr;
 }	t_plane;
 
 typedef struct s_cylinder
 {
 	int					type;
-	int					opt;
 	t_vec3d				r;
+	int					opt;
+	mlx_texture_t		*txr;
 	t_vec3d				n;
 	t_rgb3				rgb;
 	struct s_cylinder	*next;
@@ -108,14 +111,14 @@ typedef struct s_cylinder
 	t_num				h;
 	t_rgb3				rgb_ch;
 	int					quan_ch;
-	mlx_texture_t		*txr;
 }	t_cylinder;
 
 typedef struct s_cone
 {
 	int					type;
-	int					opt;
 	t_vec3d				r;
+	int					opt;
+	mlx_texture_t		*txr;
 	t_vec3d				n;
 	t_rgb3				rgb;
 	struct s_cone		*next;
@@ -123,7 +126,6 @@ typedef struct s_cone
 	t_num				h;
 	t_rgb3				rgb_ch;
 	int					quan_ch;
-	mlx_texture_t		*txr;
 }	t_cone;
 
 typedef struct s_parse
@@ -165,6 +167,7 @@ typedef struct s_hit_data
 	t_vec3d		ll;
 	t_vec3d		r;
 	t_vec3d		temp;
+	t_vec3d		texture;
 	t_dist_cc	precalc;
 	t_num		obst;
 }	t_hit_data;
@@ -184,7 +187,6 @@ typedef struct s_minirt
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 	t_viewport	vp;
-	//t_sphere	sphere;  // this is temporal
 }	t_minirt;
 
 #endif

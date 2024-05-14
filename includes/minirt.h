@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:09:21 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/13 18:07:29 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:06:15 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,15 +126,15 @@ t_hit_data	touch_planes(t_minirt *rt, t_hit_data *data, t_vec3d l);
 
 //hit_cylin.c
 int			is_epsilon(t_num a);
-void		hit_cylinder(t_minirt *rt, size_t pixel);
-t_hit_data	touch_cylinder(t_minirt *rt, t_hit_data *data, t_vec3d l);
+void		hit_cylinder_cone(t_minirt *rt, size_t pixel);
+t_hit_data	touch_cylinder_cone(t_minirt *rt, t_hit_data *data, t_vec3d l);
 t_num		dist_to_cylin(t_vec3d v0, t_vec3d v1, t_cylinder *obj,
 				t_dist_cc *p);
-
 //blur.c
 t_vec3d		blur(t_minirt *rt, int pos);
 
-void		set_checkboard(t_minirt *rt);
+// set_texture.c
+void		set_checkerboard_texture(t_minirt *rt);
 t_rgb3		get_bump_pixel(mlx_texture_t *texture, int i, int j);
 
 #endif
