@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:06:11 by apimikov          #+#    #+#             */
-/*   Updated: 2024/05/14 12:09:52 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/14 14:08:03 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ t_hit_data	touch_cylinder_cone(t_minirt *rt, t_hit_data *data, t_vec3d l)
 		copy = *s;
 		t = dist_to_cylin(data->v, l, &copy, &precalc);
 		if (t > EPSILON && (data->obst == -1 || t < data->obst))
+		{
+			data->obst = t;
 			set_dat_cy_co(&ret, s, t, &precalc);
+		}
 		if (!s->next && s->type == CYLINDER)
 			s = (t_cylinder *)rt->prs->cone;
 		else
