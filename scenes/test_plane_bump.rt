@@ -1,5 +1,5 @@
 # Camera's position and direction 03
-R 800 800 
+R 1000 800 
 # Ambient Light
 # <intensity: 0-1> <color: red, green, blue>
 A                      0.3        255,255,255
