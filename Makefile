@@ -43,7 +43,6 @@ OBJS			:=	$(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 # LIBFT_LIBRARY
 LIBFT_PATH		:=	$(LIBFT_PATH)
 LIBFT_SOURSES	:=	$(addprefix $(LIBFT_PATH), $(LIBFT_SOURSES))
-#LIBFT			:=	$(addprefix $(LIBFT_PATH), $(LIBFT))
 LIBFT			:=	libft/libft.a
 
 # HEADERS AND EXTERNAL LIBRARIES
@@ -62,17 +61,16 @@ HEAD_DIR	= -I./includes -I$(LIBMLX)/include  -I./libft
 # 					-lglfw -framework OpenGL -framework AppKit
 
 # MLX FOR SCHOOL COMPUTERS 
-#LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
+LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
 					-lglfw -framework OpenGL -framework AppKit
-
 
 # MLX FOR MacOS (M1 and later)
 # LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
 # 					-lglfw -framework OpenGL -framework AppKit
 
 #GLFW_DIR = ~/.brew/opt/glfw/lib
- GLFW_DIR = /Users/apimikov/.brew/opt/glfw/lib
-LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
+#  GLFW_DIR = /Users/apimikov/.brew/opt/glfw/lib
+# LIBS	= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
 
 # LOADING PROGRESS BAR INIT
 TOTAL_OBJS		:=	$(words $(OBJS))
