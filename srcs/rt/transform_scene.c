@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_scene.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:48:36 by apimikov          #+#    #+#             */
-/*   Updated: 2024/05/15 14:38:33 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:11:57 by dnikifor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	rotatate_vector(t_vec3d *v, t_num angles[2])
 	if (angles[ALPHA] < -45)
 	{
 		*v = vec_rot_z(*v, -(90 + angles[ALPHA]));
-		*v = vec_rot_y(*v, - angles[BETA]);
+		*v = vec_rot_y(*v, -angles[BETA]);
 		return ;
 	}
 	*v = vec_rot_z(*v, 90.0 - angles[ALPHA]);

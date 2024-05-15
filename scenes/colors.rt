@@ -6,7 +6,7 @@ A                      0.1        255,255,255
 
 # Camera
 # <coordinates of camera position: x,y,z> <camera view: x,y,z> <pov:x,y,z>
-C   0,10,0         0,1,1   60
+C   0,10,0         0,-1,1   60
 
 # Light
 # <coordinates: x,y,z> <brightness: 0-1> <color:red,green,blue>
