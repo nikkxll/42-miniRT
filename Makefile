@@ -105,14 +105,13 @@ $(MLX):
 	@echo "$(GREEN)Library 'libmlx42.a' created successfully$(EC)"
 
 clean:
-	@$(MAKE) clean -C $(LIBFT_PATH)
+	@$(MAKE) fclean -C $(LIBFT_PATH)
+	@rm -rf $(LIBMLX)/build
 	@rm -rf $(OBJS_PATH)
 	@echo "$(RED)Object files successfully removed!$(EC)"
 
 fclean: clean
 	@rm -rf $(NAME)
-	@rm -rf $(LIBMLX)/build	
-	@$(MAKE) fclean -C $(LIBFT_PATH)
 	@echo "$(RED)\nFull clean up completed successfully!$(EC)"
 
 re: fclean all
