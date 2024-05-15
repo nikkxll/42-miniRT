@@ -75,6 +75,8 @@ MSG_PRINTED 	:=	false
 # RULES
 all: $(NAME)
 
+bonus: $(NAME)
+
 $(NAME): $(LIBFT) $(MLX) $(OBJS_PATH) $(OBJS) $(HEADERS)
 	@cc $(CFLAGS) $(OBJS) $(LIBS) $(HEAD_DIR) $(LIBFT) -o $(NAME)
 	@echo "$(GREEN)\n\n$(NAME) created successfully!$(EC)"

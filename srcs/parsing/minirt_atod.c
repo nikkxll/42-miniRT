@@ -25,7 +25,7 @@ static t_bool	format_check(char *str, int count, int *sign_flag)
 		str++;
 	}
 	if (((*str == NULL_TERM || *str == DOT) && count > ATOF_MAX)
-			|| (*str != NULL_TERM && *str != DOT) || count == 0)
+		|| (*str != NULL_TERM && *str != DOT) || count == 0)
 		return (false);
 	if (*str && ft_strlen(str + 1) == 0)
 		return (false);
