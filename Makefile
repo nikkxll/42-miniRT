@@ -107,11 +107,11 @@ $(MLX):
 clean:
 	@$(MAKE) clean -C $(LIBFT_PATH)
 	@rm -rf $(OBJS_PATH)
-	@rm -rf $(LIBMLX)/build	
 	@echo "$(RED)Object files successfully removed!$(EC)"
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -rf $(LIBMLX)/build	
 	@$(MAKE) fclean -C $(LIBFT_PATH)
 	@echo "$(RED)\nFull clean up completed successfully!$(EC)"
 
