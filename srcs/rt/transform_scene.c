@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:48:36 by apimikov          #+#    #+#             */
-/*   Updated: 2024/05/14 12:35:07 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:47:20 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	rotatate_vector(t_vec3d *v, t_num angles[2])
 {
 	if (fabs(angles[ALPHA]) < 45)
 	{
-		*v = vec_rot_z(*v, angles[ALPHA]);
-		*v = vec_rot_x(*v, angles[BETA]);
+		*v = vec_rot_z(*v, -angles[ALPHA]);
+		*v = vec_rot_x(*v, -angles[BETA]);
 		return ;
 	}
 	if (angles[ALPHA] < -45)

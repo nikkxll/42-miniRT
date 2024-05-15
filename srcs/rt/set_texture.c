@@ -6,7 +6,7 @@
 /*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:48:27 by apimikov          #+#    #+#             */
-/*   Updated: 2024/05/14 14:57:16 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:28:02 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_rgb3	texture_selector(t_hit_data *data, t_rgb3 c2)
 	if (data->obj->opt == 2 && txr)
 	{
 		x *= (t_num)txr->width;
-		y *= (t_num)txr->height ;
+		y *= (t_num)txr->height;
 		return (get_bump_pixel(txr, (int)x, (int)y));
 	}
 	if (data->obj->opt != 1)
@@ -46,13 +46,13 @@ void	set_texture_plane(t_hit_data *data)
 	m = vec_sub(data->v, pl->r);
 	if (is_epsilon(pl->n.z))
 	{
-		ab[0] = cross((t_vec3d){0, 0, 1.}, pl->n);
+		ab[0] = vec_unit(cross((t_vec3d){0, 0, 1.}, pl->n));
 		ab[1] = (t_vec3d){0, 0, 1.};
 	}
 	else
 	{
-		ab[0] = cross((t_vec3d){1., 0, 0}, pl->n);
-		ab[1] = cross((t_vec3d){0, 1., 0}, pl->n);
+		ab[0] = vec_unit(cross((t_vec3d){1., 0, 0}, pl->n));
+		ab[1] = vec_unit(cross((t_vec3d){0, 1., 0}, pl->n));
 	}
 	data->texture = (t_vec3d){dot(ab[0], m), dot(ab[1], m), 0};
 	if (data->obj->opt == 1)

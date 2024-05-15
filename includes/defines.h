@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 12:24:10 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/14 22:48:26 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:40:41 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ enum	e_angles
 # define CONFIG_MSG_2 "ratio is in range         (0.0, 1.0)\n"
 # define CONFIG_MSG_3 "r,g,b are in range        [0, 255]\n"
 # define CONFIG_MSG_4 "x,y,z are in range        (-1000000, 1000000)\n"
-# define CONFIG_MSG_5 "x_n,y_n,x_n are in range  [-1, 1]\n"
+# define CONFIG_MSG_5 "x_n,y_n,y_n are in range  [-1, 1]\n"
 # define CONFIG_MSG_6 "FOV is in range           (0, 180)\n"
 # define CONFIG_MSG_7 "cy diameter is in range   (0, 1000000)\n"
 # define CONFIG_MSG_8 "cy height is in range     (0, 1000000)\n"
@@ -208,13 +208,13 @@ enum	e_angles
 # define CONFIG_MSG_10 "R height is in range      (100, 2000)\n"
 # define CONFIG_MSG_11 "\nExample of the valid .rt file format:\n\n"
 # define CONFIG_MSG_12 "A   ratio   r,g,b             (required)\n"
-# define CONFIG_MSG_13 "C   x,y,z   x_n,y_n,x_n  FOV  (required)\n"
+# define CONFIG_MSG_13 "C   x,y,z   x_n,y_n,z_n  FOV  (required)\n"
 # define CONFIG_MSG_14 "L   x,y,z   ratio        r,g,b (one light)\n"
 # define CONFIG_MSG_15 "l   x,y,z   ratio        r,g,b (one or multiple)\n"
 # define CONFIG_MSG_16 "sp  x,y,z   d            r,g,b  "
-# define CONFIG_MSG_17 "pl  x,y,z   x_n,y_n,x_n  r,g,b  "
-# define CONFIG_MSG_18 "cy  x,y,z   x_n,y_n,x_n  d   h   r,g,b  "
-# define CONFIG_MSG_19 "co  x,y,z   x_n,y_n,x_n  d   h   r,g,b  "
+# define CONFIG_MSG_17 "pl  x,y,z   x_n,y_n,z_n  r,g,b  "
+# define CONFIG_MSG_18 "cy  x,y,z   x_n,y_n,z_n  d   h   r,g,b  "
+# define CONFIG_MSG_19 "co  x,y,z   x_n,y_n,z_n  d   h   r,g,b  "
 # define CONFIG_MSG_20 "[checker or bump]\n"
 # define CONFIG_MSG_21 "q is in range             (0, 1000)\n"
 # define CONFIG_MSG_22 "s is in range             (0, 1000000)\n\n"

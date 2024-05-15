@@ -60,12 +60,12 @@ HEAD_DIR		:=	-I./includes -I$(LIBMLX)/include  -I./libft
 # 					-lglfw -framework OpenGL -framework AppKit
 
 # MLX FOR THE SCHOOL MACs 
-#LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
-#					-lglfw -framework OpenGL -framework AppKit
+LIBS			:=	-lft -L $(LIBFT_PATH) -L$(LIBMLX)/build -lmlx42 -L"/Users/$(USER)/.brew/opt/glfw/lib" \
+					-lglfw -framework OpenGL -framework AppKit
 
 # LINUX
- GLFW_DIR		:=	~/.brew/opt/glfw/lib
- LIBS			:=	$(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
+# GLFW_DIR		:=	~/.brew/opt/glfw/lib
+# LIBS			:=	$(LIBMLX)/build/libmlx42.a -ldl -lglfw -L$(GLFW_DIR) -pthread -lm
 
 # LOADING PROGRESS BAR INIT
 TOTAL_OBJS		:=	$(words $(OBJS))
@@ -74,6 +74,8 @@ MSG_PRINTED 	:=	false
 
 # RULES
 all: $(NAME)
+
+bonus: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS_PATH) $(OBJS) $(HEADERS)
 	@cc $(CFLAGS) $(OBJS) $(LIBS) $(HEAD_DIR) $(LIBFT) -o $(NAME)

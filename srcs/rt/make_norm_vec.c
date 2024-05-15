@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_norm_vec.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apimikov <apimikov@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 06:48:10 by apimikov          #+#    #+#             */
-/*   Updated: 2024/05/14 06:48:11 by apimikov         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:25:55 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	make_norm_vec_plane(t_minirt *rt, int pixel)
 	data = &(rt->vp.hit[pixel]);
 	p = (t_plane *)data->obj;
 	data->v = vec_scale(data->dist, data->ray);
+	p->n = vec_unit(p->n);
 	data->n = p->n;
 	if (dot(data->ray, data->n) > 0)
 		data->n = vec_scale(-1, data->n);

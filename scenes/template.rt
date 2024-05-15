@@ -13,7 +13,7 @@ A   0.5     255,255,255
 # <coordinates of camera position: x,y,z (-1000000, 1000000)>
 # <camera view: x,y,z (-1000000, 1000000)>
 # <pov:x,y,z 0-180>
-C   0,0,0   0,0,1   90
+C   0,0,0   0,-1,1   90
 
 # Light
 # <coordinates: x,y,z (-1000000, 1000000)>
@@ -54,6 +54,7 @@ sp  -2,-1.5,3   0.5     255,255,255     bump textures/txr2.png
 # <texture with .png extension>
 pl  0,-2,10     0,1,0   0,0,250     bump textures/water.png
 pl  0,10,0      0,1,0   0,250,0     bump textures/nightsky.png
+#pl  0,0,50     0,0,1   0,0,250   
 
 # Cylinder
 # <coordinates: x,y,z (-1000000, 1000000)>

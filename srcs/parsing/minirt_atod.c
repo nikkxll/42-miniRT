@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_atod.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dnikifor <dnikifor@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: apimikov <apimikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:24:46 by dnikifor          #+#    #+#             */
-/*   Updated: 2024/05/14 22:24:10 by dnikifor         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:48:40 by apimikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_bool	format_check(char *str, int count, int *sign_flag)
 		str++;
 	}
 	if (((*str == NULL_TERM || *str == DOT) && count > ATOF_MAX)
-			|| (*str != NULL_TERM && *str != DOT) || count == 0)
+		|| (*str != NULL_TERM && *str != DOT) || count == 0)
 		return (false);
 	if (*str && ft_strlen(str + 1) == 0)
 		return (false);
